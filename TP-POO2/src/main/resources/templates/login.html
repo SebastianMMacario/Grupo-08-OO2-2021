@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/loginStyles.css">
+    <title>Inica Sesion</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__contenedor">
+            <h2 class="header__logo">Grupo 8</h2>
+            <nav class="nav">
+                <a href="#" class="nav__enlace">Inicio</a>
+                <a href="#" class="nav__enlace">Registrate</a>
+                <a href="#" class="nav__enlace">Incia Sesion</a>
+                <a href="#" class="nav__enlace">Lista de Usuarios</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contenedor">
+        <form class="form" action="">
+            <div class="form__sobre-nosotros">
+                <h1>Ingresa</h1>
+                <p class="form__info-extra">¡Le damos nuevamente la bienvenida!</p>
+                <p class="form__info">No tiene una cuenta? <a href="#">Registrate aqui</a> </p>
+
+            </div>
+            <div class="form__datos">
+                <!--USER-->
+                <div class="form__grupo">
+                    <label for="usuario" class="form__label">Usuario</label>
+                    <div class="form__grupo-input">
+                        <i class="form__icono  fas fa-user"></i>
+                        <input required type="text" name="" class="form__input" id="usuario">
+                    </div>
+                </div>
+                
+                <!--PASSWORD-->
+                <div class="form__grupo">
+                    <label for="password" class="form__label">Contraseña</label>
+                    <div class="form__grupo-input">
+                        <i class="form__icono fas fa-key"></i>
+                        <input required type="password" name="" class="form__input" id="password">
+                    </div>
+                </div>
+
+
+                <!--Button-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button class="form__button" type="submit"> <i class="form__button-icono fas fa-sign-in-alt"></i>INICIAR SESION</button>
+                </div>
+            </div>
+
+        </form>
+
+        <footer>
+            <div class="derechos">
+                <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            </div>
+            <div class="redes-sociales">
+                <a href="#" class="redes-sociales__red"><i class="fab fa-github"></i> </a>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+</html>
