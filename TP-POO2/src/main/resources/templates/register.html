@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/registerStyles.css">
+    <title>Registrate</title>
+</head>
+<body>
+        <!--ENCABEZADO-->
+        <header class="header">
+            <div class="header__contenedor">
+                <h2 class="header__logo">Grupo 8</h2>
+                <nav class="nav">
+                    <a href="#" class="nav__enlace">Inicio</a>
+                    <a href="#" class="nav__enlace">Registrate</a>
+                    <a href="#" class="nav__enlace">Incia Sesion</a>
+                    <a href="#" class="nav__enlace">Lista de Usuarios</a>
+                </nav>
+            </div>
+        </header>
+
+        <!--FORMULARIO-->
+        <main>
+            <h1 class="titulo">Completa con tus datos</h1>
+
+            <!--APELLIDO-->
+            <form class="form" id="form">
+                <!--APELLIDO-->
+                <div class="form__grupo" id="grupo__apellido">
+                    <label for="apellido" class="form__label">Apellido</label>
+                    <div class="form__grupo-input">
+                        <input type="text" name="apellido" class="form__input" id="apellido">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El apellido solo puede contener caracteres</p>
+                </div>
+    
+                <!--NOMBRE-->
+                <div class="form__grupo" id="grupo__nombre">
+                    <label for="nombre" class="form__label">Nombre</label>
+                    <div class="form__grupo-input">
+                        <input type="text" name="nombre" class="form__input" id="nombre">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El nombre solo puede contener caracteres</p>
+                </div>
+    
+                <!--DOCUMENT0-->
+                <div class="form__grupo" id="grupo__documento">
+                    <label for="documento" class="form__label">Numero de documento</label>
+                    <div class="form__grupo-input">
+                        <select required class="form__select">
+                            <option disabled class="form__select-option">Tipo de Documento</option>
+                            <option class="form__select-option" value="">DNI</option>
+                            <!--Se cargan del a traves de la BD-->
+                        </select>
+                        <input placeholder="11111111" type="text" class="form__input" name="documento" id="documento">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El documento debe contener 8 numeros</p>
+                </div>
+    
+                <!--USER-->
+                <div class="form__grupo" id="grupo__usuario">
+                    <label for="usuario" class="form__label">Usuario</label>
+                    <div class="form__grupo-input">
+                        <select required class="form__select" >
+                            <option disabled class="form__select-option">Tipo de Usuario</option>
+                            <option class="form__select-option" value="">Admin</option>
+                            <option class="form__select-option" value="">Comun</option>
+                            <!--Se cargan a traves del sv-->
+                        </select>
+                        <input placeholder="Ej: jhon123" type="text" name="usuario" class="form__input" id="usuario">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El usuario tiene que ser de 4 a 16 digitos y solo pude contener numeros,letras y guion bajo</p>
+                </div>
+    
+                <!--PASSWORD-->
+                <div class="form__grupo" id="grupo__password">
+                    <label for="password" class="form__label">Contraseña</label>
+                    <div class="form__grupo-input">
+                        <input type="password" name="password" class="form__input" id="password">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">La contraseña tiene que ser de 4 a 12 digitos</p>
+                </div>
+    
+                <!--REPEAT PASSWORD-->
+                <div class="form__grupo" id="grupo__confirm-password">
+                    <label for="confirm-password" class="form__label">Repetir contraseña</label>
+                    <div class="form__grupo-input">
+                        <input type="password" name="confirm-password" class="form__input" id="confirm-password">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">Las contraseñas deben ser iguales</p>
+                </div>
+    
+                <!--EMAIL-->
+                <div class="form__grupo" id="grupo__email">
+                    <label for="email" class="form__label">Correo Electronico</label>
+                    <div class="form__grupo-input">
+                        <input placeholder="correo@correo.com" type="email" name="email" class="form__input" id="email">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El correo solo puede contener letras,puntos,guiones y guion bajos</p>
+                </div>
+                
+                <!--CHECKBOX-->
+                <div class="form__grupo-checkbox">
+                    <label class="form__label">
+                        <input type="checkbox" name="checkbox" id="checkbox">
+                        Acepto los terminos y condiciones
+                    </label>
+                </div>
+    
+                <!--MSG DE ERROR-->
+                <div class="form__msg-error" id="form__msg-error">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Porfavor rellene el formulario correctamente</p>
+                </div>
+    
+                <!--BUTTON-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button class="form__button" type="submit">REGISTRARSE</button>
+                    <p class="form__msg-exito" id="form__msg-exito">Registro exitoso!!!</p>
+                </div>
+                
+                <p class="form__info">Ya tiene un cuenta? <a href="#">Inicie Sesion</a> </p>
+            </form>
+        </main>
+    
+        <!--FOOTER-->
+        <footer>
+            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            <div class="redes-sociales">
+                <a href="#" class="redes-sociales__red"><i class="fab fa-github"></i> </a>
+            </div>
+        </footer>
+   
+        <!--SCRIPT-->
+        <script src="../static/js/register.js"></script>
+</body>
+</html>

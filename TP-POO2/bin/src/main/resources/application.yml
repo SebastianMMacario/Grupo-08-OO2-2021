@@ -1,0 +1,20 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver   #Indica el driver/lib para conectar java a mysql
+        url: jdbc:mysql://localhost:3306/bd-tp-oo2?serverTimezone=UTC 
+        initialization-mode: always
+        username: root
+        password: root   
+            
+    jpa:
+        show-sql: true #[Opcional]Imprime en tu consola las instrucciones hechas en tu base de datos.
+        hibernate:
+           ddl-auto: update
+           
+    thymeleaf:
+        mode: HTML5
+        cache: false     
+
+        
+server: 
+    port: 9090  #[Opcional] Indica en que puerto se abrira el Servidor
