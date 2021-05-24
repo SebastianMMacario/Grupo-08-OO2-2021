@@ -35,6 +35,7 @@ const validarFormulario = (evento)=>{
             break; 
         case "password":
             validarCampo(expresiones.password , evento.target , "password");
+            validarPassword();
             break;    
         case "confirm-password":
             validarPassword();
@@ -69,6 +70,9 @@ const validarCampo=(expresion, input, campo) =>{
 const validarPassword = () =>{
     const password = document.getElementById("password");
     const passwordConfirm = document.getElementById("confirm-password");
+
+    console.log(password.value);
+    console.log(passwordConfirm.value);
 
     if(password.value !== passwordConfirm.value){
         document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-correcto");
