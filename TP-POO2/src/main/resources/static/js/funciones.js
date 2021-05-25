@@ -29,8 +29,7 @@ function eliminar(id) {
 }
 
 /**GENERAR REPORTE DE USUARIOS EN PDF ***/
-function crearPDF(){
-	
+const crearPDF =() =>{
 	$.ajax({
 		url: "/generarPDF",
 		success: function(res) {
@@ -39,9 +38,8 @@ function crearPDF(){
 	});
 	swal("Reporte generado con exito!!!", {
 		icon: "success"
-	}).then((ok) => {
-		if (ok) {
-			location.href = "/list";
-		}
 	});
 }
+
+document.querySelector("#button-pdf").addEventListener("click" , crearPDF);
+
