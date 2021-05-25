@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Unla.TPPOO2.configuration.ReportePDF;
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IusuarioService;
 import com.Unla.TPPOO2.models.Usuario;
@@ -23,11 +24,13 @@ public class UsuarioController {
 	@Autowired
 	private IusuarioService service;
 	
+	
 	@GetMapping("/list")
 	public String listar(Model model) {
 		List<Usuario>usuarios=service.listar();
 		model.addAttribute("usuarios", usuarios);
-		return ViewRouteHelper.USER_LIST;
+		//return ViewRouteHelper.USER_LIST;
+		return "index.html";
 	}
 	
 	@GetMapping("/new")
@@ -53,5 +56,12 @@ public class UsuarioController {
 	public String delete(Model model, @PathVariable int idUsuario) {
 		service.delete(idUsuario);
 		return "redirect:/list";
+	}
+	
+	/**********Reporte de usuaruios en PDF***********/
+	@GetMapping("/generarPDF")
+	public void generarReporte(){
+		List<Usuario> usuarios = service.listar();
+		ReportePDF.generarReportePDF(usuarios);	
 	}
 }
