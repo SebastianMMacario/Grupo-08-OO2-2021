@@ -35,12 +35,16 @@ public class UsuarioController {
 	
 	@GetMapping("/new")
 	public String agregar(Model model) {
-		model.addAttribute("usuario",new Usuario());
-		return ViewRouteHelper.USER_NEW;
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario",usuario);
+		//model.addAttribute("usuario",new Usuario());
+		//return ViewRouteHelper.USER_NEW;
+		return "agregarUsuario.html";
 	}
 	
 	@PostMapping("/save")
 	public String guardar(@Validated Usuario u, Model model) {
+		 u.setTipoDocumento("DNI"); //en mi vista de registro no tengo el campo para tipo dni, por eso le agrego al cliente DNI
 		service.save(u);
 		return "redirect:/list";
 	}
@@ -55,6 +59,11 @@ public class UsuarioController {
 	@GetMapping("/delete/{idUsuario}")
 	public String delete(Model model, @PathVariable int idUsuario) {
 		service.delete(idUsuario);
+		return "redirect:/list";
+	}
+	
+	@GetMapping("/cancelAction")
+	public String cancelarAccion() {
 		return "redirect:/list";
 	}
 	

@@ -172,7 +172,6 @@ main h1{
 }
 .form__button:hover{
     box-shadow: 3px 0px 30px rgba(150,150,150,1);
-    background-color: #555555;
 }
 .form__msg-exito{
     margin-bottom: 0;
@@ -246,10 +245,6 @@ footer{
 }
 .redes-sociales__red:hover{
     color: #111;
-}
-
-div{
-    background-color: #000;
 }
 
 /*MEDIA QUERY*/

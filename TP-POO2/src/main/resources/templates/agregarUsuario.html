@@ -9,23 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/registerStyles.css">
-    <title>Registrate</title>
+    <title>Agregar Usuario</title>
 </head>
 <body>
         <!--ENCABEZADO-->
         <header class="header">
             <div class="header__contenedor">
                 <h2 class="header__logo">Grupo 8</h2>
-                <nav class="nav">
-                    <a href="#" class="nav__enlace">Registrate</a>
-                    <a href="#" class="nav__enlace">Incia Sesion</a>
-                </nav>
             </div>
         </header>
 
         <!--FORMULARIO-->
         <main>
-            <h1 class="titulo">Rellena los datos</h1>
+            <h1 class="titulo">Complete el formulario</h1>
 
             <!--APELLIDO-->
             <form th:action="@{/save}" th:object=${usuario} method="POST" class="form" id="form">
@@ -49,7 +45,7 @@
                     <p class="form__error-input-msg">El nombre solo puede contener caracteres</p>
                 </div>
     
-                <!--DOCUMENT0-->
+                <!--DOCUMENTO-->
                 <div class="form__grupo" id="grupo__nroDocumento">
                     <label for="documento" class="form__label">Numero de documento</label>
                     <div class="form__grupo-input">
@@ -94,15 +90,6 @@
                     <p class="form__error-input-msg">La contraseña tiene que ser de 4 a 12 digitos</p>
                 </div>
     
-                <!--REPEAT PASSWORD-->
-                <div class="form__grupo" id="grupo__confirm-password">
-                    <label for="confirm-password" class="form__label">Repetir contraseña</label>
-                    <div class="form__grupo-input">
-                        <input type="password" name="confirm-password" class="form__input" id="confirm-password">
-                        <i class="fas fa-times-circle form__validacion-estado"></i>
-                    </div>
-                    <p class="form__error-input-msg">Las contraseñas deben ser iguales</p>
-                </div>
     
                 <!--EMAIL-->
                 <div class="form__grupo" id="grupo__email">
@@ -113,14 +100,6 @@
                     </div>
                     <p class="form__error-input-msg">El correo solo puede contener letras,puntos,guiones y guion bajos</p>
                 </div>
-                
-                <!--CHECKBOX-->
-                <div class="form__grupo-checkbox">
-                    <label class="form__label">
-                        <input type="checkbox" name="checkbox" id="checkbox">
-                        Acepto los terminos y condiciones
-                    </label>
-                </div>
     
                 <!--MSG DE ERROR-->
                 <div class="form__msg-error" id="form__msg-error">
@@ -130,10 +109,11 @@
                 <!--BUTTON-->
                 <div class="form__grupo form__grupo-button-enviar">
                     <button class="form__button" type="submit">AGREGAR</button>
-                    <p class="form__msg-exito" id="form__msg-exito">Cliente agregado con exito!!!</p>
                 </div>
                 
-                <p class="form__info">Ya tiene un cuenta? <a href="#">Inicie Sesion</a> </p>
+                <p class="form__info" style="font-size: 1.15em;">
+                	<a th:href="@{/cancelAction}" href="#">Cancelar</a> 
+                </p>
             </form>
         </main>
     
@@ -146,6 +126,6 @@
         </footer>
    
         <!--SCRIPT-->
-        <script src="/js/register.js"></script>
+        <script src="/js/agregarUsuario.js"></script>
 </body>
 </html>

@@ -35,11 +35,7 @@ const validarFormulario = (evento)=>{
             break; 
         case "password":
             validarCampo(expresiones.password , evento.target , "password");
-            validarPassword();
             break;    
-        case "confirm-password":
-            validarPassword();
-            break;
         case "email":
             validarCampo(expresiones.correo , evento.target , "email");
             break;                 
@@ -67,29 +63,6 @@ const validarCampo=(expresion, input, campo) =>{
     }
 }
 
-const validarPassword = () =>{
-    const password = document.getElementById("password");
-    const passwordConfirm = document.getElementById("confirm-password");
-
-    if(password.value !== passwordConfirm.value){
-        document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-correcto");
-        document.getElementById(`grupo__confirm-password`).classList.add("form__grupo-incorrecto");
-        document.querySelector(`#grupo__confirm-password i`).classList.remove("fa-check-circle");
-        document.querySelector(`#grupo__confirm-password i`).classList.add("fa-times-circle");
-
-        document.querySelector(`#grupo__confirm-password .form__error-input-msg`).classList.add("form__error-input-msg-activo");
-        campos["password"] = false;
-    }
-    else{
-        document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-incorrecto");
-        document.getElementById(`grupo__confirm-password`).classList.add("form__grupo-correcto");
-        document.querySelector(`#grupo__confirm-password i`).classList.remove("fa-times-circle");
-        document.querySelector(`#grupo__confirm-password i`).classList.add("fa-check-circle");
-
-        document.querySelector(`#grupo__confirm-password .form__error-input-msg`).classList.remove("form__error-input-msg-activo");
-        campos["password"] = true;
-    }
-}
 
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
@@ -97,25 +70,10 @@ inputs.forEach( (input) =>{
 });
 
 
-
 formulario.addEventListener("submit", (e) =>{
  
-    const terminos = document.getElementById("checkbox");
-    if(campos.apellido && campos.nombre && campos.nroDocumento && campos.nombreUsuario && campos.email && campos.password &&
-        terminos.checked){
+    if(!campos.apellido || !campos.nombre || !campos.nroDocumento || !campos.nombreUsuario || !campos.email || !campos.password){
 	
-        //formulario.reset();
-
-        document.getElementById("form__msg-exito").classList.add("form__msg-exito-activo");
-        setTimeout( ()=>{
-            document.getElementById("form__msg-exito").classList.remove("form__msg-exito-activo");
-        } , 10000); //serian 10000 milisegundos es decir 10 segundos para que desaparezca el msg de exito
-
-        document.querySelectorAll(".form__grupo-correcto").forEach( (input)=>{
-            input.classList.remove("form__grupo-correcto");
-        });
-    }
-    else{
 	    e.preventDefault();
         
         document.getElementById("form__msg-error").classList.add("form__msg-erro-activo");
@@ -123,4 +81,5 @@ formulario.addEventListener("submit", (e) =>{
             document.getElementById("form__msg-error").classList.remove("form__msg-erro-activo");
         } , 5000); //serian 5000 milisegundos es decir 5 segundos para que desaparezca el msg de exito
     }
+   
 });
