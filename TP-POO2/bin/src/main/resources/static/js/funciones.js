@@ -27,21 +27,3 @@ function eliminar(id) {
 	  });
 	
 }
-
-/**GENERAR REPORTE DE USUARIOS EN PDF ***/
-function crearPDF(){
-	
-	$.ajax({
-		url: "/generarPDF",
-		success: function(res) {
-			console.log(res);
-		}
-	});
-	swal("Reporte generado con exito!!!", {
-		icon: "success"
-	}).then((ok) => {
-		if (ok) {
-			location.href = "/list";
-		}
-	});
-}

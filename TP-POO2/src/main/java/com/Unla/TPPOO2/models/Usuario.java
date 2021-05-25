@@ -1,34 +1,70 @@
 package com.Unla.TPPOO2.models;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUsuario;
+	
+	@Column(name="nombre", nullable=false, length=45)
 	private String nombre;
+	
+	@Column(name="apellido", nullable=false, length=45)
 	private String apellido;
+	
+	@Column(name="tipoDocumento", nullable=false, length=45)
 	private String tipoDocumento;
-	private long nroDocumento;
+	
+	@Column(name="nroDocumento", nullable=false)
+	private int nroDocumento;
+	
+	@Column(name="email", nullable=false, length=45)
 	private String email;
+	
+	@Column(name="nombreUsuario", nullable=false, length=45)
 	private String nombreUsuario;
+	
+	@Column(name="password", nullable=false, length=60)
 	private String password;
 	
-	public Usuario() {
-		// TODO Auto-generated constructor stub
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_perfil")
+	private Perfil perfil;
+	
+	@Column(name="enabled")
+	private boolean enabled;
+	
+	@Column(name="createdat")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
+	@Column(name="updatedat")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+		
+	public Usuario() {}
 
-	public Usuario(int idUsuario, String nombre, String apellido, String tipoDocumento, long nroDocumento, String email,
-			String nombreUsuario, String password) {
+	public Usuario(String nombre, String apellido, String tipoDocumento, int nroDocumento, String email,
+			String nombreUsuario, String password, Perfil perfil) {
 		super();
-		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -36,6 +72,7 @@ public class Usuario {
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
+		this.perfil = perfil;
 	}
 
 	public int getIdUsuario() {
@@ -70,11 +107,11 @@ public class Usuario {
 		this.tipoDocumento = tipoDocumento;
 	}
 
-	public long getNroDocumento() {
+	public int getNroDocumento() {
 		return nroDocumento;
 	}
 
-	public void setNroDocumento(long nroDocumento) {
+	public void setNroDocumento(int nroDocumento) {
 		this.nroDocumento = nroDocumento;
 	}
 
@@ -101,6 +138,39 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
+
 	
 }

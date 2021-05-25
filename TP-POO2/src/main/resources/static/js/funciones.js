@@ -1,7 +1,7 @@
 function eliminar(id) {
 	swal({
-		  title: "Está seguro de Eliminar?",
-		  text: "Once deleted, you will not be able to recover this imaginary file!",
+		  title: "Está seguro de que desea eliminar este usuario?",
+		  text: "Una vez eliminado, no será posible recuperarlo!",
 		  icon: "warning",
 		  buttons: true,
 		  dangerMode: true,
@@ -14,7 +14,7 @@ function eliminar(id) {
 					console.log(res);
 				}
 			  });
-			swal("Poof! Your imaginary file has been deleted!", {
+			swal("El usuario ha sido eliminado con exito!", {
 				icon: "success",
 			}).then((ok) => {
 				if(ok) {
@@ -22,24 +22,8 @@ function eliminar(id) {
 				}
 			});
 		  } else {
-			swal("Your imaginary file is safe!");
+			swal("El usuario no ha sido eliminado");
 		}
 	  });
 	
 }
-
-/**GENERAR REPORTE DE USUARIOS EN PDF ***/
-const crearPDF =() =>{
-	$.ajax({
-		url: "/generarPDF",
-		success: function(res) {
-			console.log(res);
-		}
-	});
-	swal("Reporte generado con exito!!!", {
-		icon: "success"
-	});
-}
-
-document.querySelector("#button-pdf").addEventListener("click" , crearPDF);
-

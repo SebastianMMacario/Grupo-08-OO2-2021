@@ -248,10 +248,6 @@ footer{
     color: #111;
 }
 
-div{
-    background-color: #000;
-}
-
 /*MEDIA QUERY*/
 @media (min-width: 575px) {
     body{

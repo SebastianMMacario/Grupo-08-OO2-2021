@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.IusuarioService;
@@ -11,13 +12,17 @@ import com.Unla.TPPOO2.interfaces.IUsuario;
 import com.Unla.TPPOO2.models.Usuario;
 
 @Service
-public class UsuarioService implements IusuarioService{
+public class UsuarioService implements IusuarioService {
 
 	@Autowired
 	private IUsuario data;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	public List<Usuario> listar() {
-		return (List<Usuario>)data.findAll();
+		return (List<Usuario>) data.findAll();
 	}
 
 	@Override
@@ -25,9 +30,24 @@ public class UsuarioService implements IusuarioService{
 		return data.findById(id);
 	}
 
+//	@Override
+//	public Usuario save(Usuario u) {
+//		Usuario usuario = new Usuario();
+//		usuario.setNombre(u.getNombre());
+//		usuario.setApellido(u.getApellido());
+//		usuario.setNroDocumento(u.getNroDocumento());
+//		usuario.setTipoDocumento(u.getTipoDocumento());
+//		usuario.setEmail(u.getEmail());
+//		usuario.setNombreUsuario(u.getNombreUsuario());
+//		usuario.setPerfil(u.getPerfil());
+//		usuario.setPassword(passwordEncoder.encode(u.getPassword()));
+//		return data.save(usuario);
+//	}
+	
 	@Override
 	public int save(Usuario u) {
 		int res=0;
+		u.setPassword(passwordEncoder.encode(u.getPassword()));
 		Usuario usuario=data.save(u);
 		if(!usuario.equals(null)) {
 			res=1;
@@ -39,5 +59,6 @@ public class UsuarioService implements IusuarioService{
 	public void delete(int id) {
 		data.deleteById(id);
 	}
+
 
 }

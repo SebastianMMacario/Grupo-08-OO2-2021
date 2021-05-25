@@ -9,7 +9,8 @@ public interface IusuarioService {
 	
 	public List<Usuario>listar();
 	public Optional<Usuario>listarId(int id);
+	//public Usuario save(Usuario u);
 	public int save(Usuario u);
 	public void delete(int id);
-	
+
 }

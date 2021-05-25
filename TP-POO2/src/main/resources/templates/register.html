@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/registerStyles.css">
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/registerStyles.css">
     <title>Registrate</title>
 </head>
 <body>
@@ -25,15 +25,15 @@
 
         <!--FORMULARIO-->
         <main>
-            <h1 class="titulo">Rellena los datos</h1>
+            <h1 class="titulo">Completa con tus datos</h1>
 
             <!--APELLIDO-->
-            <form th:action="@{/save}" th:object=${usuario} method="POST" class="form" id="form">
+            <form class="form" id="form">
                 <!--APELLIDO-->
                 <div class="form__grupo" id="grupo__apellido">
                     <label for="apellido" class="form__label">Apellido</label>
                     <div class="form__grupo-input">
-                        <input th:field="${usuario.apellido}" type="text" name="apellido" class="form__input" id="apellido">
+                        <input type="text" name="apellido" class="form__input" id="apellido">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">El apellido solo puede contener caracteres</p>
@@ -43,42 +43,38 @@
                 <div class="form__grupo" id="grupo__nombre">
                     <label for="nombre" class="form__label">Nombre</label>
                     <div class="form__grupo-input">
-                        <input th:field="${usuario.nombre}" type="text" name="nombre" class="form__input" id="nombre">
+                        <input type="text" name="nombre" class="form__input" id="nombre">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">El nombre solo puede contener caracteres</p>
                 </div>
     
                 <!--DOCUMENT0-->
-                <div class="form__grupo" id="grupo__nroDocumento">
+                <div class="form__grupo" id="grupo__documento">
                     <label for="documento" class="form__label">Numero de documento</label>
                     <div class="form__grupo-input">
-                    
                         <select required class="form__select">
                             <option disabled class="form__select-option">Tipo de Documento</option>
                             <option class="form__select-option" value="">DNI</option>
-                         
+                            <!--Se cargan del a traves de la BD-->
                         </select>
-                        
-                        <input th:field="${usuario.nroDocumento}" placeholder="11111111" type="text" class="form__input" name="nroDocumento" id="nroDocumento">
+                        <input placeholder="11111111" type="text" class="form__input" name="documento" id="documento">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">El documento debe contener 8 numeros</p>
                 </div>
     
                 <!--USER-->
-                <div class="form__grupo" id="grupo__nombreUsuario">
+                <div class="form__grupo" id="grupo__usuario">
                     <label for="usuario" class="form__label">Usuario</label>
                     <div class="form__grupo-input">
-                    
                         <select required class="form__select" >
                             <option disabled class="form__select-option">Tipo de Usuario</option>
                             <option class="form__select-option" value="">Admin</option>
                             <option class="form__select-option" value="">Comun</option>
-                          
+                            <!--Se cargan a traves del sv-->
                         </select>
-                        
-                        <input th:field="${usuario.nombreUsuario}" type="text" name="nombreUsuario" class="form__input" id="nombreUsuario">
+                        <input placeholder="Ej: jhon123" type="text" name="usuario" class="form__input" id="usuario">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">El usuario tiene que ser de 4 a 16 digitos y solo pude contener numeros,letras y guion bajo</p>
@@ -88,7 +84,7 @@
                 <div class="form__grupo" id="grupo__password">
                     <label for="password" class="form__label">Contraseña</label>
                     <div class="form__grupo-input">
-                        <input th:field="${usuario.password}" type="password" name="password" class="form__input" id="password">
+                        <input type="password" name="password" class="form__input" id="password">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">La contraseña tiene que ser de 4 a 12 digitos</p>
@@ -108,7 +104,7 @@
                 <div class="form__grupo" id="grupo__email">
                     <label for="email" class="form__label">Correo Electronico</label>
                     <div class="form__grupo-input">
-                        <input th:field="${usuario.email}" placeholder="correo@correo.com" type="email" name="email" class="form__input" id="email">
+                        <input placeholder="correo@correo.com" type="email" name="email" class="form__input" id="email">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
                     <p class="form__error-input-msg">El correo solo puede contener letras,puntos,guiones y guion bajos</p>
@@ -129,8 +125,8 @@
     
                 <!--BUTTON-->
                 <div class="form__grupo form__grupo-button-enviar">
-                    <button class="form__button" type="submit">AGREGAR</button>
-                    <p class="form__msg-exito" id="form__msg-exito">Cliente agregado con exito!!!</p>
+                    <button class="form__button" type="submit">REGISTRARSE</button>
+                    <p class="form__msg-exito" id="form__msg-exito">Registro exitoso!!!</p>
                 </div>
                 
                 <p class="form__info">Ya tiene un cuenta? <a href="#">Inicie Sesion</a> </p>
@@ -146,6 +142,6 @@
         </footer>
    
         <!--SCRIPT-->
-        <script src="/js/register.js"></script>
+        <script src="../static/js/register.js"></script>
 </body>
 </html>
