@@ -33,11 +33,13 @@
                 
                                 
                 <!--TIPO PERFIL-->
-                <div class="form__grupo">
+                <div class="form__grupo" id="grupo__tipoPerfil">
                     <label for="tipoPerfil" class="form__label">Tipo de Perfil</label>
                     <div class="form__grupo-input">
-                        <input th:field="${perfil.tipoPerfil}" type="text" class="form__input" id="tipoPerfil">
+                        <input th:field="${perfil.tipoPerfil}" type="text" class="form__input" name="tipoPerfil" id="tipoPerfil">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
+                    <p class="form__error-input-msg">El tipoPerfil solo puede contener hasta 16 caracteres de letras, guiones bajo y guiones alto</p>
                 </div>
                 
                                               
@@ -69,6 +71,7 @@
                 <a href="#" class="redes-sociales__red"><i class="fab fa-github"></i> </a>
             </div>
         </footer>
-   
+        
+        <script src="/js/validarPerfil.js"></script>
 </body>
 </html>

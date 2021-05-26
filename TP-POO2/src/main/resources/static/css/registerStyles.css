@@ -157,6 +157,9 @@ main h1{
 }
 
 /*BUTTON*/
+.form__grupo-button-enviar{
+	margin-top: 2.5em;
+}
 .form__button{
     height: 2.8125em;
     line-height: 2.8125em;

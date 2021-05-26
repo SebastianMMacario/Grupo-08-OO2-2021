@@ -39,6 +39,6 @@ function eliminar(id) {
 			icon: "success"
 		});
 	}
-
-document.querySelector("#button-pdf").addEventListener("click", crearPDF);
+	
+	document.querySelector("#button-pdf").addEventListener("click", crearPDF);
 
