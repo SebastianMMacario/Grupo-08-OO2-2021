@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaces.IPerfil;
 import com.Unla.TPPOO2.models.Perfil;
+import com.Unla.TPPOO2.models.Usuario;
 
 
 @Service
@@ -32,7 +33,13 @@ public class PerfilService implements IPerfilService {
 	public int save(Perfil p){
 		// TODO Auto-generated method stub
 		
-		return Integer.parseInt(data.save(p).toString());
+		//return Integer.parseInt(data.save(p).toString());
+		int res = 0;
+		Perfil perfil=data.save( p);
+		if(!perfil.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 
 	@Override
@@ -40,9 +47,7 @@ public class PerfilService implements IPerfilService {
 		// TODO Auto-generated method stub
 		if (listarId(id) == null)
 			throw new Exception("El perfil con id: " + id + " no existe");
-		else
-			data.deleteById(id);
-		
+		else data.deleteById(id);
 	}
 
 	

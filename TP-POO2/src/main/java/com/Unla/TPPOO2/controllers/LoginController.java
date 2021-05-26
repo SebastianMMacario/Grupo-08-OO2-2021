@@ -51,6 +51,7 @@ public class LoginController {
 		return "redirect:/list";
 	}
 	
+	/*
 	@GetMapping("/register")
 	public String agregar(Model model) {
 		model.addAttribute("usuario",new Usuario());
@@ -58,6 +59,7 @@ public class LoginController {
 
 		return "register";
 	}
+	*/
 	
 	
 //	@PostMapping("/loginsuccess")
