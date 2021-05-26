@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/indexStyles.css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
+    <title>Inicio</title>
+</head>
+<body>
+    <!--HEADER-->
+    <header class="header">
+        <div class="header__contenedor">
+            <h2 class="header__logo">Grupo 8</h2>
+            
+            <nav class="nav">
+				<a class="nav__enlace" href=/listaPerfiles >Lista de Perfiles</a>
+			</nav>
+        </div>
+            
+    </header>
+
+    <main>
+        <h1>Listado de Usuarios</h1>
+        <div class="table-contenedor"> 
+        
+            <div class="tabla-header">
+                <div class="tabla-header__herramientas">
+	                	<a th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_ADMIN'}"  th:href="@{/new}" class="tabla-header__button" href="#"> 
+	                        <i class="fas fa-plus-circle"></i>Agregar Usuario
+	                    </a>
+     
+	                    <a class="tabla-header__button" id="button-pdf" href="#"> 
+	                        <i class="fas fa-file-pdf"></i>Generar PDF
+	                    </a> 
+                </div>
+            </div>
+            <table class="tabla" id="tabla">
+                <thead class="tabla__head">
+                    <tr class="tabla__row-head">
+                        <th class="tabla__head-nombre" scope="col">Apellido</th>
+                        <th class="tabla__head-nombre" scope="col">Nombre</th>
+                        <th class="tabla__head-nombre" scope="col">Tipo de Documento</th>
+                        <th class="tabla__head-nombre" scope="col">Documento</th>
+                        <th class="tabla__head-nombre" scope="col">Tipo-Usuario</th>
+                        <th class="tabla__head-nombre" scope="col">Usuario</th>
+                        <th class="tabla__head-nombre" scope="col">E-mail</th>
+                        <th th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_ADMIN'}" th class="tabla__head-nombre" >Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__body">
+                    <tr th:each="usuario:${usuarios}" class="tabla__row-body">
+                        <td th:text="${usuario.apellido}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.nombre}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.tipoDocumento}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.nroDocumento}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.perfil.tipoPerfil}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.nombreUsuario}" class="tabla__body-dato"></td>
+                        <td th:text="${usuario.email}" class="tabla__body-dato"></td>
+                        <td th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_ADMIN'}" class="tabla__body-dato">
+                            <a th:href="@{/edit/}+${usuario.idUsuario}" class="tabla__boton-editar" href="#"><i class="fas fa-edit"></i></a>
+                            <a th:onclick="eliminar([[${usuario.idUsuario}]])" class="tabla__boton-eliminar" href="#" ><i class="fas fa-user-times"></i></a> </td>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>  
+        </div>  
+        
+		<form th:action="@{/logout}" method="post">
+			<div class="button-contenedor">
+				<input class="logout-button" type="submit" value="Salir" />
+			</div>
+		</form>
+    </main>
+
+    <!--FOOTER-->
+    <footer>
+        <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+        <div class="redes-sociales">
+            <a href="#" class="redes-sociales__red"><i class="fab fa-github"></i> </a>
+        </div>
+    </footer>
+
+	<!--SCRIPT-->
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/js/funciones.js"></script>
+	
+</body>
+</html>

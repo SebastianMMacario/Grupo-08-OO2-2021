@@ -23,8 +23,16 @@
         <main>
             <h1 class="titulo">Complete el formulario</h1>
 
-            <!--APELLIDO-->
-            <form th:action="@{/save}" th:object=${usuario} method="POST" class="form" id="form">
+
+
+            <form th:action="@{/save}" th:object="${usuario}" method="POST" class="form" id="form">
+	             
+				<!--ID-->
+				<div class="form-group" style="display: none;">
+					<p style="display: none"> <label>ID</label></p>
+					<p style="display: none"> <input th:field="*{idUsuario}" type="text" class="form-control" /></p>
+				</div>
+                
                 <!--APELLIDO-->
                 <div class="form__grupo" id="grupo__apellido">
                     <label for="apellido" class="form__label">Apellido</label>
@@ -50,9 +58,9 @@
                     <label for="documento" class="form__label">Numero de documento</label>
                     <div class="form__grupo-input">
                     
-                        <select required class="form__select">
-                            <option disabled class="form__select-option">Tipo de Documento</option>
-                            <option class="form__select-option" value="">DNI</option>
+                        <select th:field="${usuario.tipoDocumento}" class="form__select">
+                            <!--<option disabled class="form__select-option">Tipo de Documento</option> -->
+                            <option th:each="e : ${enum}" th:value="${e}"  th:text="${e}"  class="form__select-option" value=""></option>
                          
                         </select>
                         
@@ -67,10 +75,9 @@
                     <label for="usuario" class="form__label">Usuario</label>
                     <div class="form__grupo-input">
                     
-                        <select required class="form__select" >
-                            <option disabled class="form__select-option">Tipo de Usuario</option>
-                            <option class="form__select-option" value="">Admin</option>
-                            <option class="form__select-option" value="">Comun</option>
+                        <select th:field="${usuario.perfil.idPerfil}" required class="form__select" >
+                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
+                            <option th:each="perfil:${perfiles}" th:value="${perfil.idPerfil}"  th:text="${perfil.tipoPerfil}" class="form__select-option" />
                           
                         </select>
                         
@@ -108,7 +115,9 @@
     
                 <!--BUTTON-->
                 <div class="form__grupo form__grupo-button-enviar">
-                    <button class="form__button" type="submit">AGREGAR</button>
+                    <button th:if="${editMode == null}" class="form__button" type="submit">AGREGAR</button>
+                    <button th:if="${editMode == true}" class="form__button" type="submit">MODIFICAR</button>
+
                 </div>
                 
                 <p class="form__info" style="font-size: 1.15em;">

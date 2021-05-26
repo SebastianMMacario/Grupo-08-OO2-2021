@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/registerStyles.css">
+    <title>Agregar Usuario</title>
+</head>
+<body>
+        <!--ENCABEZADO-->
+        <header class="header">
+            <div class="header__contenedor">
+                <h2 class="header__logo">Grupo 8</h2>
+            </div>
+        </header>
+
+        <!--FORMULARIO-->
+        <main>
+            <h1 class="titulo">Complete el formulario</h1>
+
+            <form th:action="@{/savePerfil}" th:object="${perfil}" method="POST" class="form" id="form">
+	             
+				<!--ID-->
+				<div class="form-group" style="display: none;">
+					<p style="display: none"> <label>ID</label></p>
+					<p style="display: none"> <input th:field="*{idPerfil}" type="text" class="form-control" /></p>
+				</div>
+                
+                                
+                <!--TIPO PERFIL-->
+                <div class="form__grupo">
+                    <label for="tipoPerfil" class="form__label">Tipo de Perfil</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${perfil.tipoPerfil}" type="text" class="form__input" id="tipoPerfil">
+                    </div>
+                </div>
+                
+                                              
+                <!--MSG DE ERROR-->
+                <div class="form__msg-error" id="form__msg-error">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Porfavor rellene el formulario correctamente</p>
+                </div>
+    
+    
+                <!--BUTTON-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button th:if="${editMode == null}" class="form__button" type="submit">AGREGAR</button>
+                    <button th:if="${editMode == true}" class="form__button" type="submit">MODIFICAR</button>
+                </div>
+                
+                <p class="form__info" style="font-size: 1.15em;">
+                	<a th:href="@{/cancelActionPerfil}" href="#">Cancelar</a> 
+                </p>
+                
+            </form>
+            
+        </main>
+    
+        <!--FOOTER-->
+     
+        <footer>
+            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            <div class="redes-sociales">
+                <a href="#" class="redes-sociales__red"><i class="fab fa-github"></i> </a>
+            </div>
+        </footer>
+   
+</body>
+</html>

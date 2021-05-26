@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../static/css/normalize.css">
-    <link rel="stylesheet" href="../static/css/loginStyles.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/loginStyles.css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
     <title>Inica Sesion</title>
 </head>
 <body>
     <header class="header">
         <div class="header__contenedor">
             <h2 class="header__logo">Grupo 8</h2>
+            <!--
             <nav class="nav">
-                <a href="#" class="nav__enlace">Registrate</a>
-                <a href="#" class="nav__enlace">Incia Sesion</a>
+                <a href="registro.html" class="nav__enlace">Registrate</a>
             </nav>
+            -->
         </div>
     </header>
 
     <div class="contenedor">
-        <form class="form" action="">
+        <form class="form" th:action="@{/loginprocess}" method="post" >
             <div class="form__sobre-nosotros">
                 <h1>Ingresa</h1>
                 <p class="form__info-extra">¡Le damos nuevamente la bienvenida!</p>
@@ -36,7 +39,7 @@
                     <label for="usuario" class="form__label">Usuario</label>
                     <div class="form__grupo-input">
                         <i class="form__icono  fas fa-user"></i>
-                        <input required type="text" name="" class="form__input" id="usuario">
+                        <input required type="text" name="nombreUsuario" class="form__input" id="nombreUsuario">
                     </div>
                 </div>
                 
@@ -45,19 +48,23 @@
                     <label for="password" class="form__label">Contraseña</label>
                     <div class="form__grupo-input">
                         <i class="form__icono fas fa-key"></i>
-                        <input required type="password" name="" class="form__input" id="password">
+                        <input required type="password" name="password" class="form__input" id="password">
                     </div>
+        
                 </div>
-
+                  
 
                 <!--Button-->
                 <div class="form__grupo form__grupo-button-enviar">
                     <button class="form__button" type="submit"> <i class="form__button-icono fas fa-sign-in-alt"></i>INICIAR SESION</button>
                 </div>
             </div>
+            
 
         </form>
-
+        <div th:if="${error != null}" class="alert alert-danger">
+		    	Usuario o contraseña invalido.
+	    </div>
         <footer>
             <div class="derechos">
                 <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>

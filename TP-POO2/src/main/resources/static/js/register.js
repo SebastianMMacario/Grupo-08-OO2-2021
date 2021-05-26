@@ -7,12 +7,12 @@ const expresiones = {
 };
 
 const campos = {
-	usuario: false,
+	nombreUsuario: false,
 	nombre: false,
     apellido: false,
 	password: false,
 	email:false,
-	documento: false
+	nroDocumento: false
 };
 
 const formulario = document.getElementById("form");
@@ -27,11 +27,11 @@ const validarFormulario = (evento)=>{
         case "nombre":
             validarCampo(expresiones.nombreYApellido , evento.target , "nombre");
             break;
-        case "documento":
-            validarCampo(expresiones.documento , evento.target , "documento");
+        case "nroDocumento":
+            validarCampo(expresiones.documento , evento.target , "nroDocumento");
             break;
-        case "usuario":
-            validarCampo(expresiones.usuario , evento.target , "usuario");
+        case "nombreUsuario":
+            validarCampo(expresiones.usuario , evento.target , "nombreUsuario");
             break; 
         case "password":
             validarCampo(expresiones.password , evento.target , "password");
@@ -71,9 +71,6 @@ const validarPassword = () =>{
     const password = document.getElementById("password");
     const passwordConfirm = document.getElementById("confirm-password");
 
-    console.log(password.value);
-    console.log(passwordConfirm.value);
-
     if(password.value !== passwordConfirm.value){
         document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-correcto");
         document.getElementById(`grupo__confirm-password`).classList.add("form__grupo-incorrecto");
@@ -100,27 +97,30 @@ inputs.forEach( (input) =>{
 });
 
 
-formulario.addEventListener("submit", (e) =>{
-    e.preventDefault();
 
+formulario.addEventListener("submit", (e) =>{
+ 
     const terminos = document.getElementById("checkbox");
-    if(campos.apellido && campos.nombre && campos.documento && campos.usuario && campos.email && campos.password &&
+    if(campos.apellido && campos.nombre && campos.nroDocumento && campos.nombreUsuario && campos.email && campos.password &&
         terminos.checked){
-        formulario.reset();
+	
+        //formulario.reset();
 
         document.getElementById("form__msg-exito").classList.add("form__msg-exito-activo");
         setTimeout( ()=>{
             document.getElementById("form__msg-exito").classList.remove("form__msg-exito-activo");
-        } , 7000); //serian 7000 milisegundos es decir 7 segundos para que desaparezca el msg de exito
+        } , 10000); //serian 10000 milisegundos es decir 10 segundos para que desaparezca el msg de exito
 
         document.querySelectorAll(".form__grupo-correcto").forEach( (input)=>{
             input.classList.remove("form__grupo-correcto");
         });
     }
     else{
+	    e.preventDefault();
+        
         document.getElementById("form__msg-error").classList.add("form__msg-erro-activo");
         setTimeout( ()=>{
             document.getElementById("form__msg-error").classList.remove("form__msg-erro-activo");
-        } , 7000); //serian 7000 milisegundos es decir 7 segundos para que desaparezca el msg de exito
+        } , 5000); //serian 5000 milisegundos es decir 5 segundos para que desaparezca el msg de exito
     }
 });

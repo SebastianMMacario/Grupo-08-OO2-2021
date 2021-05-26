@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,16 +32,29 @@ public class Usuario {
 	@Column(name="apellido", nullable=false, length=45)
 	private String apellido;
 	
-	@Column(name="tipoDocumento", nullable=false, length=45)
-	private String tipoDocumento;
+//	@Column(name="tipoDocumento", nullable=false)
+//	private int tipoDocumento;
 	
+    @Column(name="tipo_documento", nullable = false )
+    @Enumerated(value = EnumType.ORDINAL)
+    private TipoDocumento tipoDocumento;
+	
+	
+    public enum TipoDocumento {
+        DNI,
+        LIBRETA_CIVICA,
+        CEDULA_DE_IDENTIDAD,
+        PASAPORTE
+    }
+    
+    
 	@Column(name="nroDocumento", nullable=false)
 	private int nroDocumento;
 	
 	@Column(name="email", nullable=false, length=45)
 	private String email;
 	
-	@Column(name="nombreUsuario", nullable=false, length=45)
+	@Column(name="nombreUsuario", nullable=false, length=45/*, unique = true*/)
 	private String nombreUsuario;
 	
 	@Column(name="password", nullable=false, length=60)
@@ -62,17 +77,23 @@ public class Usuario {
 		
 	public Usuario() {}
 
-	public Usuario(String nombre, String apellido, String tipoDocumento, int nroDocumento, String email,
-			String nombreUsuario, String password, Perfil perfil) {
+	public Usuario(String nombre, String apellido, int nroDocumento, String email,
+			String nombreUsuario, String password) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.tipoDocumento = tipoDocumento;
 		this.nroDocumento = nroDocumento;
 		this.email = email;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
-		this.perfil = perfil;
+	}
+	
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public int getIdUsuario() {
@@ -99,13 +120,15 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
+//	public int getTipoDocumento() {
+//		return tipoDocumento;
+//	}
+//
+//	public void setTipoDocumento(int tipoDocumento) {
+//		this.tipoDocumento = tipoDocumento;
+//	}
+	
+	
 
 	public int getNroDocumento() {
 		return nroDocumento;
@@ -139,6 +162,7 @@ public class Usuario {
 		this.password = password;
 	}
 
+
 	public Perfil getPerfil() {
 		return perfil;
 	}
@@ -170,6 +194,15 @@ public class Usuario {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", nroDocumento="
+				+ nroDocumento + ", email=" + email + ", nombreUsuario=" + nombreUsuario + ", perfil=" + perfil
+				+ ", enabled=" + enabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
+
 	
 
 	

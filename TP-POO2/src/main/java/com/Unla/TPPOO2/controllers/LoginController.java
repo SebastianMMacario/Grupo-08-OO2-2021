@@ -2,13 +2,18 @@ package com.Unla.TPPOO2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.Unla.TPPOO2.interfaceService.IPerfilService;
+import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.interfaceService.IusuarioService;
 
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
@@ -18,20 +23,26 @@ import com.Unla.TPPOO2.models.Usuario;
 @Controller
 public class LoginController {
 	
-
+	
+	@Autowired
+	private IPerfilService perfilService;
+		
 	@GetMapping("/login")
 	public String login(Model model,
 						@RequestParam(name="error",required=false) String error,
 						@RequestParam(name="logout", required=false) String logout) {
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
-		return ViewRouteHelper.USER_LOGIN;
+		
+		return "login";
 	}
 	
 	@GetMapping("/logout")
 	public String logout(Model model) {
 		SecurityContextHolder.clearContext();
-		return ViewRouteHelper.USER_LOGOUT;
+		//return ViewRouteHelper.USER_LOGOUT;
+		return "login";
+		
 	}
 	
 	@GetMapping("/loginsuccess")
@@ -39,6 +50,15 @@ public class LoginController {
 		
 		return "redirect:/list";
 	}
+	
+	@GetMapping("/register")
+	public String agregar(Model model) {
+		model.addAttribute("usuario",new Usuario());
+		model.addAttribute("perfiles", perfilService.listar());
+
+		return "register";
+	}
+	
 	
 //	@PostMapping("/loginsuccess")
 //	public ModelAndView loginCheckPost() {

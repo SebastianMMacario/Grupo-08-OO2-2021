@@ -25,5 +25,20 @@ function eliminar(id) {
 			swal("El usuario no ha sido eliminado");
 		}
 	  });
-	
 }
+	  
+	/**GENERAR REPORTE DE USUARIOS EN PDF ***/
+	const crearPDF = () => {
+		$.ajax({
+			url: "/generarPDF",
+			success: function(res) {
+				console.log(res);
+			}
+		});
+		swal("Reporte generado con exito!!!", {
+			icon: "success"
+		});
+	}
+
+document.querySelector("#button-pdf").addEventListener("click", crearPDF);
+

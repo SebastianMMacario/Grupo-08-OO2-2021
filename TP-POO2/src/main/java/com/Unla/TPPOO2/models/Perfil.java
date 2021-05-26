@@ -30,7 +30,7 @@ public class Perfil {
 	private int idPerfil;
 	
 	@Column(name="tipo_perfil", nullable=false, length=45)
-	private String tipo_perfil;
+	private String tipoPerfil;
 
 	@Column(name="createdat")
 	@CreationTimestamp
@@ -48,7 +48,7 @@ public class Perfil {
 	
 	public Perfil(int idPerfil, String tipo_perfil) {
 		this.idPerfil = idPerfil;
-		this.tipo_perfil = tipo_perfil;
+		this.tipoPerfil = tipo_perfil;
 	}
 
 	public int getIdPerfil() {
@@ -60,11 +60,15 @@ public class Perfil {
 	}
 
 	public String getTipoPerfil() {
-		return tipo_perfil;
+		return tipoPerfil;
 	}
 
-	public void setTipoPerfil(String tipo_perfil) {
-		this.tipo_perfil = tipo_perfil;
+	public void setTipoPerfil(String tipoPerfil) {
+		this.tipoPerfil = tipoPerfil;
+	}
+
+	public void setIdPerfil(int idPerfil) {
+		this.idPerfil = idPerfil;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -90,4 +94,11 @@ public class Perfil {
 	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+
+	@Override
+	public String toString() {
+		return "Perfil [idPerfil=" + idPerfil + ", tipoPerfil=" + tipoPerfil + "]";
+	}
+	
+	
 }
