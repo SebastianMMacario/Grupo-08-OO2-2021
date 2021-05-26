@@ -12,29 +12,28 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>NOMBRE</th>
 					<th>APELLIDO</th>
 					<th>TIPO DE DOCUMENTO</th>
 					<th>NRO DE DOCUMENTO</th>
 					<th>E-MAIL</th>
 					<th>NOMBRE DE USUARIO</th>
-					<th>PASSWORD</th>
 					<th>ACCIONES</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.idUsuario}"></td>
+					
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.apellido}"></td>
 					<td th:text="${usuario.tipoDocumento}"></td>
 					<td th:text="${usuario.nroDocumento}"></td>
 					<td th:text="${usuario.email}"></td>
 					<td th:text="${usuario.nombreUsuario}"></td>
-					<td th:text="${usuario.password}"></td>
+					
 					<td>
 					<a th:href="@{/edit/}+${usuario.idUsuario}" class="btn btn-warning">Editar</a>
+					<!-- <a th:href="@{/delete/}+${usuario.idUsuario}" class="btn btn-danger">Eliminar</a> -->
 					<a th:onclick="eliminar([[${usuario.idUsuario}]])" class="btn btn-danger">Eliminar</a>
 					</td>
 				</tr>
@@ -46,6 +45,6 @@
 	</div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="funciones.js"></script>
+<script src="js/funciones.js"></script>
 </body>
 </html>

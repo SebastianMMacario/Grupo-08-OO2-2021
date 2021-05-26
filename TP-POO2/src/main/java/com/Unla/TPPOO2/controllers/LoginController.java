@@ -34,14 +34,14 @@ public class LoginController {
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
 		
-		return "login";
+		return ViewRouteHelper.ACCESO_LOGIN;
 	}
 	
 	@GetMapping("/logout")
 	public String logout(Model model) {
 		SecurityContextHolder.clearContext();
 		//return ViewRouteHelper.USER_LOGOUT;
-		return "login";
+		return ViewRouteHelper.ACCESO_LOGIN;
 		
 	}
 	

@@ -1,6 +1,7 @@
 package com.Unla.TPPOO2.controllers;
 
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +45,19 @@ public class UsuarioController {
 	
 	@GetMapping("/list")
 	public String listar(Model model) {
-		List<Usuario>usuarios=service.listar();
-		model.addAttribute("usuarios", usuarios);
 		
 		System.out.println(userLogueadoService.traerUserLogueado());
+		Usuario usuarioLogueado = userLogueadoService.traerUserLogueado();
 		
-		model.addAttribute("usuarioLogueado",userLogueadoService.traerUserLogueado());
-		return "usuariosVista";
+		List<Usuario> listaUsuarios = new ArrayList<>();
+		for (Usuario u : service.listar()) {
+			if(u.getIdUsuario() != usuarioLogueado.getIdUsuario()) {
+				listaUsuarios.add(u);
+			}
+		}
+		model.addAttribute("usuarios", listaUsuarios);
+		model.addAttribute("usuarioLogueado",usuarioLogueado);
+		return ViewRouteHelper.USUARIO_TABLA;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -62,12 +69,13 @@ public class UsuarioController {
 	
 		model.addAttribute("enum",TipoDocumento.values());
 		//return ViewRouteHelper.USER_NEW;
-		return "agregarUsuario";
+		return ViewRouteHelper.USUARIO_AGREGAR;
 	}
 	
 	@PostMapping("/save")
 	public String guardar(@Validated @ModelAttribute("usuario") Usuario u, Model model) {
 		//u.setTipoDocumento(1);
+		u.setEnabled(true);
 		System.out.println(u);
 		
 		service.save(u);
@@ -84,7 +92,7 @@ public class UsuarioController {
 		
 		model.addAttribute("editMode", true);
 		//return ViewRouteHelper.USER_NEW;
-		return "agregarUsuario";
+		return ViewRouteHelper.USUARIO_AGREGAR;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

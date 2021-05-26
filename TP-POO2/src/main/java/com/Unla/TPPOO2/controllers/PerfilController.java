@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.models.Perfil;
@@ -38,7 +39,7 @@ public class PerfilController {
 		model.addAttribute("perfiles", perfiles);
 		
 		model.addAttribute("usuarioLogueado",userLogueadoService.traerUserLogueado());
-		return "perfilesVista";
+		return ViewRouteHelper.PERFIL_TABLA;
 	}
 
 
@@ -48,7 +49,7 @@ public class PerfilController {
 		model.addAttribute("perfil", new Perfil());
 
 		// return ViewRouteHelper.USER_NEW;
-		return "agregarPerfil";
+		return ViewRouteHelper.PERFIL_AGREGAR;
 	}
 
 	@PostMapping("/savePerfil")
@@ -66,7 +67,7 @@ public class PerfilController {
 		model.addAttribute("perfiles", perfilService.listar());
 		model.addAttribute("editMode", true);
 
-		return "agregarPerfil";
+		return ViewRouteHelper.PERFIL_AGREGAR;
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

@@ -7,12 +7,12 @@ const expresiones = {
 };
 
 const campos = {
-	usuario: false,
+	nombreUsuario: false,
 	nombre: false,
     apellido: false,
 	password: false,
 	email:false,
-	documento: false
+	nroDocumento: false
 };
 
 const formulario = document.getElementById("form");
@@ -27,19 +27,15 @@ const validarFormulario = (evento)=>{
         case "nombre":
             validarCampo(expresiones.nombreYApellido , evento.target , "nombre");
             break;
-        case "documento":
-            validarCampo(expresiones.documento , evento.target , "documento");
+        case "nroDocumento":
+            validarCampo(expresiones.documento , evento.target , "nroDocumento");
             break;
-        case "usuario":
-            validarCampo(expresiones.usuario , evento.target , "usuario");
+        case "nombreUsuario":
+            validarCampo(expresiones.usuario , evento.target , "nombreUsuario");
             break; 
         case "password":
             validarCampo(expresiones.password , evento.target , "password");
-            validarPassword();
             break;    
-        case "confirm-password":
-            validarPassword();
-            break;
         case "email":
             validarCampo(expresiones.correo , evento.target , "email");
             break;                 
@@ -67,32 +63,6 @@ const validarCampo=(expresion, input, campo) =>{
     }
 }
 
-const validarPassword = () =>{
-    const password = document.getElementById("password");
-    const passwordConfirm = document.getElementById("confirm-password");
-
-    console.log(password.value);
-    console.log(passwordConfirm.value);
-
-    if(password.value !== passwordConfirm.value){
-        document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-correcto");
-        document.getElementById(`grupo__confirm-password`).classList.add("form__grupo-incorrecto");
-        document.querySelector(`#grupo__confirm-password i`).classList.remove("fa-check-circle");
-        document.querySelector(`#grupo__confirm-password i`).classList.add("fa-times-circle");
-
-        document.querySelector(`#grupo__confirm-password .form__error-input-msg`).classList.add("form__error-input-msg-activo");
-        campos["password"] = false;
-    }
-    else{
-        document.getElementById(`grupo__confirm-password`).classList.remove("form__grupo-incorrecto");
-        document.getElementById(`grupo__confirm-password`).classList.add("form__grupo-correcto");
-        document.querySelector(`#grupo__confirm-password i`).classList.remove("fa-times-circle");
-        document.querySelector(`#grupo__confirm-password i`).classList.add("fa-check-circle");
-
-        document.querySelector(`#grupo__confirm-password .form__error-input-msg`).classList.remove("form__error-input-msg-activo");
-        campos["password"] = true;
-    }
-}
 
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
@@ -101,26 +71,15 @@ inputs.forEach( (input) =>{
 
 
 formulario.addEventListener("submit", (e) =>{
-    e.preventDefault();
-
-    const terminos = document.getElementById("checkbox");
-    if(campos.apellido && campos.nombre && campos.documento && campos.usuario && campos.email && campos.password &&
-        terminos.checked){
-        formulario.reset();
-
-        document.getElementById("form__msg-exito").classList.add("form__msg-exito-activo");
-        setTimeout( ()=>{
-            document.getElementById("form__msg-exito").classList.remove("form__msg-exito-activo");
-        } , 7000); //serian 7000 milisegundos es decir 7 segundos para que desaparezca el msg de exito
-
-        document.querySelectorAll(".form__grupo-correcto").forEach( (input)=>{
-            input.classList.remove("form__grupo-correcto");
-        });
-    }
-    else{
+ 
+    if(!campos.apellido || !campos.nombre || !campos.nroDocumento || !campos.nombreUsuario || !campos.email || !campos.password){
+	
+	    e.preventDefault();
+        
         document.getElementById("form__msg-error").classList.add("form__msg-erro-activo");
         setTimeout( ()=>{
             document.getElementById("form__msg-error").classList.remove("form__msg-erro-activo");
-        } , 7000); //serian 7000 milisegundos es decir 7 segundos para que desaparezca el msg de exito
+        } , 5000); //serian 5000 milisegundos es decir 5 segundos para que desaparezca el msg de exito
     }
+   
 });

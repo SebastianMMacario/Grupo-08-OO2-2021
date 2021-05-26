@@ -6,13 +6,18 @@ public class ViewRouteHelper {
 	public final static String INDEX = "home/index";
 	public final static String HELLO = "home/hello";
 		
-	//USER
-	public final static String USER_LIST = "usuario/listaUsuarios";
-	public final static String USER_NEW = "usuario/nuevoUsuario";
+	//USUARIO
+	public final static String USUARIO_AGREGAR = "usuario/agregarUsuario";
+	public final static String USUARIO_TABLA = "usuario/usuariosVista";
 	
-	//LOGIN
-	public final static String USER_LOGIN = "login/login";
-	public final static String USER_LOGOUT = "login/logout";
+	//ACCESO
+	public final static String ACCESO_LOGIN = "acceso/login";
+	public final static String ACCESO_REGISTER = "acceso/register";
+	
+	//PERFIL
+	public final static String PERFIL_AGREGAR = "perfil/agregarPerfil";
+	public final static String PERFIL_TABLA = "perfil/perfilesVista";
+	
 	
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";
