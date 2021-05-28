@@ -55,8 +55,8 @@
                         <td th:text="${perfil.idPerfil}" class="tabla__body-dato"></td>
                         <td th:text="${perfil.tipoPerfil}" class="tabla__body-dato"></td>
                         <td th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_ADMIN'}" class="tabla__body-dato">
-                            <a th:href="@{/editPerfil/}+${perfil.idPerfil}" class="tabla__boton-editar" href="#"><i class="fas fa-edit"></i></a>
-                            <a th:onclick="eliminarPerfil([[${perfil.idPerfil}]])" class="tabla__boton-eliminar" href="#" ><i class="fas fa-user-times"></i></a> </td>
+                            <a th:if="${perfil.tipoPerfil != ROLE_ADMIN.tipoPerfil and perfil.tipoPerfil != ROLE_AUDIT.tipoPerfil}" th:href="@{/editPerfil/}+${perfil.idPerfil}" class="tabla__boton-editar" href="#"><i class="fas fa-edit"></i></a>
+                            <a th:if="${perfil.tipoPerfil != ROLE_ADMIN.tipoPerfil and perfil.tipoPerfil != ROLE_AUDIT.tipoPerfil}" th:onclick="eliminarPerfil([[${perfil.idPerfil}]])" class="tabla__boton-eliminar" href="#" ><i class="fas fa-user-times"></i></a> </td>
                         </td>
                     </tr>
                 </tbody>

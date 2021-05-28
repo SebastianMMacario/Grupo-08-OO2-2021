@@ -65,7 +65,7 @@
                         <td th:text="${usuario.email}" class="tabla__body-dato"></td>
                         <td th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_ADMIN'}" class="tabla__body-dato">
                             <a th:href="@{/edit/}+${usuario.idUsuario}" class="tabla__boton-editar" href="#"><i class="fas fa-edit"></i></a>
-                            <a th:onclick="eliminar([[${usuario.idUsuario}]])" class="tabla__boton-eliminar" href="#" ><i class="fas fa-user-times"></i></a> </td>
+                            <a th:if="${usuario.idUsuario != usuarioLogueado.idUsuario}"  th:onclick="eliminar([[${usuario.idUsuario}]])" class="tabla__boton-eliminar" href="#" ><i class="fas fa-user-times"></i></a> </td>
                         </td>
                     </tr>
                 </tbody>

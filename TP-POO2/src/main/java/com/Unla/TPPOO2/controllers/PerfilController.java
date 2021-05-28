@@ -38,7 +38,12 @@ public class PerfilController {
 		List<Perfil>perfiles=perfilService.listar();
 		model.addAttribute("perfiles", perfiles);
 		
+		
+		
 		model.addAttribute("usuarioLogueado",userLogueadoService.traerUserLogueado());
+		model.addAttribute("ROLE_ADMIN", perfilService.buscarPorTipoPerfil("ROLE_ADMIN"));
+		model.addAttribute("ROLE_AUDIT", perfilService.buscarPorTipoPerfil("ROLE_AUDIT"));
+
 		return ViewRouteHelper.PERFIL_TABLA;
 	}
 
@@ -67,6 +72,7 @@ public class PerfilController {
 		model.addAttribute("perfiles", perfilService.listar());
 		model.addAttribute("editMode", true);
 
+		
 		return ViewRouteHelper.PERFIL_AGREGAR;
 	}
 

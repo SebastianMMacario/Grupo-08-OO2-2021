@@ -9,6 +9,7 @@ public interface IPerfilService {
 	
 	public List<Perfil>listar();
 	public Optional<Perfil>listarId(int id);
+	public Perfil buscarPorTipoPerfil(String tipoPerfil);
 	public int save(Perfil p);
 	public void delete(int id) throws Exception;
 	

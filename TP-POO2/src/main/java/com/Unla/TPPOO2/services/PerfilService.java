@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaces.IPerfil;
 import com.Unla.TPPOO2.models.Perfil;
-import com.Unla.TPPOO2.models.Usuario;
+import com.Unla.TPPOO2.repositories.IPerfilRepository;
 
 
 @Service
@@ -17,6 +17,9 @@ public class PerfilService implements IPerfilService {
 	@Autowired
 	private IPerfil data;
 
+	@Autowired
+	private IPerfilRepository perfilRespository;
+	
 	@Override
 	public List<Perfil> listar() {
 		// TODO Auto-generated method stub
@@ -48,6 +51,12 @@ public class PerfilService implements IPerfilService {
 		if (listarId(id) == null)
 			throw new Exception("El perfil con id: " + id + " no existe");
 		else data.deleteById(id);
+	}
+
+	@Override
+	public Perfil buscarPorTipoPerfil(String tipoPerfil) {
+		// TODO Auto-generated method stub
+		return perfilRespository.findByTipoPerfil(tipoPerfil);
 	}
 
 	
