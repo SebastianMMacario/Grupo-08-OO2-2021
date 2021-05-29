@@ -10,8 +10,10 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-@Entity(name = "permisoPeriodo")
+@Entity
+@Table(name="permisoPeriodo")
 @PrimaryKeyJoinColumn(name = "idPermisoPeriodo")
 public class PermisoPeriodo extends Permiso {
 	@Column(name = "cantDias")

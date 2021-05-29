@@ -6,8 +6,10 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-@Entity(name = "permisoDiario")
+@Entity
+@Table(name="permisoDiario")
 @PrimaryKeyJoinColumn(name = "idPermisoDiario")
 public class PermisoDiario extends Permiso {
 	
