@@ -1,6 +1,7 @@
 package com.Unla.TPPOO2.models;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "idPermisoDiario")
 public class PermisoDiario extends Permiso {
 	
-	@Column(name = "motivo")
+	@Column(name = "motivo",nullable=false, length=60)
 	private String motivo;
 
-	public PermisoDiario(int idPermiso, LocalDate fecha, String motivo) {
-		super(idPermiso,fecha);
+	
+
+	public PermisoDiario(Persona persona, LocalDate fecha, Set<Lugar> desdeHasta,String motivo) {
+		super( persona, fecha,  desdeHasta);
 		this.motivo = motivo;
 	}
 
