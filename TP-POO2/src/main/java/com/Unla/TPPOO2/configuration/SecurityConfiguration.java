@@ -32,7 +32,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/css/*","/webfonts/*", "/imgs/*", "/js/*","/vendor/bootstrap/css/*","/css/modern-business.css/*","/vendor/bootstrap/css/bootstrap.min.css/*" ,"/vendor/jquery/jquery.min.js/*","/vendor/bootstrap/js/bootstrap.bundle.min.js/" , "/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/listPersona").permitAll()
+				.antMatchers("/newPersona").permitAll()
+				.antMatchers("/savePersona").permitAll()
+				.antMatchers("/cancelActionPersona").permitAll()
+				.anyRequest().authenticated() 
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
 				.usernameParameter("nombreUsuario").passwordParameter("password")
