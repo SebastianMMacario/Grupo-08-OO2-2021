@@ -70,6 +70,7 @@ inputs.forEach( (input) =>{
 });
 
 
+
 formulario.addEventListener("submit", (e) =>{
  
     if(!campos.apellido || !campos.nombre || !campos.nroDocumento || !campos.nombreUsuario || !campos.email || !campos.password){

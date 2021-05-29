@@ -9,7 +9,7 @@ spring:
     jpa:
         show-sql: true #[Opcional]Imprime en tu consola las instrucciones hechas en tu base de datos.
         hibernate:
-           ddl-auto: create
+           ddl-auto: create-drop
            
     thymeleaf:
         mode: HTML5
