@@ -12,15 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name="persona")
-
-public class Persona {
+@Entity
+@Table(name="persona")
+ class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;

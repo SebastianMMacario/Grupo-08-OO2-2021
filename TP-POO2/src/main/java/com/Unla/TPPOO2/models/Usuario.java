@@ -199,7 +199,7 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", nroDocumento="
 				+ nroDocumento + ", email=" + email + ", nombreUsuario=" + nombreUsuario + ", perfil=" + perfil
-				+ ", enabled=" + enabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", enabled=" + enabled + "]";
 	}
 
 

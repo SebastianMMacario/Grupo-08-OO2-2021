@@ -12,11 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity(name="lugar")
+@Entity
+@Table(name="lugar")
 public class Lugar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
