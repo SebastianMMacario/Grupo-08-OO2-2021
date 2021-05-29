@@ -1,8 +1,14 @@
 package com.Unla.TPPOO2.models;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "permisoPeriodo")
@@ -11,17 +17,23 @@ public class PermisoPeriodo extends Permiso {
 	@Column(name = "cantDias")
 	private int cantDias;
 	
-	@Column(name = "vacacion")
+	@Column(name = "vacacion",nullable=false, length=60)
 	private boolean vacacion;
 	
-	//private Rodado rodado;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_rodado",nullable=false)
+	private Rodado rodado;
 	
 	
-	public PermisoPeriodo(int cantDias, boolean vacacion) {
-		super();
+	
+	
+	public PermisoPeriodo(Persona persona, LocalDate fecha, Set<Lugar> desdeHasta,int cantDias, boolean vacacion, Rodado rodado) {
+		super( persona,  fecha, desdeHasta);
 		this.cantDias = cantDias;
 		this.vacacion = vacacion;
+		this.rodado = rodado;
 	}
+
 	public PermisoPeriodo() {
 		super();
 	}
@@ -39,11 +51,22 @@ public class PermisoPeriodo extends Permiso {
 		this.vacacion = vacacion;
 	}
 	
+	
+	
+	public Rodado getRodado() {
+		return rodado;
+	}
+	public void setRodado(Rodado rodado) {
+		this.rodado = rodado;
+	}
+
 	@Override
 	public String toString() {
-		return "PermisoPeriodo [cantDias=" + cantDias + ", vacacion=" + vacacion + ", idPermiso=" + idPermiso
-				+ ", fecha=" + fecha + "]";
+		return "PermisoPeriodo [cantDias=" + cantDias + ", vacacion=" + vacacion + ", rodado=" + rodado + "]";
 	}
+	
+	
+	
 	
 	
 }
