@@ -49,15 +49,6 @@ public class UsuarioController {
 		System.out.println(userLogueadoService.traerUserLogueado());
 		Usuario usuarioLogueado = userLogueadoService.traerUserLogueado();
 		
-		/*
-		List<Usuario> listaUsuarios = new ArrayList<>();
-		for (Usuario u : service.listar()) {
-			if(u.getIdUsuario() != usuarioLogueado.getIdUsuario()) {
-				listaUsuarios.add(u);
-			}
-		}
-		*/
-		
 		model.addAttribute("usuarios", service.listar());
 		model.addAttribute("usuarioLogueado",usuarioLogueado);
 		return ViewRouteHelper.USUARIO_TABLA;

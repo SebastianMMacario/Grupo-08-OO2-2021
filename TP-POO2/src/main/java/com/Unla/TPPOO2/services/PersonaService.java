@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.DatabaseStartupValidator;
+import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaces.IPersona;
 import com.Unla.TPPOO2.models.Perfil;
 import com.Unla.TPPOO2.models.Persona;
 
+@Service
 public class PersonaService implements IPersonaService{
 	
 	@Autowired
