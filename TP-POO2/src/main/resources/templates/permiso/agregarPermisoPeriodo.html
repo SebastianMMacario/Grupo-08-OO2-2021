@@ -79,15 +79,14 @@
                     <p class="form__error-input-msg">La cantidad de dias solo puede contener numeros</p>
                 </div>
                 
-                <!--VACACION
-                <div class="form__grupo" id="grupo__motivo">
-                    <label for="cantDias" class="form__label">Cantidad de dias</label>
-                    <div class="form__grupo-input">
-                        <input th:field="${permiso.cantDias}" type="text" name="cantDias" class="form__input" id="cantDias">
-                        <i class="fas fa-times-circle form__validacion-estado"></i>
-                    </div>
-                    <p class="form__error-input-msg">La cantidad de dias solo puede contener numeros</p>
-                </div>-->
+                
+                <!--CHECKBOX-->
+                <div class="form__grupo-checkbox">
+                    <label class="form__label"> 
+                        <input th:field="${permiso.vacacion}" value = "true" type="checkbox" name="checkbox" id="checkbox">
+                        Vacacion
+                    </label>
+                </div>
                 
                 <!--RODADO-->
                 <div class="form__grupo" id="grupo__nombreUsuario">
