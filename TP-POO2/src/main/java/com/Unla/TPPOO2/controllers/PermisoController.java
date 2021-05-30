@@ -36,7 +36,7 @@ public class PermisoController {
 	@GetMapping("/listPermiso")
 	public String listar(Model model) {
 		model.addAttribute("permisos", permisoService.listar());
-		return "permiso/permisoVista";
+		return "permiso/traerPermiso";
 	}
 	
 	@GetMapping("/newPermisoDiario")

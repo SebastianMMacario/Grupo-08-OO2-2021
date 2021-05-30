@@ -16,4 +16,6 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(3,"1828",sysdate(),"Banfield",
 INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(4,"1820",sysdate(),"Lanus",sysdate());
 INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(5,"1609",sysdate(),"Beccar",sysdate()); 
 
+
+
 commit;
