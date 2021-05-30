@@ -18,4 +18,16 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(5,"1609",sysdate(),"Beccar",sy
 
 
 
+INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(1,'Macario',sysdate(),35855188,'Sebastián Matías',sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(2,'Macario',sysdate(),35855187,'Martín Nahuel',sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(1,'Torrez Salvatierra',sysdate(),40000000,'Facundo',sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(2,'Rivera',sysdate(),40000001,'Tomás',sysdate());
+
+
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(1,sysdate(),'res543',sysdate(),'Renault 12');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(2,sysdate(),'has764',sysdate(),'Renault Fluence');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(1,sysdate(),'jer663',sysdate(),'Toyota Etios');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(2,sysdate(),'oop232',sysdate(),'Toyota Hilux');
+
+
 commit;
