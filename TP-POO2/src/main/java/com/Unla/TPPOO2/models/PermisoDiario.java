@@ -16,8 +16,8 @@ public class PermisoDiario extends Permiso {
 	@Column(name = "motivo",nullable=false, length=60)
 	private String motivo;
 
+	public PermisoDiario(){}
 	
-
 	public PermisoDiario(Persona persona, LocalDate fecha, Set<Lugar> desdeHasta,String motivo) {
 		super( persona, fecha,  desdeHasta);
 		this.motivo = motivo;

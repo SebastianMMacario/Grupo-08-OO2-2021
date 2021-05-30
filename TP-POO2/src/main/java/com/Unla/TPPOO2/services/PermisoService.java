@@ -36,6 +36,17 @@ public class PermisoService implements IPermisoService{
 			throw new Exception("El permiso con id: " + id + " no existe");
 		else data.deleteById(id);
 	}
+	
+	@Override
+	public int savePermiso(Permiso p) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		Permiso permiso=data.save( p);
+		if(!permiso.equals(null)) {
+			res=1;
+		}
+		return res;
+	}
 
 	@Override
 	public int savePermisoDiario(PermisoDiario pd) {
