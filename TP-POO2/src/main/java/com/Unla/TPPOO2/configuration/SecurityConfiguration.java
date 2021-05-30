@@ -43,8 +43,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 				.antMatchers("/newPermisoDiario").permitAll()
 				.antMatchers("/savePermisoDiario").permitAll()
-				.antMatchers("/saveLugar").permitAll()
-				.antMatchers("/buscarLugar").permitAll()
+				.antMatchers("/newPermisoPeriodo").permitAll()
+				.antMatchers("/savePermisoPeriodo").permitAll()
+				.antMatchers("/saveLugarDiario").permitAll()
+				.antMatchers("/buscarLugarDiario").permitAll()
+				.antMatchers("/saveLugarPeriodo").permitAll()
+				.antMatchers("/buscarLugarPeriodo").permitAll()
 				.antMatchers("/cancelActionPermiso").permitAll()
 
 				.anyRequest().authenticated() 

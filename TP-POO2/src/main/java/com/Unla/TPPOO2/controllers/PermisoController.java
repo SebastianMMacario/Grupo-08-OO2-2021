@@ -14,6 +14,7 @@ import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaceService.IRodadoService;
 import com.Unla.TPPOO2.models.Lugar;
+import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
 
@@ -38,16 +39,6 @@ public class PermisoController {
 		return "permiso/permisoVista";
 	}
 	
-//	
-//	@GetMapping("/newPermisoPeriodo")
-//	public String agregarP(Model model) {
-//		model.addAttribute("permiso",new PermisoPeriodo());
-//		model.addAttribute("lugares", lugarService.listar());
-//		model.addAttribute("personas",personaService.listar());
-//		model.addAttribute("rodados",rodadoService.listar());
-//		return "permiso/agregarPermisoPeriodo";
-//	}
-	
 	@GetMapping("/newPermisoDiario")
 	public String agregarPermisoDiario(Model model) {
 		model.addAttribute("permiso",new PermisoDiario());
@@ -56,6 +47,16 @@ public class PermisoController {
 		model.addAttribute("nuevoLugar", new Lugar());
 			
 		return "permiso/agregarPermisoDiario";
+	}
+	@GetMapping("/newPermisoPeriodo")
+	public String agregarPermisoPeriodo(Model model) {
+		model.addAttribute("permiso",new PermisoPeriodo());
+		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
+		model.addAttribute("personas",personaService.listar());
+		model.addAttribute("nuevoLugar", new Lugar());
+		model.addAttribute("rodados",rodadoService.listar());
+			
+		return "permiso/agregarPermisoPeriodo";
 	}
 	
 	@PostMapping("/savePermisoDiario")
@@ -66,10 +67,18 @@ public class PermisoController {
 		lugarService.borrarTodosLugaresDeListAux(); //reinicio el listado limpiandolo
 		return "redirect:/login";
 	}
+	@PostMapping("/savePermisoPeriodo")
+	public String agregarPermisoPeriodoFinal(@Validated @ModelAttribute("permiso")PermisoPeriodo pp) {
+		pp.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
+		permisoService.save(pp);
+
+		lugarService.borrarTodosLugaresDeListAux(); //reinicio el listado limpiandolo
+		return "redirect:/login";
+	}
 	
 	
-	@PostMapping("/saveLugar")
-	public String crearLugar(@Validated @ModelAttribute("nuevoLugar") Lugar lugar,Model model) {
+	@PostMapping("/saveLugarDiario")
+	public String crearLugar(@Validated @ModelAttribute("nuevoLugar") Lugar lugar, Model model) {
 		try {
 			lugarService.guardarLugarEnBD(lugar);
 
@@ -82,8 +91,8 @@ public class PermisoController {
 	}
 	
 	
-	@PostMapping("/buscarLugar")
-	public String buscarLugar(@Validated @ModelAttribute("lugarBuscado") Lugar lugar , Model model) {
+	@PostMapping("/buscarLugarDiario")
+	public String buscarLugarDiario(@Validated @ModelAttribute("lugarBuscado") Lugar lugar , Model model) {
 		
 		try {
 			Lugar lugarBuscado = lugarService.buscarLugarPorNombre(lugar.getLugar());
@@ -92,7 +101,36 @@ public class PermisoController {
 		catch (Exception e) {
 			model.addAttribute("errorMsg", e.getMessage());
 		}
+		
 		return agregarPermisoDiario(model);
+	}
+	
+	@PostMapping("/saveLugarPeriodo")
+	public String crearLugarPeriodo(@Validated @ModelAttribute("nuevoLugar") Lugar lugar, Model model) {
+		try {
+			lugarService.guardarLugarEnBD(lugar);
+
+		}catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("errorMsg", e.getMessage());
+		}
+		
+		return agregarPermisoPeriodo(model);
+	}
+	
+	
+	@PostMapping("/buscarLugarPeriodo")
+	public String buscarLugarPeriodo(@Validated @ModelAttribute("lugarBuscado") Lugar lugar , Model model) {
+		
+		try {
+			Lugar lugarBuscado = lugarService.buscarLugarPorNombre(lugar.getLugar());
+			lugarService.guardarLugarEncontradoEnListAux(lugarBuscado);
+		}
+		catch (Exception e) {
+			model.addAttribute("errorMsg", e.getMessage());
+		}
+		
+		return agregarPermisoPeriodo(model);
 	}
 	
 	
@@ -106,45 +144,6 @@ public class PermisoController {
 	
 	
 	
-//	@PostMapping("/savePermisoDiario")
-//	public String guardarPermisoDiario(@Validated @ModelAttribute("permisoDiario") PermisoDiario pd, Model model) {
-//		
-//		permisoService.savePermisoDiario(pd);
-//		return "redirect:/listPermiso";
-//	}
-//	@PostMapping("/savePermisoPeriodo")
-//	public String guardarPermisoPeriodo(@Validated @ModelAttribute("permisoPeriodo") PermisoPeriodo pp, Model model) {
-//		
-//		permisoService.savePermisoPeriodo(pp);
-//		return "redirect:/listPermiso";
-//	}
-	
-	
-//	@GetMapping("/getPermiso/{idPermiso}")
-//	public String getPermisoID(@PathVariable("idPermiso") int idPermiso, Model model) {
-//
-//		Permiso findPermisoId = permisoRepository.findByIdPermiso(idPermiso);
-//
-//		model.addAttribute("title", "Data Permiso");
-//		model.addAttribute("lugares", lugarRepository.findAll());
-//		model.addAttribute("permiso", findPermisoId);
-//
-//		return "/permiso/permiso_lugar";
-//	}
-//	
-//	@GetMapping( "/addLugarPermiso/{idPermiso}/lugar")
-//    public String addCourseStudent(@PathVariable("idPermiso")int idPermiso,
-//                                   @RequestParam("idLugar") int idLugar){
-//
-//        Lugar lugar = lugarRepository.findByLugarId(idLugar);
-//        Permiso permiso =permisoRepository.findByIdPermiso(idPermiso);
-//
-//        if (permiso!=null){
-//            permiso.getDesdeHasta().add(lugar);
-//            permisoRepository.save(permiso);
-//            
-//        }
-//        return ViewRouteHelper.ACCESO_LOGIN;
-//    }
+
 	
 }
