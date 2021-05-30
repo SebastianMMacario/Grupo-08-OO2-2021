@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/indexStyles.css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
+    <title>Lista de Personas</title>
+</head>
+<body>
+    <!--HEADER-->
+    <header class="header">
+        <div class="header__contenedor">
+            <h2 class="header__logo">Grupo 8</h2>
+            <nav class="nav">
+				<a class="nav__enlace" href=/login >Inicia Sesion</a>
+			</nav>
+        </div>
+            
+    </header>
+
+    <main>
+        <h1>Listado de Usuarios</h1>
+        <div class="table-contenedor"> 
+        
+            <div class="tabla-header">
+                <div class="tabla-header__herramientas">
+	                	<a   th:href="@{/newPersona}" class="tabla-header__button" href="#"> 
+	                        <i class="fas fa-plus-circle"></i>Agregar Persona
+	                    </a>
+     
+                </div>
+            </div>
+            <table class="tabla" id="tabla">
+                <thead class="tabla__head">
+                    <tr class="tabla__row-head">
+                        <th class="tabla__head-nombre" scope="col">Apellido</th>
+                        <th class="tabla__head-nombre" scope="col">Nombre</th>
+                        <th class="tabla__head-nombre" scope="col">Documento</th>
+                        <th class="tabla__head-nombre" scope="col">Permiso </th>                        
+                    </tr>
+                </thead>
+                <tbody class="tabla__body">
+                    <tr th:each="p: ${personas}" class="tabla__row-body">
+                        <td th:text="${p.apellido}" class="tabla__body-dato"></td>
+                        <td th:text="${p.nombre}" class="tabla__body-dato"></td>          
+                        <td th:text="${p.dni}" class="tabla__body-dato"></td>
+                        <td th:if="${p.permisos != null}" th:text="${p.permisos}" class="tabla__body-dato"></td>    
+                    </tr>
+                </tbody>
+                
+            </table>  
+        </div>  
+        
+		
+    </main>
+
+    <!--FOOTER-->
+    <footer>
+        <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+        <div class="redes-sociales">
+            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>        </div>
+    </footer>
+
+	<!--SCRIPT-->
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+</body>
+</html>

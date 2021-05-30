@@ -64,10 +64,42 @@ const validarCampo=(expresion, input, campo) =>{
 }
 
 
+const validarCamposAgregados = () =>{
+	for(let i=1; i<= (inputs.length -1); i++){
+		switch(inputs[i].name){
+			case "apellido":
+            	validarCampo(expresiones.nombreYApellido , inputs[i] , "apellido");
+            	break;
+        	case "nombre":
+            	validarCampo(expresiones.nombreYApellido , inputs[i] , "nombre");
+            	break;
+	        case "nroDocumento":
+	            validarCampo(expresiones.documento , inputs[i] , "nroDocumento");
+	            break;
+	        case "nombreUsuario":
+	            validarCampo(expresiones.usuario , inputs[i] , "nombreUsuario");
+	            break; 
+	        case "password":
+	            validarCampo(expresiones.password , inputs[i] , "password");
+	            break;    
+	        case "email":
+	            validarCampo(expresiones.correo , inputs[i] , "email");
+	            break;    
+		}
+	}
+}
+
+
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
+
+
+if(inputs[2].value !== "" && inputs[3].value !== "" && inputs[4].value !== "" && inputs[5].value !== "" &&
+	inputs[7].value !== ""){
+	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
+}
 
 
 formulario.addEventListener("submit", (e) =>{

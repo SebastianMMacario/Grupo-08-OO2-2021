@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaces.IPermiso;
 import com.Unla.TPPOO2.models.Permiso;
-import com.Unla.TPPOO2.models.PermisoDiario;
-import com.Unla.TPPOO2.models.PermisoPeriodo;
 
 @Service
 public class PermisoService implements IPermisoService{
@@ -36,9 +34,9 @@ public class PermisoService implements IPermisoService{
 			throw new Exception("El permiso con id: " + id + " no existe");
 		else data.deleteById(id);
 	}
-	
+
 	@Override
-	public int savePermiso(Permiso p) {
+	public int save(Permiso p) {
 		// TODO Auto-generated method stub
 		int res = 0;
 		Permiso permiso=data.save( p);
@@ -47,27 +45,5 @@ public class PermisoService implements IPermisoService{
 		}
 		return res;
 	}
-
-	@Override
-	public int savePermisoDiario(PermisoDiario pd) {
-		// TODO Auto-generated method stub
-		int res = 0;
-		PermisoDiario permisoDiario=data.save( pd);
-		if(!permisoDiario.equals(null)) {
-			res=1;
-		}
-		return res;
-	}
-
-	@Override
-	public int savePermisoPeriodo(PermisoPeriodo pp) {
-		// TODO Auto-generated method stub
-		int res = 0;
-		PermisoPeriodo permisoPeriodo=data.save( pp);
-		if(!permisoPeriodo.equals(null)) {
-			res=1;
-		}
-		return res;
-	}
-
+	
 }
