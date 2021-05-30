@@ -69,10 +69,13 @@ public class PermisoController {
 	}
 	@PostMapping("/savePermisoPeriodo")
 	public String agregarPermisoPeriodoFinal(@Validated @ModelAttribute("permiso")PermisoPeriodo pp) {
+		
 		pp.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
+	
 		permisoService.save(pp);
-
+        
 		lugarService.borrarTodosLugaresDeListAux(); //reinicio el listado limpiandolo
+		
 		return "redirect:/login";
 	}
 	
@@ -107,6 +110,7 @@ public class PermisoController {
 	
 	@PostMapping("/saveLugarPeriodo")
 	public String crearLugarPeriodo(@Validated @ModelAttribute("nuevoLugar") Lugar lugar, Model model) {
+		
 		try {
 			lugarService.guardarLugarEnBD(lugar);
 
