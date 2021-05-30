@@ -36,7 +36,9 @@
             <table class="tabla" id="tabla">
                 <thead class="tabla__head">
                     <tr class="tabla__row-head">
-                        <th class="tabla__head-nombre" scope="col">Persona</th>
+                    	<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
+                        <th class="tabla__head-nombre" scope="col">Nombre/s</th>
+                        <th class="tabla__head-nombre" scope="col">Apellido</th>
                         <th class="tabla__head-nombre" scope="col">Fecha</th>
                         <th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
                        
@@ -45,7 +47,9 @@
                 </thead>
                 <tbody class="tabla__body">
                     <tr th:each="permiso:${permisos}" class="tabla__row-body">
+                    	<td th:text="${permiso.idPermiso}" class="tabla__body-dato"></td>
                         <td th:text="${permiso.persona.nombre}" class="tabla__body-dato"></td>
+                        <td th:text="${permiso.persona.apellido}" class="tabla__body-dato"></td>
                         <td th:text="${permiso.fecha}" class="tabla__body-dato"></td>
                         <td th:text="${permiso.desdeHasta}" class="tabla__body-dato"></td>
                        
