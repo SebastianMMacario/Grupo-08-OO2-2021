@@ -14,5 +14,6 @@ public interface IPermisoService {
 	public int savePermisoDiario(PermisoDiario pd);
 	public int savePermisoPeriodo(PermisoPeriodo pp);
 	public void delete(int id) throws Exception;
+	int savePermiso(Permiso p);
 	
 }
