@@ -10,4 +10,10 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`usuario` VALUES (4, 'Torrez', sysdate(), 'fa
 INSERT INTO `bd-grupo-08-oo2-2021`.`usuario` VALUES (5, 'Admin', sysdate(), 'admin@gmail.com', 1, 'Admin', 'admin', 35000000, '$2a$10$TjadzzHEbWGySM8226q0heJepvH4P1DxSNCD1nC.H1lBDrqxs8urK', 3, sysdate(), 1);
 INSERT INTO `bd-grupo-08-oo2-2021`.`usuario` VALUES (6, 'User', sysdate(), 'user@gmail.com', 1, 'User', 'user', 35000001, '$2a$10$GjKL5jibD0w70oJwCcYJIOr..lNWpph8dnHJmpMbf5yF7J8QwYnpS', 0, sysdate(), 2);
 
+INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(1,"1832",sysdate(),"Lomas de Zamora",sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(2,"1834",sysdate(),"Temperley",sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(3,"1828",sysdate(),"Banfield",sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(4,"1820",sysdate(),"Lanus",sysdate());
+INSERT INTO `bd-grupo-08-oo2-2021`.`lugar` VALUES(5,"1609",sysdate(),"Beccar",sysdate()); 
+
 commit;

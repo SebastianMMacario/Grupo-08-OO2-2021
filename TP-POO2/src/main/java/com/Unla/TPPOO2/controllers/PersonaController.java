@@ -20,11 +20,11 @@ public class PersonaController {
 	@Autowired
 	private IPersonaService personaService;
 	
-	@GetMapping("/listPersona")
-	public String listar(Model model) {
-		model.addAttribute("personas", personaService.listar());
-		return "persona/personaVista";
-	}
+//	@GetMapping("/listPersona")
+//	public String listar(Model model) {
+//		model.addAttribute("personas", personaService.listar());
+//		return "persona/personaVista";
+//	}
 	
 	@GetMapping("/newPersona")
 	public String agregar(Model model) {
@@ -36,12 +36,12 @@ public class PersonaController {
 	public String guardar(@Validated @ModelAttribute("persona") Persona p, Model model) {
 		
 		personaService.save(p);
-		return "redirect:/listPersona";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/cancelActionPersona")
 	public String cancelarAccion() {
-		return "redirect:/listPersona";
+		return "redirect:/login";
 	}
 
 }

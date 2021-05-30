@@ -11,8 +11,7 @@ public interface IPermisoService {
 	
 	public List<Permiso>listar();
 	public Optional<Permiso>listarId(int id);
-	public int savePermisoDiario(PermisoDiario pd);
-	public int savePermisoPeriodo(PermisoPeriodo pp);
+	public int save(Permiso p);
 	public void delete(int id) throws Exception;
 	
 }

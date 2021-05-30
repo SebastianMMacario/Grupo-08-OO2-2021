@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/registerStyles.css">
+    <title>Agregar Usuario</title>
+</head>
+<body>
+        <!--ENCABEZADO-->
+        <header class="header">
+            <div class="header__contenedor">
+                <h2 class="header__logo">Grupo 8</h2>
+            </div>
+        </header>
+
+        <!--FORMULARIO-->
+        <main>
+            <h1 class="titulo">Complete el formulario</h1>
+
+
+
+            <form th:action="@{/savePermisoDiario}" th:object="${permiso}" method="POST" class="form" id="form">
+	             
+				<!--ID-->
+				<div class="form-group" style="display: none;">
+					<p style="display: none"> <label>ID</label></p>
+					<p style="display: none"> <input th:field="*{idPermiso}" type="text" class="form-control" /></p>
+				</div>
+
+                <!--Persona-->
+                <div class="form__grupo" id="grupo__nombreUsuario">
+                    <label for="permiso" class="form__label">Persona</label>
+                    <div>
+                    
+                        <select th:field="${permiso.persona.idPersona}" required class="form__select" >
+                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
+                            <option th:each="persona:${personas}" th:value="${persona.idPersona}"  th:text="${persona.dni}" class="form__select-option" />
+                        </select>
+                     
+                    </div>
+         
+                </div>
+    
+                <!--fecha-->
+                <div class="form__grupo" id="grupo__password">
+                    <label for="permiso" class="form__label">Fecha</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${permiso.fecha}"  type="date" name="fecha" class="form__input" id="fecha">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                   
+                </div>
+                
+                 <!--Lugar-->
+                
+                
+                <!--MOTIVO-->
+                <div class="form__grupo" id="grupo__motivo">
+                    <label for="motivo" class="form__label">Motivo</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${permiso.motivo}" type="text" name="motivo" class="form__input" id="motivo">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El motivo solo puede contener caracteres</p>
+                </div>
+    
+    
+                
+    
+                <!--MSG DE ERROR-->
+                <div class="form__msg-error" id="form__msg-error">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Porfavor rellene el formulario correctamente</p>
+                </div>
+    
+                <!--BUTTON-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button th:if="${editMode == null}" class="form__button" type="submit">AGREGAR</button>
+                    <button th:if="${editMode == true}" class="form__button" type="submit">MODIFICAR</button>
+
+                </div>
+                
+                <p class="form__info" style="font-size: 1.15em;">
+                	<a th:href="@{/cancelActionPermiso}" href="#">Cancelar</a> 
+                </p>
+            </form>
+        </main>
+    
+        <!--FOOTER-->
+        <footer>
+            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            <div class="redes-sociales">
+            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
+        </footer>
+   
+       
+</body>
+</html>

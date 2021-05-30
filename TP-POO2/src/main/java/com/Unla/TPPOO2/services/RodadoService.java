@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DatabaseDriver;
+import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.IRodadoService;
 import com.Unla.TPPOO2.interfaces.IRodado;
 import com.Unla.TPPOO2.models.Persona;
 import com.Unla.TPPOO2.models.Rodado;
-
+@Service
 public class RodadoService implements IRodadoService {
 	
 	@Autowired
