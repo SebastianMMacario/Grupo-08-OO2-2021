@@ -16,7 +16,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     
     
-    <title>Agregar Permiso Diario</title>
+    <title>Agregar Permiso Periodo</title>
 </head>
 <body>
         <!--ENCABEZADO-->
@@ -36,7 +36,7 @@
         		data-target="#modalAgregarLugar">Agregar Lugar</button>		
               
              <!--FORMULARIO DE PERMISO-->  
-            <form th:action="@{/savePermisoDiario}" th:object="${permiso}" method="POST" class="form" id="form">
+            <form th:action="@{/savePermisoPeriodo}" th:object="${permiso}" method="POST" class="form" id="form">
 	             
 				<!--ID-->
 				<div class="form-group" style="display: none;">
@@ -71,13 +71,38 @@
                 
                 <!--MOTIVO-->
                 <div class="form__grupo" id="grupo__motivo">
-                    <label for="motivo" class="form__label">Motivo</label>
+                    <label for="cantDias" class="form__label">Cantidad de dias</label>
                     <div class="form__grupo-input">
-                        <input th:field="${permiso.motivo}" type="text" name="motivo" class="form__input" id="motivo">
+                        <input th:field="${permiso.cantDias}" type="text" name="cantDias" class="form__input" id="cantDias">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-                    <p class="form__error-input-msg">El motivo solo puede contener caracteres</p>
+                    <p class="form__error-input-msg">La cantidad de dias solo puede contener numeros</p>
                 </div>
+                
+                <!--VACACION
+                <div class="form__grupo" id="grupo__motivo">
+                    <label for="cantDias" class="form__label">Cantidad de dias</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${permiso.cantDias}" type="text" name="cantDias" class="form__input" id="cantDias">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">La cantidad de dias solo puede contener numeros</p>
+                </div>-->
+                
+                <!--RODADO-->
+                <div class="form__grupo" id="grupo__nombreUsuario">
+                    <label for="rodado" class="form__label">Rodado</label>
+                    <div>
+                    
+                        <select th:field="${permiso.rodado.idRodado}" required class="form__select" >
+                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
+                            <option th:each="rodado:${rodados}" th:value="${rodado.idRodado}"  th:text="${rodado.vehiculo}" class="form__select-option" />
+                        </select>
+                     
+                    </div>
+         
+                </div>
+                
     
 
                 <!--MSG DE ERROR-->
@@ -128,7 +153,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/buscarLugarDiario}" th:object="${lugarBuscado}" method="POST">
+						<form id="formLugar" th:action="@{/buscarLugarPeriodo}" th:object="${lugarBuscado}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Buscar Lugar</h5>
@@ -160,7 +185,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/saveLugarDiario}" th:object="${nuevoLugar}" method="POST">
+						<form id="formLugar" th:action="@{/saveLugarPeriodo}" th:object="${nuevoLugar}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Agregar Lugar</h5>
