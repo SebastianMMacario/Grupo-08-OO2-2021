@@ -36,6 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/newPersona").permitAll()
 				.antMatchers("/savePersona").permitAll()
 				.antMatchers("/cancelActionPersona").permitAll()
+				.antMatchers("/newRodado").permitAll()
+				.antMatchers("/saveRodado").permitAll()
 				.anyRequest().authenticated() 
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
