@@ -29,5 +29,13 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(2,sysdate(),'has764',sysdate(
 INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(3,sysdate(),'jer663',sysdate(),'Toyota Etios');
 INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(4,sysdate(),'oop232',sysdate(),'Toyota Hilux');
 
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`, `updatedat`, `id_persona`) VALUES ('5', '2021-05-30 18:08:54.000000', '2021-05-31', '2021-05-30 18:08:54.000000', '2');
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`, `updatedat`, `id_persona`) VALUES ('4', '2021-05-30 18:08:54.000000', '2021-05-15', '2021-05-30 18:08:54.000000', '2');
+
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('4', '1');
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('5', '2');
+
+
+
 
 commit;

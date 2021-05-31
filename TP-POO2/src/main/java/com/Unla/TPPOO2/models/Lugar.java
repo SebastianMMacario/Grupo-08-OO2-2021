@@ -88,7 +88,7 @@ public class Lugar {
 
 	@Override
 	public String toString() {
-		return "Lugar [idLugar=" + idLugar + ", lugar=" + lugar + ", codigoPostal=" + codigoPostal + "]";
+		return lugar;
 	}
 	
 	

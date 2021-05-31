@@ -1,5 +1,6 @@
 package com.Unla.TPPOO2.interfaceService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,5 +14,6 @@ public interface IPermisoService {
 	public Optional<Permiso>listarId(int id);
 	public int save(Permiso p);
 	public void delete(int id) throws Exception;
+	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta);
 	
 }
