@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/css/*","/webfonts/*", "/imgs/*", "/js/*","/vendor/bootstrap/css/*","/css/modern-business.css/*","/vendor/bootstrap/css/bootstrap.min.css/*" ,"/vendor/jquery/jquery.min.js/*","/vendor/bootstrap/js/bootstrap.bundle.min.js/" , "/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
+		.antMatchers("/css/*","/webfonts/*", "/imgs/*", "/js/*","/vendor/bootstrap/css/*","/css/modern-business.css/*","/vendor/bootstrap/css/bootstrap.min.css/*" ,"/vendor/jquery/jquery.min.js/*","/vendor/bootstrap/js/bootstrap.bundle.min.js/" , "/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
 				
 				.antMatchers("/newPersona").permitAll()
 				.antMatchers("/savePersona").permitAll()
@@ -42,13 +42,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/cancelActionRodado").permitAll()
 
 				.antMatchers("/newPermisoDiario").permitAll()
-				.antMatchers("/savePermisoDiario").permitAll()
 				.antMatchers("/newPermisoPeriodo").permitAll()
-				.antMatchers("/savePermisoPeriodo").permitAll()
-				.antMatchers("/saveLugarDiario").permitAll()
-				.antMatchers("/buscarLugarDiario").permitAll()
-				.antMatchers("/saveLugarPeriodo").permitAll()
-				.antMatchers("/buscarLugarPeriodo").permitAll()
+				.antMatchers("/savePermiso").permitAll()
+				.antMatchers("/saveLugar").permitAll()
+				.antMatchers("/buscarLugar").permitAll()
 				.antMatchers("/cancelActionPermiso").permitAll()
 
 				.anyRequest().authenticated() 

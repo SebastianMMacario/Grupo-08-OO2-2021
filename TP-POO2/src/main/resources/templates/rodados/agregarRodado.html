@@ -34,23 +34,23 @@
 				</div>
                 
                 <!--Dominio-->
-                <div class="form__grupo" id="grupo__nombre">
+                <div class="form__grupo" id="grupo__dominio">
                     <label for="dominio" class="form__label">Dominio</label>
                     <div class="form__grupo-input">
-                        <input th:field="${rodado.dominio}" type="text" name="dominio" class="form__input" id="dominio">
+                        <input th:field="${rodado.dominio}" type="text" name="dominio" class="form__input" id="dominio" placeholder="Ej:AAA111">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-                    <p class="form__error-input-msg">El dominio solo puede contener caracteres</p>
+                    <p class="form__error-input-msg">El dominio debe contener 3 letras y 3 numeros</p>
                 </div>
                 
                 <!--Vehiculo-->
-                <div class="form__grupo" id="grupo__nombre">
+                <div class="form__grupo" id="grupo__vehiculo">
                     <label for="vehiculo" class="form__label">Vehiculo</label>
                     <div class="form__grupo-input">
                         <input th:field="${rodado.vehiculo}" type="text" name="vehiculo" class="form__input" id="vehiculo">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-                    <p class="form__error-input-msg">El vehiculo solo puede contener caracteres</p>
+                    <p class="form__error-input-msg">El vehiculo solo puede contener letras y espacios</p>
                 </div>
     
        
@@ -78,6 +78,8 @@
             <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
         </footer>
    
-       
+   <!--SCRIPT-->
+   <script src="/js/validarRodado.js"></script>
+   
 </body>
 </html>

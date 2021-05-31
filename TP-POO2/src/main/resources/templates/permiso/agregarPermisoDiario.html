@@ -36,7 +36,7 @@
         		data-target="#modalAgregarLugar">Agregar Lugar</button>		
               
              <!--FORMULARIO DE PERMISO-->  
-            <form th:action="@{/savePermisoDiario}" th:object="${permiso}" method="POST" class="form" id="form">
+            <form th:action="@{/savePermiso}" th:object="${permiso}" method="POST" class="form" id="form">
 	             
 				<!--ID-->
 				<div class="form-group" style="display: none;">
@@ -59,12 +59,13 @@
                 </div>
     
                 <!--FECHA-->
-                <div class="form__grupo" id="grupo__password">
+                <div class="form__grupo" id="grupo__fecha">
                     <label for="permiso" class="form__label">Fecha</label>
                     <div class="form__grupo-input">
                         <input th:field="${permiso.fecha}"  type="date" name="fecha" class="form__input" id="fecha">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
+                    <p class="form__error-input-msg">La fecha no puede estar vacia</p>
                    
                 </div>
                 
@@ -128,7 +129,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/buscarLugarDiario}" th:object="${lugarBuscado}" method="POST">
+						<form id="formLugar" th:action="@{/buscarLugar}" th:object="${lugarBuscado}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Buscar Lugar</h5>
@@ -160,7 +161,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/saveLugarDiario}" th:object="${nuevoLugar}" method="POST">
+						<form id="formLugar" th:action="@{/saveLugar}" th:object="${nuevoLugar}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Agregar Lugar</h5>
@@ -202,6 +203,8 @@
             <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
         </footer>
    
-       
+   		<!--SCRPT-->
+        <script src="/js/validarPermisoDiario.js"></script>
+
 </body>
 </html>

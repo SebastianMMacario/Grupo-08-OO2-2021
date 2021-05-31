@@ -24,9 +24,6 @@ import com.Unla.TPPOO2.models.Usuario;
 public class LoginController {
 	
 	
-	@Autowired
-	private IPerfilService perfilService;
-		
 	@GetMapping("/login")
 	public String login(Model model,
 						@RequestParam(name="error",required=false) String error,

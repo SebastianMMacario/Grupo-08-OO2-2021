@@ -36,7 +36,7 @@
         		data-target="#modalAgregarLugar">Agregar Lugar</button>		
               
              <!--FORMULARIO DE PERMISO-->  
-            <form th:action="@{/savePermisoPeriodo}" th:object="${permiso}" method="POST" class="form" id="form">
+            <form th:action="@{/savePermiso}" th:object="${permiso}" method="POST" class="form" id="form">
 	             
 				<!--ID-->
 				<div class="form-group" style="display: none;">
@@ -45,7 +45,7 @@
 				</div>
 
                 <!--Persona-->
-                <div class="form__grupo" id="grupo__nombreUsuario">
+                <div class="form__grupo">
                     <label for="permiso" class="form__label">Persona</label>
                     <div>
                     
@@ -59,18 +59,19 @@
                 </div>
     
                 <!--FECHA-->
-                <div class="form__grupo" id="grupo__password">
+                <div class="form__grupo" id="grupo__fecha">
                     <label for="permiso" class="form__label">Fecha</label>
                     <div class="form__grupo-input">
                         <input th:field="${permiso.fecha}"  type="date" name="fecha" class="form__input" id="fecha">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-                   
+                    <p class="form__error-input-msg">La fecha no puede estar vacia</p>
+
                 </div>
                 
                 
-                <!--MOTIVO-->
-                <div class="form__grupo" id="grupo__motivo">
+                <!--CANT DE DIAS-->
+                <div class="form__grupo" id="grupo__cantDias">
                     <label for="cantDias" class="form__label">Cantidad de dias</label>
                     <div class="form__grupo-input">
                         <input th:field="${permiso.cantDias}" type="text" name="cantDias" class="form__input" id="cantDias">
@@ -82,9 +83,9 @@
                 
                 <!--CHECKBOX-->
                 <div class="form__grupo-checkbox">
-                    <label class="form__label"> 
-                        <input th:field="${permiso.vacacion}" value = "true" type="checkbox" name="checkbox" id="checkbox">
-                        Vacacion
+                    <label class="form__label"> Vacacion?
+                        <input style="margin-left: 10px;" th:field="${permiso.vacacion}" value = "true" type="checkbox" name="checkbox" id="checkbox">
+                        SI
                     </label>
                 </div>
                 
@@ -111,9 +112,7 @@
     
                 <!--BUTTON-->
                 <div class="form__grupo form__grupo-button-enviar">
-                    <button th:if="${editMode == null}" class="form__button" type="submit">AGREGAR</button>
-                    <button th:if="${editMode == true}" class="form__button" type="submit">MODIFICAR</button>
-
+                    <button class="form__button" type="submit">AGREGAR</button>
                 </div>
                 
                 <p class="form__info" style="font-size: 1.15em;">
@@ -152,8 +151,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/buscarLugarPeriodo}" th:object="${lugarBuscado}" method="POST">
-							
+						<form id="formLugar" th:action="@{/buscarLugar}" th:object="${lugarBuscado}" method="POST">
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Buscar Lugar</h5>
 								<button type="button" class="close" data-dismiss="modal"
@@ -184,7 +182,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/saveLugarPeriodo}" th:object="${nuevoLugar}" method="POST">
+						<form id="formLugar" th:action="@{/saveLugar}" th:object="${nuevoLugar}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Agregar Lugar</h5>
@@ -226,6 +224,8 @@
             <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
         </footer>
    
+   <!--SCRIPT-->
+   <script src="/js/validarPermisoPeriodo.js"></script>
        
 </body>
 </html>

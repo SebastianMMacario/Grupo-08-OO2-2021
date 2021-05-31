@@ -3,7 +3,6 @@ package com.Unla.TPPOO2.controllers;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -62,6 +61,8 @@ public class PermisoController {
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
+		model.addAttribute("tipo", true);
+
 
 		return "permiso/agregarPermisoDiario";
 	}
@@ -73,33 +74,32 @@ public class PermisoController {
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
 		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("tipo", false);
 
 		return "permiso/agregarPermisoPeriodo";
 	}
 
-	@PostMapping("/savePermisoDiario")
-	public String agregarPermisoDiarioFinal(@Validated @ModelAttribute("permiso") PermisoDiario pd) {
-		pd.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
-		permisoService.save(pd);
+	@PostMapping("/savePermiso")
+	public String agregarPermisoDiarioFinal(@Validated @ModelAttribute("permiso") Permiso p, Model model) {
+		p.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
+		try {
+			permisoService.save(p);
+			lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("errorMsg", e.getMessage());
 
-		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
+			if(p instanceof PermisoDiario)return agregarPermisoDiario(model);
+			else return agregarPermisoPeriodo(model);
+		}
+		
 		return "redirect:/login";
 	}
 
-	@PostMapping("/savePermisoPeriodo")
-	public String agregarPermisoPeriodoFinal(@Validated @ModelAttribute("permiso") PermisoPeriodo pp) {
-
-		pp.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
-
-		permisoService.save(pp);
-
-		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
-
-		return "redirect:/login";
-	}
-
-	@PostMapping("/saveLugarDiario")
-	public String crearLugar(@Validated @ModelAttribute("nuevoLugar") Lugar lugar, Model model) {
+	
+	@PostMapping("/saveLugar")
+	public String crearLugar(@Validated @ModelAttribute("nuevoLugar") Lugar lugar ,@Validated @ModelAttribute("permiso") Permiso p
+			, Model model) {
 		try {
 			lugarService.guardarLugarEnBD(lugar);
 
@@ -108,11 +108,14 @@ public class PermisoController {
 			model.addAttribute("errorMsg", e.getMessage());
 		}
 
-		return agregarPermisoDiario(model);
+		if(p instanceof PermisoDiario) return agregarPermisoDiario(model);
+		else return agregarPermisoPeriodo(model);
 	}
 
-	@PostMapping("/buscarLugarDiario")
-	public String buscarLugarDiario(@Validated @ModelAttribute("lugarBuscado") Lugar lugar, Model model) {
+	
+	@PostMapping("/buscarLugar")
+	public String buscarLugarDiario(@Validated @ModelAttribute("lugarBuscado") Lugar lugar, 
+			@Validated @ModelAttribute("permiso") Permiso p , Model model) {
 
 		try {
 			Lugar lugarBuscado = lugarService.buscarLugarPorNombre(lugar.getLugar());
@@ -121,38 +124,15 @@ public class PermisoController {
 			model.addAttribute("errorMsg", e.getMessage());
 		}
 
-		return agregarPermisoDiario(model);
+		if(p instanceof PermisoDiario) return agregarPermisoDiario(model);
+		else return agregarPermisoPeriodo(model);
 	}
 
-	@PostMapping("/saveLugarPeriodo")
-	public String crearLugarPeriodo(@Validated @ModelAttribute("nuevoLugar") Lugar lugar, Model model) {
-
-		try {
-			lugarService.guardarLugarEnBD(lugar);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			model.addAttribute("errorMsg", e.getMessage());
-		}
-
-		return agregarPermisoPeriodo(model);
-	}
-
-	@PostMapping("/buscarLugarPeriodo")
-	public String buscarLugarPeriodo(@Validated @ModelAttribute("lugarBuscado") Lugar lugar, Model model) {
-
-		try {
-			Lugar lugarBuscado = lugarService.buscarLugarPorNombre(lugar.getLugar());
-			lugarService.guardarLugarEncontradoEnListAux(lugarBuscado);
-		} catch (Exception e) {
-			model.addAttribute("errorMsg", e.getMessage());
-		}
-
-		return agregarPermisoPeriodo(model);
-	}
-
+	
 	@GetMapping("/cancelActionPermiso")
 	public String cancelarAccion() {
+		
+		lugarService.borrarTodosLugaresDeListAux();
 		return "redirect:/listPermiso";
 	}
 

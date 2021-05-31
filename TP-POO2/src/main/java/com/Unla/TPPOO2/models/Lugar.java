@@ -3,7 +3,6 @@ package com.Unla.TPPOO2.models;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -86,11 +85,10 @@ public class Lugar {
 		this.permisos = permisos;
 	}
 
+
 	@Override
 	public String toString() {
 		return lugar;
 	}
 	
-	
-
 }

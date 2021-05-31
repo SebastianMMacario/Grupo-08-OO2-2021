@@ -12,7 +12,7 @@ public interface IPermisoService {
 	
 	public List<Permiso>listar();
 	public Optional<Permiso>listarId(int id);
-	public int save(Permiso p);
+	public int save(Permiso p) throws Exception;
 	public void delete(int id) throws Exception;
 	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta);
 	

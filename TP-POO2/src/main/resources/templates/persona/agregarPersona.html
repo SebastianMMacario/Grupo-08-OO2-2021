@@ -54,13 +54,13 @@
                 </div>
     
                 <!--DNI-->
-                <div class="form__grupo" id="grupo__nroDocumento">
-                    <label for="documento" class="form__label">Numero de documento</label>
+                <div class="form__grupo" id="grupo__dni">
+                    <label for="documento" class="form__label">DNI</label>
                     <div class="form__grupo-input">              
-                        <input th:field="${persona.dni}" placeholder="11111111" type="text" class="form__input" name="nroDocumento" id="nroDocumento">
+                        <input th:field="${persona.dni}" placeholder="11111111" type="text" class="form__input" name="dni" id="dni">
                         <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-                    <p class="form__error-input-msg">El documento debe contener 8 numeros</p>
+                    <p class="form__error-input-msg">El dni debe contener 8 numeros</p>
                 </div>
     
             
@@ -87,6 +87,8 @@
             <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
         </footer>
    
+   <!--SCRIPT-->
+   <script src="/js/validarPersona.js"></script>
        
 </body>
 </html>
