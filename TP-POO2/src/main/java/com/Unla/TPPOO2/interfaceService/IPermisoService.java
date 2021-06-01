@@ -14,6 +14,6 @@ public interface IPermisoService {
 	public Optional<Permiso>listarId(int id);
 	public int save(Permiso p) throws Exception;
 	public void delete(int id) throws Exception;
-	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta);
+	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta, String desdeHasta);
 	
 }

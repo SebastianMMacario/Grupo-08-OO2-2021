@@ -44,14 +44,15 @@ public class PermisoController {
 	}
 
 	@GetMapping("/listPermisoFiltrado")
-	public String filtrarPermisosPorFecha(Model model,
-			@RequestParam(value = "fechaDesde") String fechaDesde, @RequestParam(value = "fechaHasta") String fechaHasta) {
-		
+	public String filtrarPermisosPorFecha(Model model, @RequestParam(value = "fechaDesde") String fechaDesde,
+			@RequestParam(value = "fechaHasta") String fechaHasta,
+			@RequestParam(value = "desdeHasta", required = false) String desdeHasta) {
+
 		System.out.println("fechaDesde " + fechaDesde);
 		System.out.println("fechaHasta " + fechaHasta);
 //		model.addAttribute("permisos", permisoRepository.findByDates(fechaDesde, fechaHasta));
-		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta));
-	
+//		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
+		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
 		return "permiso/traerPermiso";
 	}
 

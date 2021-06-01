@@ -15,13 +15,15 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaces.IPermiso;
 import com.Unla.TPPOO2.models.Permiso;
+import com.Unla.TPPOO2.repositories.IPermisoRepository;
 
 @Service
 public class PermisoService implements IPermisoService {
 	@Autowired
 	private IPermiso data;
 	
-	
+	@Autowired
+	private IPermisoRepository IPermisoRepository;
 
 	@Override
 	public List<Permiso> listar() {
@@ -35,39 +37,49 @@ public class PermisoService implements IPermisoService {
 		return data.findById(id);
 	}
 
+
 	@Override
-	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta) {
-	//	Permiso permiso = new Permiso();
+	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta, String desdeHasta) {
+		// Permiso permiso = new Permiso();
 //		List<Permiso> permiso69 = new ArrayList<>();
-	
+
 		List<Permiso> listaPermisos;
-		List<Permiso> listaPermisosAux = new ArrayList<Permiso>();		
+		List<Permiso> listaPermisosAux = new ArrayList<Permiso>();
 		LocalDate fDesde = LocalDate.parse(fechaDesde);
 		LocalDate fHasta = LocalDate.parse(fechaHasta);
-		
-	System.out.println("Hola");
+
+		System.out.println("Hola");
 //		Permiso permiso = new Permiso();
 		// fechaHasta = fechaDesde + cantDias;
-		listaPermisos = (List<Permiso>) data.findAll();
+		
+			listaPermisos = (List<Permiso>) data.findAll();
+	
+		
+		if (desdeHasta != "") {
+			listaPermisos = IPermisoRepository.findPermisoByLugar(desdeHasta);
+		}
 		System.out.println("Antes del iterator");
 		Iterator<Permiso> it = listaPermisos.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
+
 			Permiso p = (Permiso) it.next();
 			System.out.println(p);
-			if(Period.between(p.getFecha(), fHasta).getDays()> 0)  {
+
+			if (Period.between(p.getFecha(), fHasta).getDays() >= 0) {
 				System.out.println("Hola2");
-				if(Period.between(p.getFecha(), fDesde).getDays() < 0) {
-			//if(ChronoUnit.DAYS.between(p.getFecha(), fHasta) > 0) {
-				
-				//if(ChronoUnit.DAYS.between(p.getFecha(), fDesde) < 0) {
+				if (Period.between(p.getFecha(), fDesde).getDays() <= 0) {
+					// if(ChronoUnit.DAYS.between(p.getFecha(), fHasta) > 0) {
+					// ILugarRepository.findByLugar(desdeHasta); //ESTO
+					// if(ChronoUnit.DAYS.between(p.getFecha(), fDesde) < 0) {
+
 					System.out.println("Hola3");
 					listaPermisosAux.add(p);
-				}		
-			}			
+				}
+			}
 		}
-	
+
 //			LocalDate fecha = new LocalDate();
-//		permiso = permisoRepository.findByDates();
+//		permiso = permisoRepository.findByDates(); //ESTO
 //		System.out.println(permiso);
 //		List<Permiso> listaPermisos = new ArrayList<Permiso>();
 //		listaPermisos.add(permiso);

@@ -27,15 +27,56 @@
 
 	<main>
 
-		<form th:action="@{/listPermisoFiltrado}" method="GET" class="form" id="form">
-			<div>fechadesde
+		<form th:action="@{/listPermisoFiltrado}" th:object="${lugar}" method="GET" class="form" id="form">
+			<div>
+				<label>
+					Fecha Desde:
+				</label>
 				<input th:name="fechaDesde" class="fechaDesde" type='date' />
 			</div>
-			<div>fechahasta
+			<div>
+				<label>
+					Fecha Hasta:
+				</label>
 				<input th:name="fechaHasta" class="fechaHasta" type='date' />
 			</div>
+			<div>
+				<label>
+					desdeHasta
+				</label>
+				<!--
+				<select th:name="desdeHasta" class="desdeHasta">
+					<option value="">hehe</option>
+					<div th:each="lugar:${lugares}">
+						<option th:text="${lugar.lugar}"></option>
+					</div>
+				</select> -->
+				<!--
+				<select required class="form__select">
+					<!--option disabled class="form__select-option">Tipo de Usuario</option>-->
+				<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}"
+					class="form__select-option">asdasdasd</option>
+				</select>-->
+				<select th:name="desdeHasta" class="form__select">
+					<option value="" class="form__select-option">Todo</option>
+					<option value="Temperley" class="form__select-option">Temperley</option>
+					<option value="Lanus" class="form__select-option">Lanús</option>
+					<option value="Lomas de Zamora" class="form__select-option">Lomas de Zamora</option>
+					<option value="Remedios de Escalada" class="form__select-option">Remedios de Escalada</option>
+					<option value="Villa Ballester" class="form__select-option">Villa Ballester</option>
+				</select>
+			</div>
+			<!--
+			<select th:field="${lugar.idlugar}" required class="form__select">
+				<option disabled class="form__select-option">Tipo de Usuario</option>
+				<option th:each="lugar:${lugares}" th:value="${lugar.id_lugar}" th:text="${lugar.lugar}"
+					class="form__select-option">
+				</option>
+			</select>
+			-->
+
 			<div class="form form-button-enviar">
-				<button  class="form" type"submit">Filtrar</button>
+				<button class="form" type"submit">Filtrar</button>
 			</div>
 		</form>
 
