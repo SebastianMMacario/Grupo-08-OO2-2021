@@ -48,6 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/buscarLugar").permitAll()
 				.antMatchers("/cancelActionPermiso").permitAll()
 
+				.antMatchers("/listPermiso").permitAll()
+				.antMatchers("/listPermisoFiltradoPorPersona").permitAll()
+				
 				.anyRequest().authenticated() 
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")

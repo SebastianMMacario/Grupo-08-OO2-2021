@@ -103,6 +103,7 @@ public class UsuarioController {
 	
 	
 	/**********Reporte de usuaruios en PDF***********/
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@GetMapping("/generarPDF")
 	public String generarReporte(){
 		List<Usuario> usuarios = service.listar();		
