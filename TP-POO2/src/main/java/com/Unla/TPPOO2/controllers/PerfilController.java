@@ -89,7 +89,8 @@ public String cancelarAccion() {
 }
 
 
-/**********Reporte de usuaruios en PDF***********/
+/**********Reporte de perfiles en PDF***********/
+@PreAuthorize("hasRole('ROLE_AUDIT')")
 @GetMapping("/generarPerfilesPDF")
 public String generarReportePDF(){
 	List<Perfil> perfiles = perfilService.listar();		

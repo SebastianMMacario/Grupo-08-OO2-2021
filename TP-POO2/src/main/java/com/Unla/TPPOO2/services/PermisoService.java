@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaces.IPermiso;
 import com.Unla.TPPOO2.models.Permiso;
+import com.Unla.TPPOO2.models.Persona;
 import com.Unla.TPPOO2.repositories.IPermisoRepository;
 
 @Service
@@ -37,7 +38,8 @@ public class PermisoService implements IPermisoService {
 		return data.findById(id);
 	}
 
-
+	
+	
 	@Override
 	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta, String desdeHasta) {
 		// Permiso permiso = new Permiso();
@@ -108,6 +110,17 @@ public class PermisoService implements IPermisoService {
 			res = 1;
 		}
 		return res;
+	}
+
+	@Override
+	public List<Permiso> traerPermisosPorPersona(int idPersona) {
+		
+		return IPermisoRepository.findPermisosByIdPersona(idPersona);
+	}
+
+	@Override
+	public List<Permiso> traerPermisosPorRodado(int idRodado) {
+		return IPermisoRepository.findPermisosByIdRodado(idRodado);
 	}
 
 }

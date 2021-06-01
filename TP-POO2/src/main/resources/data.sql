@@ -34,8 +34,3 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`
 
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('4', '1');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('5', '2');
-
-
-
-
-commit;

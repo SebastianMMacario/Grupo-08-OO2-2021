@@ -1,8 +1,9 @@
 package com.Unla.TPPOO2.controllers;
 
-import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -17,10 +18,12 @@ import com.Unla.TPPOO2.interfaceService.ILugarService;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaceService.IRodadoService;
+import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
+import com.Unla.TPPOO2.models.Persona;
 
 @Controller
 @SessionAttributes("permiso")
@@ -36,18 +39,64 @@ public class PermisoController {
 
 	@Autowired
 	private IPermisoService permisoService;
+	
+	@Autowired
+	private IUserLogueadoService userLoguadoService;
+		
 
+	@PreAuthorize("hasRole('ROLE_AUDIT') or (!hasRole('ROLE_AUDIT') and !hasRole('ROLE_ADMIN'))")	
 	@GetMapping("/listPermiso")
 	public String listar(Model model) {
+		model.addAttribute("personas", personaService.listar());
+		model.addAttribute("rodados", rodadoService.listar());
 		model.addAttribute("permisos", permisoService.listar());
+		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
 		return "permiso/traerPermiso";
 	}
 
+	@PreAuthorize("hasRole('ROLE_AUDIT') or (!hasRole('ROLE_AUDIT') and !hasRole('ROLE_ADMIN'))")	
+	@GetMapping("/listPermisoFiltradoPorPersona")
+	public String filtrarPermisosPorPersona(Model model, 
+			@RequestParam(value = "persona") int idPersona) {
+
+		System.out.println("personaElegida con id --> " + idPersona);
+		
+		model.addAttribute("personas", personaService.listar());
+		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
+		
+		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
+		return "permiso/traerPermiso";
+	}
+	
+	
+	@PreAuthorize("hasRole('ROLE_AUDIT')")	
+	@GetMapping("/listPermisoFiltradoPorRodado")
+	public String filtrarPermisosPorRodado(Model model, 
+			@RequestParam(value = "rodado") int idRodado) {
+
+		System.out.println("rodadoElegido con id --> " + idRodado);
+		
+		model.addAttribute("personas", personaService.listar());
+		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
+		
+		model.addAttribute("permisos", permisoService.traerPermisosPorRodado(idRodado));
+		return "permiso/traerPermiso";
+	}
+	
+	
+	@PreAuthorize("hasRole('ROLE_AUDIT')")	
 	@GetMapping("/listPermisoFiltrado")
-	public String filtrarPermisosPorFecha(Model model, @RequestParam(value = "fechaDesde") String fechaDesde,
+	public String filtrarPermisosPorFecha(Model model, 
+			@RequestParam(value = "fechaDesde") String fechaDesde,
 			@RequestParam(value = "fechaHasta") String fechaHasta,
 			@RequestParam(value = "desdeHasta", required = false) String desdeHasta) {
 
+		model.addAttribute("personas", personaService.listar());
+		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
+		
 		System.out.println("fechaDesde " + fechaDesde);
 		System.out.println("fechaHasta " + fechaHasta);
 //		model.addAttribute("permisos", permisoRepository.findByDates(fechaDesde, fechaHasta));
@@ -62,8 +111,6 @@ public class PermisoController {
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
-		model.addAttribute("tipo", true);
-
 
 		return "permiso/agregarPermisoDiario";
 	}
@@ -75,7 +122,6 @@ public class PermisoController {
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
 		model.addAttribute("rodados", rodadoService.listar());
-		model.addAttribute("tipo", false);
 
 		return "permiso/agregarPermisoPeriodo";
 	}
