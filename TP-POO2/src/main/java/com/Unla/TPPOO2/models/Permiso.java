@@ -59,9 +59,6 @@ public class Permiso {
 	public Permiso() {
 		super();
 	}
-	
-	
-	
 
 
 	public Permiso( Persona persona, LocalDate fecha, Set<Lugar> desdeHasta) {
@@ -131,7 +128,7 @@ public class Permiso {
 
 	@Override
 	public String toString() {
-		return "Permiso [idPermiso=" + idPermiso + ", persona=" + persona + ", fecha=" + fecha + "]";
+		return "idPermiso=" + idPermiso + ", persona=" + persona + ", fecha=" + fecha;
 	}
 
 

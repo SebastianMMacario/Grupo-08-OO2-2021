@@ -2,12 +2,14 @@ package com.Unla.TPPOO2.services;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.ILugarService;
+import com.Unla.TPPOO2.interfaces.ILugar;
 import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.repositories.ILugarRepository;
 
@@ -17,6 +19,9 @@ public class LugarService implements ILugarService {
 	
 	@Autowired
 	private ILugarRepository lugarRespository;
+	
+	@Autowired
+	private ILugar data;
 	
 	//lista auxiliar donde se guardan los lugares que se le agregaran al permiso, a la hora de crearlo
 	Set<Lugar> lugaresAux = new HashSet<Lugar>();
@@ -65,6 +70,11 @@ public class LugarService implements ILugarService {
 	public void borrarTodosLugaresDeListAux() {
 		// TODO Auto-generated method stub
 		lugaresAux.clear(); //limpia la list auxiliar una vez finalizada la operacion de agregar un permiso
+	}
+
+	@Override
+	public List<Lugar> listar() {
+		return (List<Lugar>) data.findAll();
 	}
 
 }

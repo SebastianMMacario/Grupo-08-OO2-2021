@@ -1,5 +1,6 @@
 package com.Unla.TPPOO2.controllers;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.ILugarService;
+import com.Unla.TPPOO2.interfaceService.IPermisoDiarioService;
+import com.Unla.TPPOO2.interfaceService.IPermisoPeriodoService;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaceService.IRodadoService;
@@ -41,6 +44,12 @@ public class PermisoController {
 	private IPermisoService permisoService;
 	
 	@Autowired
+	private IPermisoDiarioService permisoDiarioService;
+	
+	@Autowired
+	private IPermisoPeriodoService permisoPeriodoService;
+	
+	@Autowired
 	private IUserLogueadoService userLoguadoService;
 		
 
@@ -50,6 +59,9 @@ public class PermisoController {
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("rodados", rodadoService.listar());
 		model.addAttribute("permisos", permisoService.listar());
+		model.addAttribute("permisosDiarios", permisoDiarioService.listarPermisosDiarios());
+		model.addAttribute("permisosPeriodo", permisoPeriodoService.listarPermisosPeriodo());
+		model.addAttribute("lugares", lugarService.listar());
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
 		return "permiso/traerPermiso";
 	}
@@ -95,13 +107,22 @@ public class PermisoController {
 
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("rodados", rodadoService.listar());
-		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
+		model.addAttribute("lugares", lugarService.listar());
+		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado());
+				
+		if(desdeHasta.isBlank()) {
+			model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFecha(fechaDesde, fechaHasta));
+			model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFecha(fechaDesde, fechaHasta));
+		} else {
+			model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));
+			model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));		
+		}
 		
 		System.out.println("fechaDesde " + fechaDesde);
 		System.out.println("fechaHasta " + fechaHasta);
 //		model.addAttribute("permisos", permisoRepository.findByDates(fechaDesde, fechaHasta));
 //		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
-		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
+//		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
 		return "permiso/traerPermiso";
 	}
 

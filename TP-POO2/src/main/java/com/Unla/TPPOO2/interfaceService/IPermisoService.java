@@ -12,6 +12,7 @@ import com.Unla.TPPOO2.models.Persona;
 public interface IPermisoService {
 	
 	public List<Permiso>listar();
+	public List<PermisoPeriodo> listarPermisoPeriodo();
 	public Optional<Permiso>listarId(int id);
 	public int save(Permiso p) throws Exception;
 	public void delete(int id) throws Exception;

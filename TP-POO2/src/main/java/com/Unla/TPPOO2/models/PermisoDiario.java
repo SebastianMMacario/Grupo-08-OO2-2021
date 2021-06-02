@@ -19,7 +19,7 @@ public class PermisoDiario extends Permiso {
 	public PermisoDiario(){}
 	
 	public PermisoDiario(Persona persona, LocalDate fecha, Set<Lugar> desdeHasta,String motivo) {
-		super( persona, fecha,  desdeHasta);
+		super(persona, fecha, desdeHasta);
 		this.motivo = motivo;
 	}
 

@@ -53,8 +53,6 @@ public class PermisoPeriodo extends Permiso {
 		this.vacacion = vacacion;
 	}
 	
-	
-	
 	public Rodado getRodado() {
 		return rodado;
 	}

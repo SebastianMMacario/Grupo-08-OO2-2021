@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaces.IPermiso;
 import com.Unla.TPPOO2.models.Permiso;
+import com.Unla.TPPOO2.models.PermisoDiario;
+import com.Unla.TPPOO2.models.PermisoPeriodo;
 import com.Unla.TPPOO2.models.Persona;
 import com.Unla.TPPOO2.repositories.IPermisoRepository;
 
@@ -39,57 +41,6 @@ public class PermisoService implements IPermisoService {
 	}
 
 	
-	
-	@Override
-	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta, String desdeHasta) {
-		// Permiso permiso = new Permiso();
-//		List<Permiso> permiso69 = new ArrayList<>();
-
-		List<Permiso> listaPermisos;
-		List<Permiso> listaPermisosAux = new ArrayList<Permiso>();
-		LocalDate fDesde = LocalDate.parse(fechaDesde);
-		LocalDate fHasta = LocalDate.parse(fechaHasta);
-
-		System.out.println("Hola");
-//		Permiso permiso = new Permiso();
-		// fechaHasta = fechaDesde + cantDias;
-		
-			listaPermisos = (List<Permiso>) data.findAll();
-	
-		
-		if (desdeHasta != "") {
-			listaPermisos = IPermisoRepository.findPermisoByLugar(desdeHasta);
-		}
-		System.out.println("Antes del iterator");
-		Iterator<Permiso> it = listaPermisos.iterator();
-		while (it.hasNext()) {
-
-			Permiso p = (Permiso) it.next();
-			System.out.println(p);
-
-			if (Period.between(p.getFecha(), fHasta).getDays() >= 0) {
-				System.out.println("Hola2");
-				if (Period.between(p.getFecha(), fDesde).getDays() <= 0) {
-					// if(ChronoUnit.DAYS.between(p.getFecha(), fHasta) > 0) {
-					// ILugarRepository.findByLugar(desdeHasta); //ESTO
-					// if(ChronoUnit.DAYS.between(p.getFecha(), fDesde) < 0) {
-
-					System.out.println("Hola3");
-					listaPermisosAux.add(p);
-				}
-			}
-		}
-
-//			LocalDate fecha = new LocalDate();
-//		permiso = permisoRepository.findByDates(); //ESTO
-//		System.out.println(permiso);
-//		List<Permiso> listaPermisos = new ArrayList<Permiso>();
-//		listaPermisos.add(permiso);
-//		return listaPermisos;
-
-		return listaPermisosAux;
-	}
-
 	@Override
 	public void delete(int id) throws Exception {
 		// TODO Auto-generated method stub
@@ -123,4 +74,51 @@ public class PermisoService implements IPermisoService {
 		return IPermisoRepository.findPermisosByIdRodado(idRodado);
 	}
 
+	
+	
+	
+	@Override
+	public List<Permiso> traerPermisos(String fechaDesde, String fechaHasta, String desdeHasta) {
+
+		List<Permiso> listaPermisos;
+		List<Permiso> listaPermisosAux = new ArrayList<Permiso>();
+		LocalDate fDesde = LocalDate.parse(fechaDesde);
+		LocalDate fHasta = LocalDate.parse(fechaHasta);
+
+		System.out.println("Hola");
+		
+			listaPermisos = (List<Permiso>) data.findAll();
+	
+		if (desdeHasta != "") {
+			listaPermisos = IPermisoRepository.findPermisoByLugar(desdeHasta);
+		}
+		
+		System.out.println("Antes del iterator");
+		
+		Iterator<Permiso> it = listaPermisos.iterator();
+		while (it.hasNext()) {
+
+			Permiso p = (Permiso) it.next();
+			System.out.println(p);
+
+			if (Period.between(p.getFecha(), fHasta).getDays() >= 0) {
+				System.out.println("Hola2");
+				if (Period.between(p.getFecha(), fDesde).getDays() <= 0) {
+				
+					System.out.println("Hola3");
+					listaPermisosAux.add(p);
+				}
+			}
+		}
+		return listaPermisosAux;
+	}
+	
+
+	@Override
+	public List<PermisoPeriodo> listarPermisoPeriodo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

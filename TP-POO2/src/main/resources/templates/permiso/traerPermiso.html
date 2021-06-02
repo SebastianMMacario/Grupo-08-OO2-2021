@@ -73,7 +73,8 @@
 		
 		<br/><br/>
 		
-		<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" th:action="@{/listPermisoFiltrado}" th:object="${lugar}" method="GET" class="form" id="form">
+		<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" 
+		th:action="@{/listPermisoFiltrado}" th:object="${lugar}" method="GET" class="form" id="form">
 			<div>
 				<label>
 					Fecha Desde:
@@ -88,8 +89,19 @@
 			</div>
 			<div>
 				<label>
-					desdeHasta
+					Desde / Hasta:
 				</label>
+				<select th:name="desdeHasta" class="form__select">
+					<option th:each="l : ${lugares}" th:value="${l.lugar}" th:text="${l.lugar}"
+						class="form__select-option" />
+				</select>
+				<!--CHECKBOX-->
+                <a class="form__grupo-checkbox">
+                    <label class="form__label"> 
+                        <input style="margin-left: 10px;"  value = "todos" type="checkbox" name="desdeHasta" id="checkbox">
+                        Todos
+                    </label>
+                </a>
 				<!--
 				<select th:name="desdeHasta" class="desdeHasta">
 					<option value="">hehe</option>
@@ -99,10 +111,10 @@
 				</select> -->
 				<!--
 				<select required class="form__select">
-					<!--option disabled class="form__select-option">Tipo de Usuario</option>-->
+					<!--option disabled class="form__select-option">Tipo de Usuario</option>
 				<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}"
 					class="form__select-option">asdasdasd</option>
-				</select>-->
+				</select> 
 				<select th:name="desdeHasta" class="form__select">
 					<option value="" class="form__select-option">Todo</option>
 					<option value="Temperley" class="form__select-option">Temperley</option>
@@ -112,14 +124,7 @@
 					<option value="Villa Ballester" class="form__select-option">Villa Ballester</option>
 				</select>
 			</div>
-			<!--
-			<select th:field="${lugar.idlugar}" required class="form__select">
-				<option disabled class="form__select-option">Tipo de Usuario</option>
-				<option th:each="lugar:${lugares}" th:value="${lugar.id_lugar}" th:text="${lugar.lugar}"
-					class="form__select-option">
-				</option>
-			</select>
-			-->
+		-->
 
 			<div class="form form-button-enviar">
 				<button class="form" type"submit">Filtrar</button>
@@ -128,8 +133,81 @@
 
 
 
+		<!-- LISTA DE PERMISOS DIARIOS -->
+		<h1>Listado de Permisos Diarios</h1>
+		<div class="table-contenedor">
 
-		<h1>Listado de Permisos</h1>
+			<div class="tabla-header">
+				<div class="tabla-header__herramientas">
+
+				</div>
+			</div>
+			<table class="tabla" id="tabla">
+				<thead class="tabla__head">
+					<tr class="tabla__row-head">
+						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
+						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
+						<th class="tabla__head-nombre" scope="col">Apellido</th>
+						<th class="tabla__head-nombre" scope="col">Fecha</th>
+						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
+						<th class="tabla__head-nombre" scope="col">Motivo</th>
+					</tr>
+				</thead>
+				<tbody class="tabla__body">
+					<tr th:each="permisoDiario:${permisosDiarios}" class="tabla__row-body">
+						<td th:text="${permisoDiario.idPermiso}" class="tabla__body-dato"></td>
+						<td th:text="${permisoDiario.persona.nombre}" class="tabla__body-dato"></td>
+						<td th:text="${permisoDiario.persona.apellido}" class="tabla__body-dato"></td>
+						<td th:text="${permisoDiario.fecha}" class="tabla__body-dato"></td>
+						<td th:text="${permisoDiario.desdeHasta}" class="tabla__body-dato"></td>
+						<td th:text="${permisoDiario.motivo}" class="tabla__body-dato"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- LISTA DE PERMISOS POR PERIODO -->
+		<h1>Listado de Permisos por Periodo</h1>
+		<div class="table-contenedor">
+
+			<div class="tabla-header">
+				<div class="tabla-header__herramientas">
+
+
+				</div>
+			</div>
+			<table class="tabla" id="tabla">
+				<thead class="tabla__head">
+					<tr class="tabla__row-head">
+						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
+						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
+						<th class="tabla__head-nombre" scope="col">Apellido</th>
+						<th class="tabla__head-nombre" scope="col">Fecha</th>
+						<th class="tabla__head-nombre" scope="col">Cant. Días</th>
+						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
+						<th class="tabla__head-nombre" scope="col">Vacaciones</th>
+						<th class="tabla__head-nombre" scope="col">Rodado</th>
+					</tr>
+				</thead>
+				<tbody class="tabla__body">
+					<tr th:each="permisoPeriodo:${permisosPeriodo}" class="tabla__row-body">
+						<td th:text="${permisoPeriodo.idPermiso}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.persona.nombre}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.persona.apellido}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.fecha}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.cantDias}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.desdeHasta}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.vacacion}" class="tabla__body-dato"></td>
+						<td th:text="${permisoPeriodo.rodado.vehiculo} + ' - ' + ${permisoPeriodo.rodado.dominio}" class="tabla__body-dato"></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		
+		
+		<!-- LISTA DE PERMISOS -->
+	<!--<h1>Listado de Permisos</h1>
 		<div class="table-contenedor">
 
 			<div class="tabla-header">
@@ -159,7 +237,8 @@
 				</tbody>
 
 			</table>
-		</div>
+		</div>-->
+		
 
 		<form th:if="${usuarioLogueado != null}" th:action="@{/logout}" method="post">
 			<div class="button-contenedor">
