@@ -13,7 +13,6 @@ import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -49,8 +48,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 	private LocalDateTime updatedAt;
 	
 	public Persona() {}
-	
-	
+		
 	public Persona( String nombre, String apellido, long dni, Set<Permiso> permisos) {
 		super();
 		
@@ -59,7 +57,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 		this.dni = dni;
 		this.permisos = permisos;
 	}
-
 
 	public int getIdPersona() {
 		return idPersona;
@@ -86,29 +83,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 		this.dni = dni;
 	}
 
-
 	public Set<Permiso> getPermisos() {
 		return permisos;
 	}
 
-
 	public void setPermisos(Set<Permiso> permisos) {
 		this.permisos = permisos;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
 				+ "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

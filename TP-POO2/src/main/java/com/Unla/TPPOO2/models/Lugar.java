@@ -67,8 +67,6 @@ public class Lugar {
 		this.lugar = lugar;
 	}
 
-	
-
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
@@ -84,7 +82,6 @@ public class Lugar {
 	public void setPermisos(Set<Permiso> permisos) {
 		this.permisos = permisos;
 	}
-
 
 	@Override
 	public String toString() {

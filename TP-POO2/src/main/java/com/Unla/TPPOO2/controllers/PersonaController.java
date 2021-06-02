@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.models.Persona;
-import com.Unla.TPPOO2.models.Usuario;
-import com.Unla.TPPOO2.models.Usuario.TipoDocumento;
+
 
 @Controller
 public class PersonaController {

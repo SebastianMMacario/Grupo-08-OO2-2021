@@ -1,6 +1,5 @@
 package com.Unla.TPPOO2.services;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import com.Unla.TPPOO2.interfaceService.IPermisoDiarioService;
 import com.Unla.TPPOO2.interfaces.IPermisoDiario;
 import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.models.PermisoDiario;
-import com.Unla.TPPOO2.models.PermisoPeriodo;
 import com.Unla.TPPOO2.repositories.IPermisoDiarioRepository;
 
 @Service
@@ -29,8 +27,13 @@ public class PermisoDiarioService implements IPermisoDiarioService {
 	}
 	
 	@Override
+	public List<PermisoDiario> traerPermisosDiariosPorPersona(int idPersona) {
+		return IPermisoDiarioRepository.findPermisosByIdPersona(idPersona);
+	}
+	
+	@Override
 	public List<PermisoDiario> traerPermisosDiariosPorFecha(String fechaDesde, String fechaHasta) {
-		return IPermisoDiarioRepository.findPermisoDiarioByFechas(fechaDesde, fechaHasta);
+		return IPermisoDiarioRepository.findPermisosByFechas(fechaDesde, fechaHasta);
 	}
 
 	@Override

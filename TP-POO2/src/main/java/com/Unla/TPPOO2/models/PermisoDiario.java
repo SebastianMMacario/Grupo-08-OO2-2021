@@ -36,6 +36,4 @@ public class PermisoDiario extends Permiso {
 		return "PermisoDiario [motivo=" + motivo + ", idPermiso=" + idPermiso + ", fecha=" + fecha + "]";
 	}
 	
-	
-	
 }

@@ -18,8 +18,7 @@ import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.models.Perfil;
-import com.Unla.TPPOO2.models.Usuario;
-import com.Unla.TPPOO2.models.Usuario.TipoDocumento;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;

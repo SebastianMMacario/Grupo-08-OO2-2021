@@ -12,6 +12,7 @@ import com.Unla.TPPOO2.interfaceService.IPermisoPeriodoService;
 import com.Unla.TPPOO2.interfaces.IPermisoPeriodo;
 import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
+import com.Unla.TPPOO2.repositories.IPermisoPeriodoRepository;
 
 @Service
 public class PermisoPeriodoService implements IPermisoPeriodoService {
@@ -19,9 +20,22 @@ public class PermisoPeriodoService implements IPermisoPeriodoService {
 	@Autowired
 	private IPermisoPeriodo data;
 	
+	@Autowired
+	private IPermisoPeriodoRepository permisoPeriodoRepository;
+	
 	@Override
 	public List<PermisoPeriodo> listarPermisosPeriodo() {
 		return (List<PermisoPeriodo>) data.findAll();
+	}
+	
+	@Override
+	public List<PermisoPeriodo> traerPermisosPeriodoPorPersona(int idPersona) {
+		return permisoPeriodoRepository.findPermisosByIdPersona(idPersona);
+	}
+
+	@Override
+	public List<PermisoPeriodo> traerPermisosPeriodoPorRodado(int idRodado) {
+		return permisoPeriodoRepository.findPermisosByIdRodado(idRodado);
 	}
 
 	@Override

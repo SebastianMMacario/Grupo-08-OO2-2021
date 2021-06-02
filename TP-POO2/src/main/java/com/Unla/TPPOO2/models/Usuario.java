@@ -1,6 +1,5 @@
 package com.Unla.TPPOO2.models;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -128,8 +127,6 @@ public class Usuario {
 //		this.tipoDocumento = tipoDocumento;
 //	}
 	
-	
-
 	public int getNroDocumento() {
 		return nroDocumento;
 	}
@@ -202,8 +199,4 @@ public class Usuario {
 				+ ", enabled=" + enabled + "]";
 	}
 
-
-	
-
-	
 }

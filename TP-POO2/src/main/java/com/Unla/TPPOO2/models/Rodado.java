@@ -87,12 +87,4 @@ public class Rodado {
 		return "Rodado [idRodado=" + idRodado + ", dominio=" + dominio + ", vehiculo=" + vehiculo + "]";
 	}
 	
-	
-
-	
-	
-	
-	
-	
-
 }

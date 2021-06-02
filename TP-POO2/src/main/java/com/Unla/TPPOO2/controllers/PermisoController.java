@@ -1,8 +1,5 @@
 package com.Unla.TPPOO2.controllers;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,7 +23,6 @@ import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
-import com.Unla.TPPOO2.models.Persona;
 
 @Controller
 @SessionAttributes("permiso")
@@ -75,9 +71,12 @@ public class PermisoController {
 		
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("lugares", lugarService.listar());
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
 		
-		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
+		model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorPersona(idPersona));
+		model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorPersona(idPersona));
+//		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
 		return "permiso/traerPermiso";
 	}
 	
@@ -91,9 +90,11 @@ public class PermisoController {
 		
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("rodados", rodadoService.listar());
+		model.addAttribute("lugares", lugarService.listar());
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
 		
-		model.addAttribute("permisos", permisoService.traerPermisosPorRodado(idRodado));
+		model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorRodado(idRodado));
+//		model.addAttribute("permisos", permisoService.traerPermisosPorRodado(idRodado));
 		return "permiso/traerPermiso";
 	}
 	
@@ -121,7 +122,6 @@ public class PermisoController {
 		System.out.println("fechaDesde " + fechaDesde);
 		System.out.println("fechaHasta " + fechaHasta);
 //		model.addAttribute("permisos", permisoRepository.findByDates(fechaDesde, fechaHasta));
-//		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
 //		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
 		return "permiso/traerPermiso";
 	}
