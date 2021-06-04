@@ -1,15 +1,12 @@
 const expresiones = {
-	dni: /^\d{8}$/, // 8 numeros para un DNI .
-	fecha: /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/, //yyyy-mm-dd
-	cantDias: /^[1-9]/, // solo numeros
-	dominio: /^[a-zA-Z]{3}\d{3}$/ ,//Patente => 3 letras y 3 numeros .
+	nombreYApellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	dni: /^\d{8}$/ // 8 numeros para un DNI .
 };
 
 const campos = {
-	dni:false,
-	fecha: false,
-	cantDias: false,
-	dominio: false
+	nombre: false,
+    apellido: false,
+	dni: false
 };
 
 const formulario = document.getElementById("form");
@@ -18,23 +15,20 @@ const inputs = document.querySelectorAll("#form input");
 const validarFormulario = (evento)=>{
 
     switch(evento.target.name){
-	    case "fecha":
-		    validarCampo(expresiones.fecha , evento.target , "fecha");
-		    break; 
-        case "cantDias":
-            validarCampo(expresiones.cantDias , evento.target , "cantDias");
-            break;   
+        case "apellido":
+            validarCampo(expresiones.nombreYApellido , evento.target , "apellido");
+            break;
+        case "nombre":
+            validarCampo(expresiones.nombreYApellido , evento.target , "nombre");
+            break;
         case "dni":
             validarCampo(expresiones.dni , evento.target , "dni");
-            break;   
-       	case "dominio":
-            validarCampo(expresiones.dominio , evento.target , "dominio");
-            break;             
-    }       
+            break;              
+    }
 }
 
 const validarCampo=(expresion, input, campo) =>{
-    if(expresion.test(input.value) ) {
+    if(expresion.test(input.value)){
         document.getElementById(`grupo__${campo}`).classList.remove("form__grupo-incorrecto");
         document.getElementById(`grupo__${campo}`).classList.add("form__grupo-correcto");
         document.querySelector(`#grupo__${campo} i`).classList.remove("fa-times-circle");
@@ -55,33 +49,16 @@ const validarCampo=(expresion, input, campo) =>{
 }
 
 
-const validarCamposAgregados = () =>{
-	for(let i=1; i<= (inputs.length -1); i++){
-		switch(inputs[i].name){
-	    case "fecha":
-		    validarCampo(expresiones.fecha , inputs[i] , "fecha");
-		    break; 
-        case "cantDias":
-            validarCampo(expresiones.cantDias , inputs[i] , "cantDias");
-            break;              
-		}
-	}
-}
-
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
 
 
-if(inputs[3].value !== "" && inputs[4].value !== ""){
-	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
-}
-
 
 formulario.addEventListener("submit", (e) =>{
  
-    if(!campos.cantDias || !campos.fecha || !campos.dni || !campos.dominio){
+    if(!campos.apellido || !campos.nombre || !campos.dni){
 	
 	    e.preventDefault();
         

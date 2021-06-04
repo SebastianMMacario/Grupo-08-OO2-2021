@@ -50,12 +50,30 @@ const validarCampo=(expresion, input, campo) =>{
     }
 }
 
+const validarCamposAgregados = () =>{
+	for(let i=1; i<= (inputs.length -1); i++){
+		switch(inputs[i].name){
+	    case "fecha":
+		    validarCampo(expresiones.fecha , inputs[i] , "fecha");
+		    break; 
+        case "motivo":
+            validarCampo(expresiones.motivo , inputs[i] , "motivo");
+            break;        
+		}
+	}
+}
+
+
 
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
 
+
+if(inputs[3].value !== "" && inputs[4].value !== "" ){
+	document.addEventListener("DOMContentLoaded", validarCamposAgregados);	
+}
 
 
 formulario.addEventListener("submit", (e) =>{

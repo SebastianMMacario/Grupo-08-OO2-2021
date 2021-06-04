@@ -48,12 +48,33 @@ const validarCampo=(expresion, input, campo) =>{
     }
 }
 
+const validarCamposAgregados = () =>{
+	for(let i=1; i<= (inputs.length -1); i++){
+		switch(inputs[i].name){
+        case "apellido":
+            validarCampo(expresiones.nombreYApellido , inputs[i] , "apellido");
+            break;
+        case "nombre":
+            validarCampo(expresiones.nombreYApellido ,inputs[i] , "nombre");
+            break;
+        case "dni":
+            validarCampo(expresiones.dni , inputs[i] , "dni");
+            break;    
+		}
+	}
+}
+
 
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
 
+
+
+if(inputs[2].value !== "" && inputs[3].value !== "" && inputs[4].value !== "" ){
+	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
+}
 
 
 formulario.addEventListener("submit", (e) =>{

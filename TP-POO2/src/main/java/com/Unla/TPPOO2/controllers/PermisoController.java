@@ -143,7 +143,6 @@ public class PermisoController {
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		model.addAttribute("nuevoLugar", new Lugar());
 		
-
 		return "permiso/agregarPermisoPeriodo";
 	}
 
@@ -166,19 +165,13 @@ public class PermisoController {
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			
-			
+			model.addAttribute("permiso", p);
 			model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 			model.addAttribute("nuevoLugar", new Lugar());
 			model.addAttribute("errorMsg", e.getMessage());
 
-			if(p instanceof PermisoDiario) {
-				
-				return "permiso/agregarPermisoDiario";
-			}
-			else {
-				
-				return "permiso/agregarPermisoPeriodo";
-			}
+			if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
+			else return "permiso/agregarPermisoPeriodo";
 		}
 		
 		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
@@ -198,8 +191,12 @@ public class PermisoController {
 			model.addAttribute("errorMsg", e.getMessage());
 		}
 
-		if(p instanceof PermisoDiario) return agregarPermisoDiario(model);
-		else return agregarPermisoPeriodo(model);
+		model.addAttribute("permiso", p);
+		model.addAttribute("nuevoLugar", new Lugar());
+		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
+
+		if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
+		else return "permiso/agregarPermisoPeriodo";
 	}
 
 	
@@ -214,8 +211,12 @@ public class PermisoController {
 			model.addAttribute("errorMsg", e.getMessage());
 		}
 
-		if(p instanceof PermisoDiario) return agregarPermisoDiario(model);
-		else return agregarPermisoPeriodo(model);
+		model.addAttribute("permiso", p);
+		model.addAttribute("nuevoLugar", new Lugar());
+		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
+		
+		if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
+		else return "permiso/agregarPermisoPeriodo";
 	}
 
 	

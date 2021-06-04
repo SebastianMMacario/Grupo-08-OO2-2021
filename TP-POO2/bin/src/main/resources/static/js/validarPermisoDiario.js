@@ -1,15 +1,14 @@
 const expresiones = {
 	dni: /^\d{8}$/, // 8 numeros para un DNI .
 	fecha: /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/, //yyyy-mm-dd
-	cantDias: /^[1-9]/, // solo numeros
-	dominio: /^[a-zA-Z]{3}\d{3}$/ ,//Patente => 3 letras y 3 numeros .
+	motivo: /^[a-zA-Z]/ // solo letras
+	
 };
 
 const campos = {
-	dni:false,
+	dni: false,
 	fecha: false,
-	cantDias: false,
-	dominio: false
+	motivo: false
 };
 
 const formulario = document.getElementById("form");
@@ -21,16 +20,13 @@ const validarFormulario = (evento)=>{
 	    case "fecha":
 		    validarCampo(expresiones.fecha , evento.target , "fecha");
 		    break; 
-        case "cantDias":
-            validarCampo(expresiones.cantDias , evento.target , "cantDias");
+        case "motivo":
+            validarCampo(expresiones.motivo , evento.target , "motivo");
             break;   
         case "dni":
             validarCampo(expresiones.dni , evento.target , "dni");
-            break;   
-       	case "dominio":
-            validarCampo(expresiones.dominio , evento.target , "dominio");
-            break;             
-    }       
+            break;          
+    }
 }
 
 const validarCampo=(expresion, input, campo) =>{
@@ -55,33 +51,16 @@ const validarCampo=(expresion, input, campo) =>{
 }
 
 
-const validarCamposAgregados = () =>{
-	for(let i=1; i<= (inputs.length -1); i++){
-		switch(inputs[i].name){
-	    case "fecha":
-		    validarCampo(expresiones.fecha , inputs[i] , "fecha");
-		    break; 
-        case "cantDias":
-            validarCampo(expresiones.cantDias , inputs[i] , "cantDias");
-            break;              
-		}
-	}
-}
-
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
 
 
-if(inputs[3].value !== "" && inputs[4].value !== ""){
-	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
-}
-
 
 formulario.addEventListener("submit", (e) =>{
  
-    if(!campos.cantDias || !campos.fecha || !campos.dni || !campos.dominio){
+    if(!campos.motivo || !campos.fecha || !campos.dni){
 	
 	    e.preventDefault();
         

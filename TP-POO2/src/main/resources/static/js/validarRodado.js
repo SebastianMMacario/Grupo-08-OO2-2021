@@ -52,6 +52,26 @@ inputs.forEach( (input) =>{
 
 
 
+const validarCamposAgregados = () =>{
+	for(let i=1; i<= (inputs.length -1); i++){
+		switch(inputs[i].name){
+        case "dominio":
+            validarCampo(expresiones.dominio , inputs[i] , "dominio");
+            break;
+        case "vehiculo":
+            validarCampo(expresiones.vehiculo , inputs[i] , "vehiculo");
+            break;     
+		}
+	}
+}
+
+
+if(inputs[2].value !== "" && inputs[3].value !== ""){
+	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
+}
+
+
+
 formulario.addEventListener("submit", (e) =>{
  
     if(!campos.dominio || !campos.vehiculo){
