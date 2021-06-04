@@ -1,9 +1,12 @@
 const expresiones = {
+	dni: /^\d{8}$/, // 8 numeros para un DNI .
 	fecha: /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/, //yyyy-mm-dd
 	motivo: /^[a-zA-Z]/ // solo letras
+	
 };
 
 const campos = {
+	dni: false,
 	fecha: false,
 	motivo: false
 };
@@ -19,7 +22,10 @@ const validarFormulario = (evento)=>{
 		    break; 
         case "motivo":
             validarCampo(expresiones.motivo , evento.target , "motivo");
-            break;             
+            break;   
+        case "dni":
+            validarCampo(expresiones.dni , evento.target , "dni");
+            break;          
     }
 }
 
@@ -54,7 +60,7 @@ inputs.forEach( (input) =>{
 
 formulario.addEventListener("submit", (e) =>{
  
-    if(!campos.motivo || !campos.fecha){
+    if(!campos.motivo || !campos.fecha || !campos.dni){
 	
 	    e.preventDefault();
         

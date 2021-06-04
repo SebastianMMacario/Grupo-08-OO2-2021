@@ -31,13 +31,23 @@ public class RodadoController {
 	
 	@PostMapping("/saveRodado")
 	public String guardar(@Validated @ModelAttribute("rodado") Rodado r, Model model) {
+		try {
 		
-		rodadoService.save(r);
-		return "redirect:/listRodado";
+			rodadoService.save(r);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("errorMsg",e.getMessage());
+			System.out.println(e.getMessage());
+			return"rodados/agregarRodado";
+		
+		}
+		
+		
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/cancelActionRodado")
 	public String cancelarAccion() {
-		return "redirect:/listRodado";
+		return "redirect:/login";
 	}
 }

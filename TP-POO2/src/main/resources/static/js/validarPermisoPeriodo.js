@@ -1,11 +1,15 @@
 const expresiones = {
+	dni: /^\d{8}$/, // 8 numeros para un DNI .
 	fecha: /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/, //yyyy-mm-dd
-	cantDias: /^[1-9]/ // solo numeros
+	cantDias: /^[1-9]/, // solo numeros
+	dominio: /^[a-zA-Z]{3}\d{3}$/ ,//Patente => 3 letras y 3 numeros .
 };
 
 const campos = {
+	dni:false,
 	fecha: false,
-	cantDias: false
+	cantDias: false,
+	dominio: false
 };
 
 const formulario = document.getElementById("form");
@@ -19,8 +23,14 @@ const validarFormulario = (evento)=>{
 		    break; 
         case "cantDias":
             validarCampo(expresiones.cantDias , evento.target , "cantDias");
+            break;   
+        case "dni":
+            validarCampo(expresiones.dni , evento.target , "dni");
+            break;   
+       	case "dominio":
+            validarCampo(expresiones.dominio , evento.target , "dominio");
             break;             
-    }
+    }       
 }
 
 const validarCampo=(expresion, input, campo) =>{
@@ -54,7 +64,7 @@ inputs.forEach( (input) =>{
 
 formulario.addEventListener("submit", (e) =>{
  
-    if(!campos.cantDias || !campos.fecha){
+    if(!campos.cantDias || !campos.fecha || !campos.dni || !campos.dominio){
 	
 	    e.preventDefault();
         

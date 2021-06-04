@@ -46,5 +46,6 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VA
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('6', '5');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('6', '4');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('7', '5');
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('7', '1');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('8', '4');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_lugar` (`id_permiso`, `id_lugar`) VALUES ('8', '5');

@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaces.IPersona;
+import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.Persona;
+import com.Unla.TPPOO2.repositories.IPersonaRepository;
 
 @Service
 public class PersonaService implements IPersonaService{
 	
 	@Autowired
 	private IPersona  data;
+	
+	@Autowired
+	private IPersonaRepository personaRepository;
 	
 	@Override
 	public List<Persona> listar() {
@@ -29,8 +34,19 @@ public class PersonaService implements IPersonaService{
 	}
 
 	@Override
-	public int save(Persona p) {
+	public Persona listarDNI(long dni) throws Exception {
 		// TODO Auto-generated method stub
+		Persona persona = personaRepository.findPersonaByDNI(dni);
+		if(persona == null) throw new Exception("La persona con el dni: "+dni+" no se encuentra registrada");
+		return persona;
+	}
+	
+	@Override
+	public int save(Persona p) throws Exception {
+		// TODO Auto-generated method stub
+		if (personaRepository.findPersonaByDNI(p.getDni())!=null) {
+			throw new Exception("La persona con el dni: "+p.getDni()+" ya se encuentra registrada");
+		}
 		int res = 0;
 		Persona persona=data.save( p);
 		if(!persona.equals(null)) {
@@ -47,5 +63,7 @@ public class PersonaService implements IPersonaService{
 		else data.deleteById(id);
 		
 	}
+
+
 
 }

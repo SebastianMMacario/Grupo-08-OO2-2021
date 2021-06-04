@@ -44,18 +44,28 @@
 					<p style="display: none"> <input th:field="*{idPermiso}" type="text" class="form-control" /></p>
 				</div>
 
-                <!--Persona-->
+                <!--Persona
                 <div class="form__grupo" id="grupo__nombreUsuario">
                     <label for="permiso" class="form__label">Persona</label>
                     <div>
                     
                         <select th:field="${permiso.persona.idPersona}" required class="form__select" >
-                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
                             <option th:each="persona:${personas}" th:value="${persona.idPersona}"  th:text="${persona.dni}" class="form__select-option" />
                         </select>
                      
                     </div>
          
+                </div>
+                -->
+    
+                <!--PERSONA DNI-->
+                <div class="form__grupo" id="grupo__dni">
+                    <label for="documento" class="form__label">Ingrese su DNI</label>
+                    <div class="form__grupo-input">              
+                        <input th:name="dni" placeholder="Ej:11111111" type="text" class="form__input" id="dni">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El dni debe contener 8 numeros</p>
                 </div>
     
                 <!--FECHA-->

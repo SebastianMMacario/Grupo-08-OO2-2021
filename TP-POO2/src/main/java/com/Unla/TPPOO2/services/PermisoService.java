@@ -42,8 +42,8 @@ public class PermisoService implements IPermisoService {
 	}
 
 	@Override
-	public int save(Permiso p) throws Exception {
-		if(p.getDesdeHasta().isEmpty()) throw new Exception("El permiso debe tener almenos un lugar asignado");
+	public int save(Permiso p) throws Exception {		
+		if(p.getDesdeHasta().size() < 2) throw new Exception("El permiso debe tener almenos 2 lugares agregados");
 		
 		int res = 0;
 		Permiso permiso = data.save(p);

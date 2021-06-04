@@ -61,7 +61,7 @@ public class LugarService implements ILugarService {
 	}
 
 	@Override
-	public Set<Lugar> buscarTodosLugaresDeListAux() {
+	public Set<Lugar> buscarTodosLugaresDeListAux(){
 		// TODO Auto-generated method stub
 		return lugaresAux;
 	}

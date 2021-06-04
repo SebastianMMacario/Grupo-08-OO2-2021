@@ -9,7 +9,8 @@ public interface IRodadoService {
 	
 	public List<Rodado>listar();
 	public Optional<Rodado>listarId(int id);
-	public int save(Rodado r);
+	public Rodado listarDominio(String dominio) throws Exception;
+	public int save(Rodado r) throws Exception;
 	public void delete(int id) throws Exception;
 	
 }

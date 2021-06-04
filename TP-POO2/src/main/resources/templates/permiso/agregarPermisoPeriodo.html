@@ -44,18 +44,14 @@
 					<p style="display: none"> <input th:field="*{idPermiso}" type="text" class="form-control" /></p>
 				</div>
 
-                <!--Persona-->
-                <div class="form__grupo">
-                    <label for="permiso" class="form__label">Persona</label>
-                    <div>
-                    
-                        <select th:field="${permiso.persona.idPersona}" required class="form__select" >
-                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
-                            <option th:each="persona:${personas}" th:value="${persona.idPersona}"  th:text="${persona.dni}" class="form__select-option" />
-                        </select>
-                     
+                <!--PERSONA DNI-->
+                <div class="form__grupo" id="grupo__dni">
+                    <label for="documento" class="form__label">Ingrese su DNI</label>
+                    <div class="form__grupo-input">              
+                        <input th:name="dni" placeholder="Ej:11111111" type="text" class="form__input" id="dni">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
                     </div>
-         
+                    <p class="form__error-input-msg">El dni debe contener 8 numeros</p>
                 </div>
     
                 <!--FECHA-->
@@ -80,30 +76,25 @@
                     <p class="form__error-input-msg">La cantidad de dias solo puede contener numeros</p>
                 </div>
                 
+                <!--VEHICULO DOMINIO-->
+                <div class="form__grupo" id="grupo__dominio">
+                    <label for="dominio" class="form__label">Ingrese su vehiculo(dominio)</label>
+                    <div class="form__grupo-input">
+                        <input th:name="dominio" type="text" class="form__input" id="dominio" placeholder="Ej:aaa111">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El dominio debe contener 3 letras y 3 numeros</p>
+                </div>
+                
                 
                 <!--CHECKBOX-->
                 <div class="form__grupo-checkbox">
                     <label class="form__label"> Vacacion?
-                        <input style="margin-left: 10px;" th:field="${permiso.vacacion}" value = "true" type="checkbox" name="checkbox" id="checkbox">
-                        SI
+                        <span style="margin-left: 5px;">Si<input style="margin-left: 3px;" th:field="${permiso.vacacion}" value = "true" type="checkbox"></span>
+                     
                     </label>
                 </div>
                 
-                <!--RODADO-->
-                <div class="form__grupo" id="grupo__nombreUsuario">
-                    <label for="rodado" class="form__label">Rodado</label>
-                    <div>
-                    
-                        <select th:field="${permiso.rodado.idRodado}" required class="form__select" >
-                            <!--option disabled class="form__select-option">Tipo de Usuario</option>-->
-                            <option th:each="rodado:${rodados}" th:value="${rodado.idRodado}"  th:text="${rodado.vehiculo}" class="form__select-option" />
-                        </select>
-                     
-                    </div>
-         
-                </div>
-                
-    
 
                 <!--MSG DE ERROR-->
                 <div class="form__msg-error" id="form__msg-error">

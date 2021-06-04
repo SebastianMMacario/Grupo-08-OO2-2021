@@ -34,7 +34,13 @@ public class PersonaController {
 	@PostMapping("/savePersona")
 	public String guardar(@Validated @ModelAttribute("persona") Persona p, Model model) {
 		
-		personaService.save(p);
+		try {
+			personaService.save(p);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("errorMsg",e.getMessage());
+			return "persona/agregarPersona";
+		}
 		return "redirect:/login";
 	}
 	

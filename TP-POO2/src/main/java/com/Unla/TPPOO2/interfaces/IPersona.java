@@ -7,6 +7,6 @@ import com.Unla.TPPOO2.models.Persona;
 
 @Repository
 public interface IPersona extends CrudRepository<Persona, Integer> {
-
+	
 }
 

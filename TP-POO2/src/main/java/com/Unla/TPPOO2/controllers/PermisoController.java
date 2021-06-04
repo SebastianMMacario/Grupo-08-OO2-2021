@@ -23,6 +23,8 @@ import com.Unla.TPPOO2.models.Lugar;
 import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
+import com.Unla.TPPOO2.models.Persona;
+import com.Unla.TPPOO2.models.Rodado;
 
 @Controller
 @SessionAttributes("permiso")
@@ -127,10 +129,9 @@ public class PermisoController {
 	}
 
 	@GetMapping("/newPermisoDiario")
-	public String agregarPermisoDiario(Model model) {
+	public String agregarPermisoDiario(Model model){
 		model.addAttribute("permiso", new PermisoDiario());
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
-		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
 
 		return "permiso/agregarPermisoDiario";
@@ -140,27 +141,47 @@ public class PermisoController {
 	public String agregarPermisoPeriodo(Model model) {
 		model.addAttribute("permiso", new PermisoPeriodo());
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
-		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("nuevoLugar", new Lugar());
-		model.addAttribute("rodados", rodadoService.listar());
+		
 
 		return "permiso/agregarPermisoPeriodo";
 	}
 
 	@PostMapping("/savePermiso")
-	public String agregarPermisoDiarioFinal(@Validated @ModelAttribute("permiso") Permiso p, Model model) {
+	public String guardarPermiso(@Validated @ModelAttribute("permiso") Permiso p, Model model,
+			@RequestParam(value = "dni")long dniPersona,
+			@RequestParam(value = "dominio", required = false)String dominioVehiculo) {
+		
 		p.setDesdeHasta(lugarService.buscarTodosLugaresDeListAux());
+		
 		try {
+			Persona persona = personaService.listarDNI(dniPersona);
+			p.setPersona(persona);
+			
+			if(p instanceof PermisoPeriodo) {
+				Rodado rodado = rodadoService.listarDominio(dominioVehiculo);
+				((PermisoPeriodo) p).setRodado(rodado);
+			}	
 			permisoService.save(p);
-			lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
-		} catch (Exception e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
+			
+			
+			model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
+			model.addAttribute("nuevoLugar", new Lugar());
 			model.addAttribute("errorMsg", e.getMessage());
 
-			if(p instanceof PermisoDiario)return agregarPermisoDiario(model);
-			else return agregarPermisoPeriodo(model);
+			if(p instanceof PermisoDiario) {
+				
+				return "permiso/agregarPermisoDiario";
+			}
+			else {
+				
+				return "permiso/agregarPermisoPeriodo";
+			}
 		}
 		
+		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
 		return "redirect:/login";
 	}
 
@@ -173,6 +194,7 @@ public class PermisoController {
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 			model.addAttribute("errorMsg", e.getMessage());
 		}
 
@@ -182,7 +204,7 @@ public class PermisoController {
 
 	
 	@PostMapping("/buscarLugar")
-	public String buscarLugarDiario(@Validated @ModelAttribute("lugarBuscado") Lugar lugar, 
+	public String buscarLugar(@Validated @ModelAttribute("lugarBuscado") Lugar lugar, 
 			@Validated @ModelAttribute("permiso") Permiso p , Model model) {
 
 		try {
