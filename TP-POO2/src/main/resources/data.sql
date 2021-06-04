@@ -21,10 +21,10 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(2,'Macario',sysdate(),358551
 INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(3,'Torrez Salvatierra',sysdate(),40000000,'Facundo',sysdate());
 INSERT INTO `bd-grupo-08-oo2-2021`.`persona` VALUES(4,'Rivera',sysdate(),40000001,'Tomás',sysdate());
 
-INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(1,sysdate(),'res543',sysdate(),'Renault 12');
-INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(2,sysdate(),'has764',sysdate(),'Renault Fluence');
-INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(3,sysdate(),'jer663',sysdate(),'Toyota Etios');
-INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(4,sysdate(),'oop232',sysdate(),'Toyota Hilux');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(1,sysdate(),'RES543',sysdate(),'Renault 12');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(2,sysdate(),'HAS764',sysdate(),'Renault Fluence');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(3,sysdate(),'JER663',sysdate(),'Toyota Etios');
+INSERT INTO `bd-grupo-08-oo2-2021`.`rodado` VALUES(4,sysdate(),'OOP232',sysdate(),'Toyota Hilux');
 
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`, `updatedat`, `id_persona`) VALUES ('5', '2021-05-30 18:08:54.000000', '2021-05-31', '2021-05-30 18:08:54.000000', '1');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`, `updatedat`, `id_persona`) VALUES ('4', '2021-05-30 18:08:55.000000', '2021-05-15', '2021-05-30 18:08:55.000000', '2');
@@ -35,7 +35,7 @@ INSERT INTO `bd-grupo-08-oo2-2021`.`permiso` (`id_permiso`, `createdat`, `fecha`
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_diario` (`motivo`, `id_permiso_diario`) VALUES ('Visita a familiar', '4');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_diario` (`motivo`, `id_permiso_diario`) VALUES ('Visita Medica', '6');
 
-INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_periodo` (`cant_dias`, `vacacion`, `id_permiso_periodo`, `id_rodado`) VALUES ('7', b'1', '5', '1');
+INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_periodo` (`cant_dias`, `vacacion`, `id_permiso_periodo`, `id_rodado`) VALUES ('7', b'1', '5', '2');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_periodo` (`cant_dias`, `vacacion`, `id_permiso_periodo`, `id_rodado`) VALUES ('10', b'0', '7', '3');
 INSERT INTO `bd-grupo-08-oo2-2021`.`permiso_periodo` (`cant_dias`, `vacacion`, `id_permiso_periodo`, `id_rodado`) VALUES ('14', b'1', '8', '2');
 

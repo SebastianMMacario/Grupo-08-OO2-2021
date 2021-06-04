@@ -29,108 +29,119 @@
 			 	<a th:if="${usuarioLogueado != null}" href=/list class="nav__enlace">Lista de Usuarios</a>
 				<a th:if="${usuarioLogueado != null}" class="nav__enlace" href=/listaPerfiles >Lista de Perfiles</a>
 			</nav>
-		</div>
-		
+		</div>	
 	</header>
 
-
-	<main>
-		<form th:if="${usuarioLogueado == null or usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" th:action="@{/listPermisoFiltradoPorPersona}" th:object="${persona}" method="GET" class="form" id="form">
-
-			<div>
-				<label>
-					Persona:
-				</label>
-				<select th:name="persona" class="form__select">
-                     <option th:each="p : ${personas}" th:value="${p.idPersona}"  th:text="${p.dni}" class="form__select-option" />
-				</select>			
-			</div>
-			<div class="form form-button-enviar">
-				<button class="form" type"submit">Filtrar</button>
+	<div id = "container" style = "width:100%">
+		<main>
+		
+		<!--FILTRO PERMISOS POR PERSONA -->
+			<form th:if="${usuarioLogueado == null or usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" 
+			th:action="@{/listPermisoFiltradoPorPersona}" th:object="${persona}" method="GET" class="form" id="form">
+				
+				<div id ="left" style = "float:left; width: 25%;">
+						<label>
+							Persona:
+						</label>
+						<select th:name="persona" class="form__select">
+		                     <option th:each="p : ${personas}" th:value="${p.idPersona}"  th:text="${p.dni}" class="form__select-option" />
+						</select>			
+				
+					<div class="form form-button-enviar">
+						<button class="form" type"submit">Filtrar</button>
+					</div>
+				</div>
+			</form>
+			
+	
+		<!--FILTRO PERMISOS POR RODADO -->
+			<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}"
+				th:action="@{/listPermisoFiltradoPorRodado}" th:object="${rodado}" method="GET" class="form" id="form">
+			
+			<div id = "middle" style = "float:left; width: 25%;">
+					<label>
+						Rodado:
+					</label>
+					<select th:name="rodado" class="form__select">
+						<option th:each="r : ${rodados}" th:value="${r.idRodado}" th:text="${r.vehiculo}"
+							class="form__select-option" />
+					</select>
+				
+				<div class="form form-button-enviar">
+					<button class="form" type"submit">Filtrar</button>
+				</div>
 			</div>
 			
-		</form>
-		
-		<br/><br/>
-		
-		<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}"
-			th:action="@{/listPermisoFiltradoPorRodado}" th:object="${rodado}" method="GET" class="form" id="form">
-		
-			<div>
-				<label>
-					Rodado:
-				</label>
-				<select th:name="rodado" class="form__select">
-					<option th:each="r : ${rodados}" th:value="${r.idRodado}" th:text="${r.vehiculo}"
-						class="form__select-option" />
-				</select>
-			</div>
-			<div class="form form-button-enviar">
-				<button class="form" type"submit">Filtrar</button>
-			</div>
-		
-		</form>
-		
-		<br/><br/>
-		
-		<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" 
-		th:action="@{/listPermisoFiltrado}" th:object="${lugar}" method="GET" class="form" id="form">
-			<div>
-				<label>
-					Fecha Desde:
-				</label>
-				<input th:name="fechaDesde" class="fechaDesde" type='date' />
-			</div>
-			<div>
-				<label>
-					Fecha Hasta:
-				</label>
-				<input th:name="fechaHasta" class="fechaHasta" type='date' />
-			</div>
-			<div>
-				<label>
-					Desde / Hasta:
-				</label>
-				<select th:name="desdeHasta" class="form__select">
-					<option th:each="l : ${lugares}" th:value="${l.lugar}" th:text="${l.lugar}"
-						class="form__select-option" />
-				</select>
-				<!--CHECKBOX-->
-                <a class="form__grupo-checkbox">
-                    <label class="form__label"> 
-                        <input style="margin-left: 10px;"  value = "todos" type="checkbox" name="desdeHasta" id="checkbox">
-                        Todos
-                    </label>
-                </a>
-				<!--
-				<select th:name="desdeHasta" class="desdeHasta">
-					<option value="">hehe</option>
-					<div th:each="lugar:${lugares}">
-						<option th:text="${lugar.lugar}"></option>
+			</form>
+				
+		<!--FILTRO PERMISOS POR FECHAS Y FILTRO PERMISOS POR LUGAR -->
+			<form th:if="${usuarioLogueado != null and usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" 
+			th:action="@{/listPermisoFiltrado}" th:object="${lugar}" method="GET" class="form" id="form">
+				<div  id = "right" style = "float:left; width: 25%;">
+						<label>
+							Fecha Desde:
+						</label>
+						<input th:name="fechaDesde" class="fechaDesde" type='date' />
+					<div>
+						<label>
+							Fecha Hasta:
+						</label>
+						<input th:name="fechaHasta" class="fechaHasta" type='date' />
 					</div>
-				</select> -->
-				<!--
-				<select required class="form__select">
-					<!--option disabled class="form__select-option">Tipo de Usuario</option>
-				<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}"
-					class="form__select-option">asdasdasd</option>
-				</select> 
-				<select th:name="desdeHasta" class="form__select">
-					<option value="" class="form__select-option">Todo</option>
-					<option value="Temperley" class="form__select-option">Temperley</option>
-					<option value="Lanus" class="form__select-option">Lanús</option>
-					<option value="Lomas de Zamora" class="form__select-option">Lomas de Zamora</option>
-					<option value="Remedios de Escalada" class="form__select-option">Remedios de Escalada</option>
-					<option value="Villa Ballester" class="form__select-option">Villa Ballester</option>
-				</select>
-			</div>
-		-->
+					
+					<div>
+						<label>
+							Desde / Hasta:
+						</label>
+						<select th:name="desdeHasta" class="form__select">
+							<option selected value> -- Todos -- </option>
+							<option th:each="l : ${lugares}" th:value="${l.lugar}" th:text="${l.lugar}"
+								class="form__select-option"/>
+						</select>
+					
+						<!--CHECKBOX-->
+					<!--	
+		               <a class="form__grupo-checkbox">
+		                    <label class="form__label"> 
+		                        <input style="margin-left: 10px;"  value = "todos" type="checkbox" name="desdeHasta" id="checkbox">
+		                        Todos
+		                    </label>
+		                </a> 
+		           	-->
+		                
+						<!--
+						<select th:name="desdeHasta" class="desdeHasta">
+							<option value="">hehe</option>
+							<div th:each="lugar:${lugares}">
+								<option th:text="${lugar.lugar}"></option>
+							</div>
+						</select> -->
+						<!--
+						<select required class="form__select">
+							<!--option disabled class="form__select-option">Tipo de Usuario</option>
+						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}"
+							class="form__select-option">asdasdasd</option>
+						</select> 
+						<select th:name="desdeHasta" class="form__select">
+							<option value="" class="form__select-option">Todo</option>
+							<option value="Temperley" class="form__select-option">Temperley</option>
+							<option value="Lanus" class="form__select-option">Lanús</option>
+							<option value="Lomas de Zamora" class="form__select-option">Lomas de Zamora</option>
+							<option value="Remedios de Escalada" class="form__select-option">Remedios de Escalada</option>
+							<option value="Villa Ballester" class="form__select-option">Villa Ballester</option>
+						</select>
+					</div>
+				-->
+	
+					<div class="form form-button-enviar">
+						<button class="form" type"submit">Filtrar</button>
+					</div>
+				</div>
+			</form>
+			
+	</div>
 
-			<div class="form form-button-enviar">
-				<button class="form" type"submit">Filtrar</button>
-			</div>
-		</form>
-
+<br></br><br></br><br></br><br></br><br></br>
 
 
 		<!-- LISTA DE PERMISOS DIARIOS -->
@@ -201,7 +212,6 @@
 						<td th:text="${permisoPeriodo.rodado.vehiculo} + ' - ' + ${permisoPeriodo.rodado.dominio}" class="tabla__body-dato"></td>
 					</tr>
 				</tbody>
-
 			</table>
 		</div>
 		
@@ -259,6 +269,7 @@
 	<!--SCRIPT-->
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/js/usuariosFunciones.js"></script>
 
 </body>
 
