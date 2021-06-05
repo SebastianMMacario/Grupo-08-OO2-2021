@@ -3,7 +3,6 @@ package com.Unla.TPPOO2.models;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity(name="lugar")
+@Entity
+@Table(name="lugar")
 public class Lugar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,8 +67,6 @@ public class Lugar {
 		this.lugar = lugar;
 	}
 
-	
-
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
@@ -86,9 +85,7 @@ public class Lugar {
 
 	@Override
 	public String toString() {
-		return "Lugar [idLugar=" + idLugar + ", lugar=" + lugar + ", codigoPostal=" + codigoPostal + "]";
+		return lugar;
 	}
 	
-	
-
 }

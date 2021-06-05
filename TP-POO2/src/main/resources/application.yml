@@ -9,7 +9,9 @@ spring:
     jpa:
         show-sql: true #[Opcional]Imprime en tu consola las instrucciones hechas en tu base de datos.
         hibernate:
-           ddl-auto: create-drop
+           ddl-auto: create
+        properties:
+          dialect: org.hibernate.dialect.MySQL5Dialect
            
     thymeleaf:
         mode: HTML5

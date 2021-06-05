@@ -16,11 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity(name="permiso")
+
+@Entity
+@Table(name="permiso")
 @Inheritance( strategy = InheritanceType.JOINED)
 public class Permiso {
 	
@@ -32,6 +36,7 @@ public class Permiso {
 	@JoinColumn(name="id_persona",nullable=false)
 	protected Persona persona;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha", nullable=false)
 	protected LocalDate  fecha;
 	
@@ -46,16 +51,10 @@ public class Permiso {
 	@ManyToMany
 	@JoinTable(name = "permiso_lugar",joinColumns = @JoinColumn(name="idPermiso"), inverseJoinColumns = @JoinColumn(name="idLugar") )
 	protected Set<Lugar> desdeHasta;
-
-	
 	
 	public Permiso() {
 		super();
 	}
-	
-	
-	
-
 
 	public Permiso( Persona persona, LocalDate fecha, Set<Lugar> desdeHasta) {
 		super();
@@ -64,80 +63,41 @@ public class Permiso {
 		this.desdeHasta = desdeHasta;
 	}
 
-
-
-
-
 	public int getIdPermiso() {
 		return idPermiso;
 	}
-
 
 	public void setIdPermiso(int idPermiso) {
 		this.idPermiso = idPermiso;
 	}
 
-
 	public LocalDate getFecha() {
 		return fecha;
 	}
 
-
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	
-	
-
 
 	public Persona getPersona() {
 		return persona;
 	}
 
-
-
-
-
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-
-
-
-
 
 	public Set<Lugar> getDesdeHasta() {
 		return desdeHasta;
 	}
 
-
-
-
-
 	public void setDesdeHasta(Set<Lugar> desdeHasta) {
 		this.desdeHasta = desdeHasta;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
-		return "Permiso [idPermiso=" + idPermiso + ", persona=" + persona + ", fecha=" + fecha + "]";
+		return "idPermiso=" + idPermiso + ", persona=" + persona + ", fecha=" + fecha;
 	}
-
-
-
-
-
-	
-
-
-
-
-
-	
-	
 	
 }

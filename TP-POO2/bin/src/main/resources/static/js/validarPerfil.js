@@ -7,7 +7,7 @@ const campos = {
 };
 
 const formulario = document.getElementById("form");
-const inputs = document.querySelectorAll("#form input");
+const input = document.getElementById("tipoPerfil");
 
 const validarFormulario = (evento)=>{
 
@@ -17,6 +17,11 @@ const validarFormulario = (evento)=>{
             break;                
     }
 }
+
+const validarCamposAgregados = () =>{
+	validarCampo(expresiones.perfil , input , "tipoPerfil");
+}
+
 
 const validarCampo=(expresion, input, campo) =>{
     if(expresion.test(input.value)){
@@ -39,10 +44,20 @@ const validarCampo=(expresion, input, campo) =>{
     }
 }
 
+/*
 inputs.forEach( (input) =>{
     input.addEventListener("keyup",validarFormulario);
     input.addEventListener("blur",validarFormulario);
 });
+*/
+
+input.addEventListener("keyup",validarFormulario);
+input.addEventListener("blur",validarFormulario);
+
+
+if(input.value !== ""){
+	document.addEventListener("DOMContentLoaded", validarCamposAgregados );	
+}
 
 
 formulario.addEventListener("submit", (e) =>{

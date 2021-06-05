@@ -11,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity(name="rodado")
+@Entity
+@Table(name="rodado")
 public class Rodado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,12 +87,4 @@ public class Rodado {
 		return "Rodado [idRodado=" + idRodado + ", dominio=" + dominio + ", vehiculo=" + vehiculo + "]";
 	}
 	
-	
-
-	
-	
-	
-	
-	
-
 }

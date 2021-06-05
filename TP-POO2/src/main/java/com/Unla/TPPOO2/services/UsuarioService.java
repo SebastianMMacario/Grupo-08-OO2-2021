@@ -56,12 +56,10 @@ public class UsuarioService implements IusuarioService {
 		}
 		return res;
 	}
-
 	
 	@Override
 	public void delete(int id) {
 		data.deleteById(id);
 	}
-
 
 }

@@ -12,15 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name="persona")
-
-public class Persona {
+@Entity
+@Table(name="persona")
+ public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
@@ -47,8 +48,7 @@ public class Persona {
 	private LocalDateTime updatedAt;
 	
 	public Persona() {}
-	
-	
+		
 	public Persona( String nombre, String apellido, long dni, Set<Permiso> permisos) {
 		super();
 		
@@ -57,7 +57,6 @@ public class Persona {
 		this.dni = dni;
 		this.permisos = permisos;
 	}
-
 
 	public int getIdPersona() {
 		return idPersona;
@@ -84,29 +83,18 @@ public class Persona {
 		this.dni = dni;
 	}
 
-
 	public Set<Permiso> getPermisos() {
 		return permisos;
 	}
 
-
 	public void setPermisos(Set<Permiso> permisos) {
 		this.permisos = permisos;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
 				+ "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

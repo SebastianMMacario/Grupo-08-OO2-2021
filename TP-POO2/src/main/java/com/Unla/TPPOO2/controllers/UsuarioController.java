@@ -1,7 +1,6 @@
 package com.Unla.TPPOO2.controllers;
 
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +20,9 @@ import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.interfaceService.IusuarioService;
 import com.Unla.TPPOO2.interfaces.IUsuario;
-import com.Unla.TPPOO2.models.Perfil;
 import com.Unla.TPPOO2.models.Usuario;
 import com.Unla.TPPOO2.models.Usuario.TipoDocumento;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -48,15 +47,6 @@ public class UsuarioController {
 		
 		System.out.println(userLogueadoService.traerUserLogueado());
 		Usuario usuarioLogueado = userLogueadoService.traerUserLogueado();
-		
-		/*
-		List<Usuario> listaUsuarios = new ArrayList<>();
-		for (Usuario u : service.listar()) {
-			if(u.getIdUsuario() != usuarioLogueado.getIdUsuario()) {
-				listaUsuarios.add(u);
-			}
-		}
-		*/
 		
 		model.addAttribute("usuarios", service.listar());
 		model.addAttribute("usuarioLogueado",usuarioLogueado);
@@ -112,6 +102,7 @@ public class UsuarioController {
 	
 	
 	/**********Reporte de usuaruios en PDF***********/
+	@PreAuthorize("hasRole('ROLE_AUDIT')")
 	@GetMapping("/generarPDF")
 	public String generarReporte(){
 		List<Usuario> usuarios = service.listar();		

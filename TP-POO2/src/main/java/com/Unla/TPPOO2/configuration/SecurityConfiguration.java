@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.Unla.TPPOO2.services.LoginService;
 
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -31,8 +30,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/css/*","/webfonts/*", "/imgs/*", "/js/*","/vendor/bootstrap/css/*","/css/modern-business.css/*","/vendor/bootstrap/css/bootstrap.min.css/*" ,"/vendor/jquery/jquery.min.js/*","/vendor/bootstrap/js/bootstrap.bundle.min.js/" , "/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
-				.anyRequest().authenticated()
+		.antMatchers("/css/*","/webfonts/*", "/imgs/*", "/js/*","/vendor/bootstrap/css/*","/css/modern-business.css/*","/vendor/bootstrap/css/bootstrap.min.css/*" ,"/vendor/jquery/jquery.min.js/*","/vendor/bootstrap/js/bootstrap.bundle.min.js/" , "/vendor/jquery/*", "/vendor/bootstrap/js/*").permitAll()
+				
+				.antMatchers("/newPersona").permitAll()
+				.antMatchers("/savePersona").permitAll()
+				.antMatchers("/cancelActionPersona").permitAll()
+				
+				.antMatchers("/newRodado").permitAll()
+				.antMatchers("/saveRodado").permitAll()
+				.antMatchers("/cancelActionRodado").permitAll()
+
+				.antMatchers("/newPermisoDiario").permitAll()
+				.antMatchers("/newPermisoPeriodo").permitAll()
+				.antMatchers("/savePermiso").permitAll()
+				.antMatchers("/saveLugar").permitAll()
+				.antMatchers("/buscarLugar").permitAll()
+				.antMatchers("/cancelActionPermiso").permitAll()
+
+				.antMatchers("/listPermiso").permitAll()
+				.antMatchers("/listPermisoFiltradoPorPersona").permitAll()
+				
+				.anyRequest().authenticated() 
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
 				.usernameParameter("nombreUsuario").passwordParameter("password")
@@ -45,4 +63,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		return bCryptPasswordEncoder;
 	}
+	
 }

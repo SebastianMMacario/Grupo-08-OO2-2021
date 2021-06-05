@@ -6,12 +6,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-@Entity(name = "permisoPeriodo")
+@Entity
+@Table(name="permisoPeriodo")
 @PrimaryKeyJoinColumn(name = "idPermisoPeriodo")
 public class PermisoPeriodo extends Permiso {
 	@Column(name = "cantDias")
@@ -23,9 +24,6 @@ public class PermisoPeriodo extends Permiso {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_rodado",nullable=false)
 	private Rodado rodado;
-	
-	
-	
 	
 	public PermisoPeriodo(Persona persona, LocalDate fecha, Set<Lugar> desdeHasta,int cantDias, boolean vacacion, Rodado rodado) {
 		super( persona,  fecha, desdeHasta);
@@ -51,8 +49,6 @@ public class PermisoPeriodo extends Permiso {
 		this.vacacion = vacacion;
 	}
 	
-	
-	
 	public Rodado getRodado() {
 		return rodado;
 	}
@@ -64,9 +60,5 @@ public class PermisoPeriodo extends Permiso {
 	public String toString() {
 		return "PermisoPeriodo [cantDias=" + cantDias + ", vacacion=" + vacacion + ", rodado=" + rodado + "]";
 	}
-	
-	
-	
-	
 	
 }

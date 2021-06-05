@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/indexStyles.css">
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/css/modern-business.css" rel="stylesheet" />
     <title>Inicio</title>
 </head>
 <body>
@@ -21,6 +19,7 @@
             
             <nav class="nav">
 				<a class="nav__enlace" href=/listaPerfiles >Lista de Perfiles</a>
+				<a th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" class="nav__enlace" href=/listPermiso >Lista de Permisos</a>
 			</nav>
         </div>
             
@@ -36,7 +35,7 @@
 	                        <i class="fas fa-plus-circle"></i>Agregar Usuario
 	                    </a>
      
-	                    <a class="tabla-header__button" id="button-pdf" href="#"> 
+	                    <a th:if="${usuarioLogueado.perfil.tipoPerfil == 'ROLE_AUDIT'}" class="tabla-header__button" id="button-pdf" href="#"> 
 	                        <i class="fas fa-file-pdf"></i>Generar PDF
 	                    </a> 
                 </div>

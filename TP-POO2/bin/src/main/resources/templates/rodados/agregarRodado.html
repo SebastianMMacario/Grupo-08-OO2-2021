@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/registerStyles.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    
+    <title>Agregar Rodado</title>
+</head>
+<body>
+        <!--ENCABEZADO-->
+        <header class="header">
+            <div class="header__contenedor">
+                <h2 class="header__logo">Grupo 8</h2>
+            </div>
+        </header>
+
+        <!--FORMULARIO-->
+        <main>
+            <h1 class="titulo">Complete el formulario</h1>
+
+
+
+            <form th:action="@{/saveRodado}" th:object="${rodado}" method="POST" class="form" id="form">
+	             
+				<!--ID-->
+				<div class="form-group" style="display: none;">
+					<p style="display: none"> <label>ID</label></p>
+					<p style="display: none"> <input th:field="*{idRodado}" type="text" class="form-control" /></p>
+				</div>
+                
+                <!--Dominio-->
+                <div class="form__grupo" id="grupo__dominio">
+                    <label for="dominio" class="form__label">Dominio</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${rodado.dominio}" type="text" name="dominio" class="form__input" id="dominio" placeholder="Ej:AAA111">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El dominio debe contener 3 letras y 3 numeros</p>
+                </div>
+                
+                <!--Vehiculo-->
+                <div class="form__grupo" id="grupo__vehiculo">
+                    <label for="vehiculo" class="form__label">Vehiculo</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${rodado.vehiculo}" type="text" name="vehiculo" class="form__input" id="vehiculo">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El vehiculo solo puede contener letras y espacios</p>
+                </div>
+    
+       
+            
+                <!--MSG DE ERROR-->
+                <div class="form__msg-error" id="form__msg-error">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Porfavor rellene el formulario correctamente</p>
+                </div>
+    
+                <!--BUTTON-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button  class="form__button" type="submit">AGREGAR</button>
+                </div>
+                
+                <p class="form__info" style="font-size: 1.15em;">
+                	<a th:href="@{/cancelActionRodado}" href="#">Cancelar</a> 
+                </p>
+                
+            </form>
+            <div class="alert-danger text-center" th:if="${errorMsg != null}" th:text="${errorMsg}"></div>
+        </main>
+    
+        <!--FOOTER-->
+        <footer>
+            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            <div class="redes-sociales">
+            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
+        </footer>
+   
+   <!--SCRIPT-->
+   <script src="/js/validarRodado.js"></script>
+   
+</body>
+</html>
