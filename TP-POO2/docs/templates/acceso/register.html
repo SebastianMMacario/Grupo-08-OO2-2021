@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/registerStyles.css">
+    <title>Registrate</title>
+</head>
+<body>
+        <!--ENCABEZADO-->
+        <header class="header">
+            <div class="header__contenedor">
+                <h2 class="header__logo">Grupo 8</h2>
+                <nav class="nav">
+                    <a href="#" class="nav__enlace">Registrate</a>
+                    <a href="#" class="nav__enlace">Incia Sesion</a>
+                </nav>
+            </div>
+        </header>
+
+        <!--FORMULARIO-->
+        <main>
+            <h1 class="titulo">Rellena los datos</h1>
+
+            <!--APELLIDO-->
+            <form th:action="@{/save}" th:object=${usuario} method="POST" class="form" id="form">
+                <!--APELLIDO-->
+                <div class="form__grupo" id="grupo__apellido">
+                    <label for="apellido" class="form__label">Apellido</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${usuario.apellido}" type="text" name="apellido" class="form__input" id="apellido">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El apellido solo puede contener caracteres</p>
+                </div>
+    
+                <!--NOMBRE-->
+                <div class="form__grupo" id="grupo__nombre">
+                    <label for="nombre" class="form__label">Nombre</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${usuario.nombre}" type="text" name="nombre" class="form__input" id="nombre">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El nombre solo puede contener caracteres</p>
+                </div>
+    
+                <!--DOCUMENT0-->
+                <div class="form__grupo" id="grupo__nroDocumento">
+                    <label for="documento" class="form__label">Numero de documento</label>
+                    <div class="form__grupo-input">
+                    
+                        <select required class="form__select">
+                            <option disabled class="form__select-option">Tipo de Documento</option>
+                            <option class="form__select-option" value="">DNI</option>
+                         
+                        </select>
+                        
+                        <input th:field="${usuario.nroDocumento}" placeholder="11111111" type="text" class="form__input" name="nroDocumento" id="nroDocumento">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El documento debe contener 8 numeros</p>
+                </div>
+    
+                <!--USER-->
+                <div class="form__grupo" id="grupo__nombreUsuario">
+                    <label for="usuario" class="form__label">Usuario</label>
+                    <div class="form__grupo-input">
+                    
+                        <select required class="form__select" >
+                            <option disabled class="form__select-option">Tipo de Usuario</option>
+                            <option th:each="perfil:${perfiles}" th:text="${perfil.tipoPerfil}"class="form__select-option" value="th:text='${perfil.idPerfil}'"</option>
+                            
+                        </select>
+                        
+                        <input th:field="${usuario.nombreUsuario}" type="text" name="nombreUsuario" class="form__input" id="nombreUsuario">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El usuario tiene que ser de 4 a 16 digitos y solo pude contener numeros,letras y guion bajo</p>
+                </div>
+    
+                <!--PASSWORD-->
+                <div class="form__grupo" id="grupo__password">
+                    <label for="password" class="form__label">Contraseña</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${usuario.password}" type="password" name="password" class="form__input" id="password">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">La contraseña tiene que ser de 4 a 12 digitos</p>
+                </div>
+    
+                <!--REPEAT PASSWORD-->
+                <div class="form__grupo" id="grupo__confirm-password">
+                    <label for="confirm-password" class="form__label">Repetir contraseña</label>
+                    <div class="form__grupo-input">
+                        <input type="password" name="confirm-password" class="form__input" id="confirm-password">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">Las contraseñas deben ser iguales</p>
+                </div>
+    
+                <!--EMAIL-->
+                <div class="form__grupo" id="grupo__email">
+                    <label for="email" class="form__label">Correo Electronico</label>
+                    <div class="form__grupo-input">
+                        <input th:field="${usuario.email}" placeholder="correo@correo.com" type="email" name="email" class="form__input" id="email">
+                        <i class="fas fa-times-circle form__validacion-estado"></i>
+                    </div>
+                    <p class="form__error-input-msg">El correo solo puede contener letras,puntos,guiones y guion bajos</p>
+                </div>
+                
+                <!--CHECKBOX-->
+                <div class="form__grupo-checkbox">
+                    <label class="form__label">
+                        <input type="checkbox" name="checkbox" id="checkbox">
+                        Acepto los terminos y condiciones
+                    </label>
+                </div>
+    
+                <!--MSG DE ERROR-->
+                <div class="form__msg-error" id="form__msg-error">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Porfavor rellene el formulario correctamente</p>
+                </div>
+    
+                <!--BUTTON-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button class="form__button" type="submit">AGREGAR</button>
+                    <p class="form__msg-exito" id="form__msg-exito">Cliente agregado con exito!!!</p>
+                </div>
+                
+                <p class="form__info">Ya tiene un cuenta? <a href="#">Inicie Sesion</a> </p>
+            </form>
+        </main>
+    
+        <!--FOOTER-->
+        <footer>
+            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            <div class="redes-sociales">
+            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
+        </footer>
+   
+        <!--SCRIPT-->
+        <script src="/js/register.js"></script>
+</body>
+</html>

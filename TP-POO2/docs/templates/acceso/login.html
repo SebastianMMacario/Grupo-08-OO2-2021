@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/loginStyles.css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
+    <title>Inica Sesion</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__contenedor">
+            <h2 class="header__logo">Grupo 8</h2>
+            
+            <nav class="nav">
+                <a href="/newPersona" class="nav__enlace">Agregar Persona</a>
+                <a href="/newRodado" class="nav__enlace">Agregar Rodado</a>
+                <a href="/newPermisoDiario" class="nav__enlace">Agregar Permiso Diario</a>
+                <a href="/newPermisoPeriodo" class="nav__enlace">Agregar Permiso Periodo</a>
+              	<a class="nav__enlace" href=/listPermiso >Lista de Permisos</a>
+
+            </nav>
+            
+        </div>
+    </header>
+
+    <div class="contenedor">
+        <form class="form" th:action="@{/loginprocess}" method="post" >
+            <div class="form__sobre-nosotros">
+                <h1>Ingresa</h1>
+                <p class="form__info-extra">¡Le damos nuevamente la bienvenida!</p>
+                <p class="form__info">No tiene una cuenta? <a href="#">Registrate aqui</a> </p>
+
+            </div>
+            <div class="form__datos">
+                <!--USER-->
+                <div class="form__grupo">
+                    <label for="usuario" class="form__label">Usuario</label>
+                    <div class="form__grupo-input">
+                        <i class="form__icono  fas fa-user"></i>
+                        <input required type="text" name="nombreUsuario" class="form__input" id="nombreUsuario">
+                    </div>
+                </div>
+                
+                <!--PASSWORD-->
+                <div class="form__grupo">
+                    <label for="password" class="form__label">Contraseña</label>
+                    <div class="form__grupo-input">
+                        <i class="form__icono fas fa-key"></i>
+                        <input required type="password" name="password" class="form__input" id="password">
+                    </div>
+        
+                </div>
+                  
+
+                <!--Button-->
+                <div class="form__grupo form__grupo-button-enviar">
+                    <button class="form__button" type="submit"> <i class="form__button-icono fas fa-sign-in-alt"></i>INICIAR SESION</button>
+                </div>
+            </div>
+            
+
+        </form>
+        <div th:if="${error != null}" class="error-msg alert alert-danger">
+		    	Usuario o contraseña invalido.
+	    </div>
+        <footer>
+            <div class="derechos">
+                <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
+            </div>
+            <div class="redes-sociales">
+            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
