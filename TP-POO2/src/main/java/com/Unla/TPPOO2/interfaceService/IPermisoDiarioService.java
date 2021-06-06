@@ -11,5 +11,6 @@ public interface IPermisoDiarioService {
 	List<PermisoDiario> traerPermisosDiariosPorPersona(int idPersona);
 	List<PermisoDiario> traerPermisosDiariosPorFecha(String fechaDesde, String fechaHasta);
 	List<PermisoDiario> traerPermisosDiariosPorFechaYLugar(String fechaDesde, String fechaHasta, String desdeHasta);
+	PermisoDiario traerPermisoDiariosPorQR(int idPermiso);
 	
 }

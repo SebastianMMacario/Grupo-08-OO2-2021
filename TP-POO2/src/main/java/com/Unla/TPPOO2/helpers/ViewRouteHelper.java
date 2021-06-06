@@ -18,6 +18,10 @@ public class ViewRouteHelper {
 	public final static String PERFIL_AGREGAR = "perfil/agregarPerfil";
 	public final static String PERFIL_TABLA = "perfil/perfilesVista";
 	
+	//PERMISO
+	public final static String PERMISO_TABLA = "permiso/traerPermiso";
+	public final static String PERMISO_QR = "QRCode/traerPermisoQR";
+	
 	
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";

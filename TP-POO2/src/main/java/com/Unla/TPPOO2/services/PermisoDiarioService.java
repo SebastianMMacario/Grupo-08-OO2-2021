@@ -49,5 +49,10 @@ public class PermisoDiarioService implements IPermisoDiarioService {
 		}
 		return permisosDiarios;
 	}
+	
+	@Override
+	public PermisoDiario traerPermisoDiariosPorQR(int idPermiso){
+		return IPermisoDiarioRepository.findPermisoByIdPermiso(idPermiso);
+	}
 
 }

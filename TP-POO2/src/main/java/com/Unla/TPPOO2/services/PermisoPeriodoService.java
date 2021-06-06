@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.Unla.TPPOO2.interfaceService.IPermisoPeriodoService;
 import com.Unla.TPPOO2.interfaces.IPermisoPeriodo;
 import com.Unla.TPPOO2.models.Lugar;
+import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
 import com.Unla.TPPOO2.repositories.IPermisoPeriodoRepository;
 
@@ -74,4 +75,9 @@ public class PermisoPeriodoService implements IPermisoPeriodoService {
 		return permisosPeriodo;
 	}
 
+	
+	@Override
+	public PermisoPeriodo traerPermisoPeriodoPorQR(int idPermiso){
+		return permisoPeriodoRepository.findPermisoByIdPermiso(idPermiso);
+	}
 }

@@ -127,6 +127,22 @@ public class PermisoController {
 //		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
 		return "permiso/traerPermiso";
 	}
+	
+	
+	@GetMapping("/listPermisoPorQR")
+	public String filtrarPermisosPorQR(Model model, 
+			@RequestParam(value = "idPermiso") int idPermiso) {
+
+		System.out.println("permisoElegido con id --> " + idPermiso);
+	
+		//model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
+		
+		model.addAttribute("permisoDiario", permisoDiarioService.traerPermisoDiariosPorQR(idPermiso));
+		model.addAttribute("permisoPeriodo", permisoPeriodoService.traerPermisoPeriodoPorQR(idPermiso));
+//		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
+		return "QRCode/traerPermisoQR";
+	}
+	
 
 	@GetMapping("/newPermisoDiario")
 	public String agregarPermisoDiario(Model model){
@@ -136,6 +152,7 @@ public class PermisoController {
 
 		return "permiso/agregarPermisoDiario";
 	}
+	
 
 	@GetMapping("/newPermisoPeriodo")
 	public String agregarPermisoPeriodo(Model model) {

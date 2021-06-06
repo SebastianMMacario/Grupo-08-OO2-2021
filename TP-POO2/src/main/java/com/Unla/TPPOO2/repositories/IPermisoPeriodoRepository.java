@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
 
 @Repository("permisoPeriodoRepository")
@@ -21,5 +22,8 @@ public interface IPermisoPeriodoRepository extends JpaRepository<PermisoPeriodo,
 	
 	@Query(nativeQuery=true, value="SELECT p.*, pp.* FROM permiso p, permiso_periodo pp WHERE p.id_permiso=pp.id_permiso_periodo AND pp.id_rodado=(:idRodado)")
 	public List<PermisoPeriodo> findPermisosByIdRodado(@Param("idRodado") int id);
+	
+	@Query(nativeQuery=true, value="SELECT p.*, pp.* FROM permiso p, permiso_periodo pp WHERE p.id_permiso=pp.id_permiso_periodo AND p.id_permiso= (:idPermiso)")
+	public PermisoPeriodo findPermisoByIdPermiso(@Param("idPermiso")int idPermiso);
 	
 }

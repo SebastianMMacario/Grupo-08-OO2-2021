@@ -21,6 +21,7 @@ public interface IPermisoRepository extends JpaRepository<Permiso, Serializable>
 		
 	@Query(nativeQuery=true, value="SELECT p.* from permiso p join permiso_lugar pl on p.id_permiso = pl.id_permiso join lugar l on pl.id_lugar = l.id_lugar where l.lugar = (:lugar)")
 	public List<Permiso> findPermisoByLugar(@Param("lugar") String lugar);
-	
+
+		
 	
 }
