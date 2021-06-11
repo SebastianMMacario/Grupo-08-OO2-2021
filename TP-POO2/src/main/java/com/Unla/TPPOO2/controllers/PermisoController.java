@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -27,6 +28,7 @@ import com.Unla.TPPOO2.models.Persona;
 import com.Unla.TPPOO2.models.Rodado;
 
 @Controller
+@RequestMapping("/permiso")
 @SessionAttributes("permiso")
 public class PermisoController {
 	@Autowired
@@ -52,7 +54,7 @@ public class PermisoController {
 		
 
 	@PreAuthorize("hasRole('ROLE_AUDIT') or (!hasRole('ROLE_AUDIT') and !hasRole('ROLE_ADMIN'))")	
-	@GetMapping("/listPermiso")
+	@GetMapping("/list")
 	public String listar(Model model) {
 		model.addAttribute("personas", personaService.listar());
 		model.addAttribute("rodados", rodadoService.listar());
@@ -61,11 +63,12 @@ public class PermisoController {
 		model.addAttribute("permisosPeriodo", permisoPeriodoService.listarPermisosPeriodo());
 		model.addAttribute("lugares", lugarService.listar());
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
-		return "permiso/traerPermiso";
+		
+		return ViewRouteHelper.PERMISO_TABLA;
 	}
 
 	@PreAuthorize("hasRole('ROLE_AUDIT') or (!hasRole('ROLE_AUDIT') and !hasRole('ROLE_ADMIN'))")	
-	@GetMapping("/listPermisoFiltradoPorPersona")
+	@GetMapping("/listFiltradoPorPersona")
 	public String filtrarPermisosPorPersona(Model model, 
 			@RequestParam(value = "persona") int idPersona) {
 
@@ -78,13 +81,12 @@ public class PermisoController {
 		
 		model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorPersona(idPersona));
 		model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorPersona(idPersona));
-//		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
-		return "permiso/traerPermiso";
+		return ViewRouteHelper.PERMISO_TABLA;
 	}
 	
 	
 	@PreAuthorize("hasRole('ROLE_AUDIT')")	
-	@GetMapping("/listPermisoFiltradoPorRodado")
+	@GetMapping("/listFiltradoPorRodado")
 	public String filtrarPermisosPorRodado(Model model, 
 			@RequestParam(value = "rodado") int idRodado) {
 
@@ -96,13 +98,12 @@ public class PermisoController {
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
 		
 		model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorRodado(idRodado));
-//		model.addAttribute("permisos", permisoService.traerPermisosPorRodado(idRodado));
-		return "permiso/traerPermiso";
+		return ViewRouteHelper.PERMISO_TABLA;
 	}
 	
 	
 	@PreAuthorize("hasRole('ROLE_AUDIT')")	
-	@GetMapping("/listPermisoFiltrado")
+	@GetMapping("/listFiltrado")
 	public String filtrarPermisosPorFecha(Model model, 
 			@RequestParam(value = "fechaDesde") String fechaDesde,
 			@RequestParam(value = "fechaHasta") String fechaHasta,
@@ -112,20 +113,26 @@ public class PermisoController {
 		model.addAttribute("rodados", rodadoService.listar());
 		model.addAttribute("lugares", lugarService.listar());
 		model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado());
-				
-		if(desdeHasta.isBlank()) {
-			model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFecha(fechaDesde, fechaHasta));
-			model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFecha(fechaDesde, fechaHasta));
-		} else {
-			model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));
-			model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));		
-		}
 		
+		
+		if(fechaDesde.isBlank() || fechaHasta.isBlank()) {
+			model.addAttribute("errorMsg", "Porfavor ingrese un valor para las fechas");
+			return listar(model);
+		}
+		else {
+			if(desdeHasta.isBlank()) {
+				model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFecha(fechaDesde, fechaHasta));
+				model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFecha(fechaDesde, fechaHasta));
+			} 
+			else{
+				model.addAttribute("permisosDiarios", permisoDiarioService.traerPermisosDiariosPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));
+				model.addAttribute("permisosPeriodo", permisoPeriodoService.traerPermisosPeriodoPorFechaYLugar(fechaDesde, fechaHasta, desdeHasta));		
+			}
+		}
+
 		System.out.println("fechaDesde " + fechaDesde);
 		System.out.println("fechaHasta " + fechaHasta);
-//		model.addAttribute("permisos", permisoRepository.findByDates(fechaDesde, fechaHasta));
-//		model.addAttribute("permisos", permisoService.traerPermisos(fechaDesde, fechaHasta, desdeHasta));
-		return "permiso/traerPermiso";
+		return ViewRouteHelper.PERMISO_TABLA;
 	}
 	
 	
@@ -150,7 +157,7 @@ public class PermisoController {
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		model.addAttribute("nuevoLugar", new Lugar());
 
-		return "permiso/agregarPermisoDiario";
+		return ViewRouteHelper.PERMISO_DIARIO_AGREGAR;
 	}
 	
 
@@ -160,10 +167,10 @@ public class PermisoController {
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		model.addAttribute("nuevoLugar", new Lugar());
 		
-		return "permiso/agregarPermisoPeriodo";
+		return ViewRouteHelper.PERMISO_PERIODO_AGREGAR;
 	}
 
-	@PostMapping("/savePermiso")
+	@PostMapping("/save")
 	public String guardarPermiso(@Validated @ModelAttribute("permiso") Permiso p, Model model,
 			@RequestParam(value = "dni")long dniPersona,
 			@RequestParam(value = "dominio", required = false)String dominioVehiculo) {
@@ -181,18 +188,17 @@ public class PermisoController {
 			permisoService.save(p);
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			
 			model.addAttribute("permiso", p);
 			model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 			model.addAttribute("nuevoLugar", new Lugar());
 			model.addAttribute("errorMsg", e.getMessage());
 
-			if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
-			else return "permiso/agregarPermisoPeriodo";
+			if(p instanceof PermisoDiario) return ViewRouteHelper.PERMISO_DIARIO_AGREGAR;
+			else return ViewRouteHelper.PERMISO_PERIODO_AGREGAR;
 		}
 		
 		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
-		return "redirect:/login";
+		return ViewRouteHelper.INDEX_HOME;
 	}
 
 	
@@ -203,17 +209,15 @@ public class PermisoController {
 			lugarService.guardarLugarEnBD(lugar);
 
 		} catch (Exception e) {
-			// TODO: handle exception
-			
+			// TODO: handle exception	
 			model.addAttribute("errorMsg", e.getMessage());
 		}
-
 		model.addAttribute("permiso", p);
 		model.addAttribute("nuevoLugar", new Lugar());
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 
-		if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
-		else return "permiso/agregarPermisoPeriodo";
+		if(p instanceof PermisoDiario) return ViewRouteHelper.PERMISO_DIARIO_AGREGAR;
+		else return ViewRouteHelper.PERMISO_PERIODO_AGREGAR;
 	}
 
 	
@@ -232,16 +236,16 @@ public class PermisoController {
 		model.addAttribute("nuevoLugar", new Lugar());
 		model.addAttribute("lugares", lugarService.buscarTodosLugaresDeListAux());
 		
-		if(p instanceof PermisoDiario) return "permiso/agregarPermisoDiario";
-		else return "permiso/agregarPermisoPeriodo";
+		if(p instanceof PermisoDiario) return ViewRouteHelper.PERMISO_DIARIO_AGREGAR;
+		else return ViewRouteHelper.PERMISO_PERIODO_AGREGAR;
 	}
 
 	
 	@GetMapping("/cancelActionPermiso")
 	public String cancelarAccion() {
 		
-		lugarService.borrarTodosLugaresDeListAux();
-		return "redirect:/listPermiso";
+		lugarService.borrarTodosLugaresDeListAux(); // reinicio el listado limpiandolo
+		return ViewRouteHelper.INDEX_PERMISOS;
 	}
 
 }

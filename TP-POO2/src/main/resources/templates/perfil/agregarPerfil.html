@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/all.min.css">
+    <title>Agregar Usuario</title>
+    <link rel="icon" th:href="@{/imgs/logo.ico}">
+
+    
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/registerStyles.css">
-    <title>Agregar Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/registerStyles.css}">
 </head>
 <body>
         <!--ENCABEZADO-->
         <header class="header">
             <div class="header__contenedor">
-                <h2 class="header__logo">Grupo 8</h2>
+                <a class="header__logo" th:href="@{/login}">Grupo 8</a>
             </div>
         </header>
 
@@ -23,7 +26,7 @@
         <main>
             <h1 class="titulo">Complete el formulario</h1>
 
-            <form th:action="@{/savePerfil}" th:object="${perfil}" method="POST" class="form" id="form">
+            <form th:action="@{/perfil/save}" th:object="${perfil}" method="POST" class="form" id="form">
 	             
 				<!--ID-->
 				<div class="form-group" style="display: none;">
@@ -56,7 +59,7 @@
                 </div>
                 
                 <p class="form__info" style="font-size: 1.15em;">
-                	<a th:href="@{/cancelActionPerfil}" href="#">Cancelar</a> 
+                	<a th:href="@{/perfil/cancelActionPerfil}" href="#">Cancelar</a> 
                 </p>
                 
             </form>
@@ -64,13 +67,16 @@
         </main>
     
         <!--FOOTER-->
-     
         <footer>
-            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
-            <div class="redes-sociales">
-            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
+			<p id="derechos-info" class="derechos__info">Copyright ©
+				<script>document.write(new Date().getFullYear());</script>
+				Todos los derechos reservados
+			</p>
+			<div class="redes-sociales">
+           		 <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            
+            </div>
         </footer>
         
-        <script src="/js/validarPerfil.js"></script>
+        <script th:src="@{/js/validarPerfil.js}"></script>
 </body>
 </html>

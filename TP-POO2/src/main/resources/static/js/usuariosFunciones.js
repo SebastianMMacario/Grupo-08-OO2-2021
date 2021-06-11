@@ -9,7 +9,7 @@ function eliminar(id) {
 	.then((OK) => {
 		if (OK) {
 			$.ajax({
-				url:"/delete/"+id,
+				url:"/user/delete/"+id,
 				success: function(res) {
 					console.log(res);
 				}
@@ -18,7 +18,7 @@ function eliminar(id) {
 				icon: "success",
 			}).then((ok) => {
 				if(ok) {
-					location.href="/list";
+					location.href="/user/list";
 				}
 			});
 		  } else {
@@ -30,7 +30,7 @@ function eliminar(id) {
 	/**GENERAR REPORTE DE USUARIOS EN PDF ***/
 	const crearPDF = () => {
 		$.ajax({
-			url: "/generarPDF",
+			url: "/user/generarPDF",
 			success: function(res) {
 				console.log(res);
 			}
@@ -40,5 +40,3 @@ function eliminar(id) {
 		});
 	}
 	
-	document.querySelector("#button-pdf").addEventListener("click", crearPDF);
-

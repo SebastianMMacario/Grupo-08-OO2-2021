@@ -71,7 +71,7 @@ inputs.forEach( (input) =>{
 });
 
 
-if(inputs[3].value !== "" && inputs[4].value !== "" ){
+if(inputs[2].value !== "" && inputs[3].value !== "" ){
 	document.addEventListener("DOMContentLoaded", validarCamposAgregados);	
 }
 

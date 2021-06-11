@@ -27,7 +27,14 @@ body{
 	line-height: 2.5rem;
 	font-weight: normal;
 	color: #d51914;
+	text-decoration: none;
 }
+.header__logo:hover{
+	color: #d51914;
+	text-decoration: none;
+}
+
+
 .nav__enlace {
 	align-self: flex-end;
 	margin-right: 0.9375rem;
@@ -37,7 +44,7 @@ body{
 }
 .nav__enlace:hover,
 .nav__enlace:focus {
-	color: #111;
+	color: #0d6efd;
 }
 
 /*------------FORM-------------*/

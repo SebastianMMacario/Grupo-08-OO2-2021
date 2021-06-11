@@ -4,35 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/registerStyles.css">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Agregar Permiso Diario</title>
+    <link rel="icon" th:href="@{/imgs/logo.ico}">    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+	<!--BOOTSTRAP 4-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">    
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     
-    
-    <title>Agregar Permiso Diario</title>
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/registerStyles.css}">
+
 </head>
 <body>
         <!--ENCABEZADO-->
         <header class="header">
             <div class="header__contenedor">
-                <h2 class="header__logo">Grupo 8</h2>
+                <a class="header__logo" th:href="@{/login}">Grupo 8</a>
+                
+                <!--
 				<nav class="nav">
-					<a href="/login" class="nav__enlace">Incia Sesion</a>
-					<a href="/newPersona" class="nav__enlace">Agregar Persona</a>
-					<a href="/newRodado" class="nav__enlace">Agregar Rodado</a>
-					<a href="/newPermisoPeriodo" class="nav__enlace">Agregar Permiso Periodo</a>
-					<a class="nav__enlace" href=/listPermiso>Lista de Permisos</a>
+					<a th:href="@{/login}" class="nav__enlace">Incia Sesion</a>
+	                <a th:href="@{/persona/new}" class="nav__enlace">Agregar Persona</a>
+	                <a th:href="@{/rodado/new}" class="nav__enlace">Agregar Rodado</a>
+					<a th:href="@{/permiso/newPermisoPeriodo}" class="nav__enlace">Agregar Permiso Periodo</a>
+	              	<a class="nav__enlace" th:href="@{/permiso/list}" >Lista de Permisos</a>
 				</nav>
+				-->
+				<nav class="nav">
+					<a th:href="@{/}" class="nav__enlace">Incia Sesion</a>				
+					<a class="dropdown-toggle nav__enlace" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" 
+						aria-haspopup="true" aria-expanded="false">
+						Agregar
+					</a>
+					<ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
+						<li><a th:href="@{/persona/new}" class="dropdown-item">Agregar Persona</a></li>
+						<li><a th:href="@{/rodado/new}" class="dropdown-item">Agregar Rodado</a></li>
+						<li><a th:href="@{/permiso/newPermisoDiario}" class="dropdown-item">Agregar Permiso Diario</a></li>
+						<li><a th:href="@{/permiso/newPermisoPeriodo}" class="dropdown-item">Agregar Permiso Periodo</a></li>
+					</ul>
+			
+					<a class="nav__enlace" th:href="@{/permiso/list}">Lista de Permisos</a>
+				</nav>
+				
             </div>
-            
-
         </header>
 
         <main>
@@ -45,28 +67,9 @@
         		data-target="#modalAgregarLugar">Agregar Lugar</button>		
               
              <!--FORMULARIO DE PERMISO-->  
-            <form th:action="@{/savePermiso}" th:object="${permiso}" method="POST" class="form" id="form">
+            <form th:action="@{/permiso/save}" th:object="${permiso}" method="POST" class="form" id="form">
 	             
-				<!--ID-->
-				<div class="form-group" style="display: none;">
-					<p style="display: none"> <label>ID</label></p>
-					<p style="display: none"> <input th:field="*{idPermiso}" type="text" class="form-control" /></p>
-				</div>
-
-                <!--Persona
-                <div class="form__grupo" id="grupo__nombreUsuario">
-                    <label for="permiso" class="form__label">Persona</label>
-                    <div>
-                    
-                        <select th:field="${permiso.persona.idPersona}" required class="form__select" >
-                            <option th:each="persona:${personas}" th:value="${persona.idPersona}"  th:text="${persona.dni}" class="form__select-option" />
-                        </select>
-                     
-                    </div>
-         
-                </div>
-                -->
-    
+                
                 <!--PERSONA DNI-->
                 <div class="form__grupo" id="grupo__dni">
                     <label for="documento" class="form__label">Ingrese su DNI</label>
@@ -113,7 +116,7 @@
                 </div>
                 
                 <p class="form__info" style="font-size: 1.15em;">
-                	<a th:href="@{/cancelActionPermiso}" href="#">Cancelar</a> 
+                	<a th:href="@{/permiso/cancelActionPermiso}">Cancelar</a> 
                 </p>
             </form>
             
@@ -148,7 +151,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/buscarLugar}" th:object="${lugarBuscado}" method="POST">
+						<form id="formLugar" th:action="@{/permiso/buscarLugar}" th:object="${lugarBuscado}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Buscar Lugar</h5>
@@ -180,7 +183,7 @@
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					
-						<form id="formLugar" th:action="@{/saveLugar}" th:object="${nuevoLugar}" method="POST">
+						<form id="formLugar" th:action="@{/permiso/saveLugar}" th:object="${nuevoLugar}" method="POST">
 							
 							<div class="modal-header">
 								<h5 class="modal-title" id="agregarLugarModal">Agregar Lugar</h5>
@@ -216,14 +219,18 @@
     
     
         <!--FOOTER-->
-        <footer>
-            <p id="derechos-info" class="derechos__info">Todos los derechos reservados</p>
-            <div class="redes-sociales">
-            <a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i class="fab fa-github"></i> </a>            </div>
-        </footer>
-   
+		<footer>
+			<p id="derechos-info" class="derechos__info">Copyright ©
+				<script>document.write(new Date().getFullYear());</script>
+				Todos los derechos reservados
+			</p>
+			<div class="redes-sociales">
+				<a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK" class="redes-sociales__red"><i
+						class="fab fa-github"></i> </a>
+			</div>
+		</footer>
    		<!--SCRPT-->
-        <script src="/js/validarPermisoDiario.js"></script>
+        <script th:src="@{/js/validarPermisoDiario.js}"></script>
 
 </body>
 </html>

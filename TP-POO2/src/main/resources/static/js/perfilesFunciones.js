@@ -9,7 +9,7 @@ function eliminarPerfil(id) {
 	.then((OK) => {
 		if (OK) {
 			$.ajax({
-				url:"/deletePerfil/"+id,
+				url:"/perfil/delete/"+id,
 				success: function(res) {
 					console.log(res);
 				}
@@ -18,7 +18,7 @@ function eliminarPerfil(id) {
 				icon: "success",
 			}).then((ok) => {
 				if(ok) {
-					location.href="/listaPerfiles";
+					location.href="/perfil/list";
 				}
 			});
 		  } else {
@@ -31,11 +31,10 @@ function eliminarPerfil(id) {
 	/**GENERAR REPORTE DE PERFILES EN PDF ***/
 	const crearPerfilPDF = () => {
 		$.ajax({
-			url: "/generarPerfilesPDF"
+			url: "/perfil/generarPerfilesPDF"
 		});
 		swal("Reporte de perfiles generado con exito!!!", {
 			icon: "success"
 		});
 	}
 	
-	document.querySelector("#botonPerfil").addEventListener("click",crearPerfilPDF);

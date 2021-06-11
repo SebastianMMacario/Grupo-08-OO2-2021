@@ -19,7 +19,6 @@ import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
 import com.Unla.TPPOO2.interfaceService.IusuarioService;
-import com.Unla.TPPOO2.interfaces.IUsuario;
 import com.Unla.TPPOO2.models.Usuario;
 import com.Unla.TPPOO2.models.Usuario.TipoDocumento;
 
@@ -28,10 +27,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Controller
-@RequestMapping
+@RequestMapping("/user")
 public class UsuarioController {
-	@Autowired
-	private IUsuario data;
 	
 	@Autowired
 	private IusuarioService service;
@@ -59,20 +56,16 @@ public class UsuarioController {
 		model.addAttribute("usuario",new Usuario());
 		model.addAttribute("perfiles", perfilService.listar());
 		
-	
 		model.addAttribute("enum",TipoDocumento.values());
-		//return ViewRouteHelper.USER_NEW;
 		return ViewRouteHelper.USUARIO_AGREGAR;
 	}
 	
 	@PostMapping("/save")
 	public String guardar(@Validated @ModelAttribute("usuario") Usuario u, Model model) {
-		//u.setTipoDocumento(1);
 		u.setEnabled(true);
-		System.out.println(u);
 		
 		service.save(u);
-		return "redirect:/list";
+		return ViewRouteHelper.INDEX_USUARIOS;
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -84,7 +77,6 @@ public class UsuarioController {
 		model.addAttribute("enum",TipoDocumento.values());
 		
 		model.addAttribute("editMode", true);
-		//return ViewRouteHelper.USER_NEW;
 		return ViewRouteHelper.USUARIO_AGREGAR;
 	}
 	
@@ -92,13 +84,13 @@ public class UsuarioController {
 	@GetMapping("/delete/{idUsuario}")
 	public String delete(Model model, @PathVariable int idUsuario) {
 		service.delete(idUsuario);
-		return "redirect:/list";
-	}
-	@GetMapping("/cancelAction")
-	public String cancelarAccion() {
-		return "redirect:/list";
+		return ViewRouteHelper.INDEX_USUARIOS;
 	}
 	
+	@GetMapping("/cancelAction")
+	public String cancelarAccion() {
+		return ViewRouteHelper.INDEX_USUARIOS;
+	}
 	
 	
 	/**********Reporte de usuaruios en PDF***********/
@@ -150,7 +142,7 @@ public class UsuarioController {
 			document.close();
 		}
 		
-		return "redirect:/list";
+		return ViewRouteHelper.INDEX_USUARIOS;
 	}
 	
 	
