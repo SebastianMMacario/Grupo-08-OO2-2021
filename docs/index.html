@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="all.min.css">
+	<link rel="stylesheet" href="css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" href="normalize.css">
-	<link rel="stylesheet" href="indexStyles.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/indexStyles.css">
 	<title>Inicio</title>
 </head>
 
@@ -18,35 +18,44 @@
 	<header class="header">
 		<div class="header__contenedor">
 			<h2 class="header__logo">Grupo 8</h2>
-			
-			 <nav class="nav">
-			   	<a th:if="${usuarioLogueado == null}" href="/login" class="nav__enlace">Incia Sesion</a>
-			    <a th:if="${usuarioLogueado == null}" href="/newPersona" class="nav__enlace">Agregar Persona</a>
-                <a th:if="${usuarioLogueado == null}" href="/newRodado" class="nav__enlace">Agregar Rodado</a>
-                <a th:if="${usuarioLogueado == null}" href="/newPermisoDiario" class="nav__enlace">Agregar Permiso Diario</a>
-                <a th:if="${usuarioLogueado == null}" href="/newPermisoPeriodo" class="nav__enlace">Agregar Permiso Periodo</a>
-			 	
-			 	<a th:if="${usuarioLogueado != null}" href=/list class="nav__enlace">Lista de Usuarios</a>
-				<a th:if="${usuarioLogueado != null}" class="nav__enlace" href=/listaPerfiles >Lista de Perfiles</a>
-			</nav>
 		</div>	
 	</header>
 
+	<h1>Datos del Permiso</h1>
 
+		<!-- LISTA DE PERMISOS PERIODO -->
+		<div id="periodo" class="table-contenedor">
+			<table class="tabla">
+				<thead class="tabla__head">
+					<tr class="tabla__row-head">
+						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
+						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
+						<th class="tabla__head-nombre" scope="col">Apellido</th>
+						<th class="tabla__head-nombre" scope="col">Fecha</th>
+						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
+						<th class="tabla__head-nombre" scope="col">Cnt Dias</th>
+						<th class="tabla__head-nombre" scope="col">Vacaciones</th>
+						<th class="tabla__head-nombre" scope="col">Dominio(Patente)</th>
+					</tr>
+				</thead>
+				<tbody class="tabla__body">
+					<tr  class="tabla__row-body">
+						<td class="tabla__body-dato" id="idPermisoPeriodo"></td>
+						<td class="tabla__body-dato" id="nombrePeriodo"></td>
+						<td class="tabla__body-dato" id="apellidoPeriodo"></td>
+						<td class="tabla__body-dato" id="fechaPeriodo"></td>
+						<td class="tabla__body-dato" id="desdeHastaPeriodo"></td>
+						<td class="tabla__body-dato" id="cantDiasPeriodo"></td>
+						<td class="tabla__body-dato" id="vacacionesPeriodo"></td>
+						<td class="tabla__body-dato" id="rodadoPeriodo"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-<br></br><br></br><br></br><br></br><br></br>
-
-
-		<!-- LISTA DE PERMISOS DIARIOS -->
-		<h1>Datos del Permiso</h1>
-		<div class="table-contenedor">
-
-			<div class="tabla-header">
-				<div class="tabla-header__herramientas">
-
-			</div>
-			</div>
-			<table th:if="${permisoDiario != null}" class="tabla" id="tabla">
+		<!-- LISTA DE PERMISOS DIARIO -->
+		<div id="diario" class="table-contenedor">
+			<table  class="tabla" id="tabla">
 				<thead class="tabla__head">
 					<tr class="tabla__row-head">
 						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
@@ -55,93 +64,21 @@
 						<th class="tabla__head-nombre" scope="col">Fecha</th>
 						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
 						<th class="tabla__head-nombre" scope="col">Motivo</th>
-						<th class="tabla__head-nombre" scope="col">Tipo de Permiso</th>
 					</tr>
 				</thead>
 				<tbody class="tabla__body">
-					<tr th:each="permisoDiario:${permisoDiario}" class="tabla__row-body">
-						<td th:text="${permisoDiario.idPermiso}" class="tabla__body-dato"></td>
-						<td th:text="${permisoDiario.persona.nombre}" class="tabla__body-dato"></td>
-						<td th:text="${permisoDiario.persona.apellido}" class="tabla__body-dato"></td>
-						<td th:text="${permisoDiario.fecha}" class="tabla__body-dato"></td>
-						<td th:text="${permisoDiario.desdeHasta}" class="tabla__body-dato"></td>
-						<td th:text="${permisoDiario.motivo}" class="tabla__body-dato"></td>
-						<td th:text="Diario" class="tabla__body-dato"></td>
+					<tr  class="tabla__row-body">
+						<td class="tabla__body-dato" id="idPermisoDiario"></td>
+						<td class="tabla__body-dato" id="nombreDiario"></td>
+						<td class="tabla__body-dato" id="apellidoDiario"></td>
+						<td class="tabla__body-dato" id="fechaDiario"></td>
+						<td class="tabla__body-dato" id="desdeHastaDiario"></td>
+						<td class="tabla__body-dato" id="motivoDiario"></td>
 					</tr>
 				</tbody>
 			</table>
 
-			<table th:if="${permisoPeriodo != null}" class="tabla" id="tabla">
-				<thead class="tabla__head">
-					<tr class="tabla__row-head">
-						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
-						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
-						<th class="tabla__head-nombre" scope="col">Apellido</th>
-						<th class="tabla__head-nombre" scope="col">Fecha</th>
-						<th class="tabla__head-nombre" scope="col">Cant. Días</th>
-						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
-						<th class="tabla__head-nombre" scope="col">Vacaciones</th>
-						<th class="tabla__head-nombre" scope="col">Rodado</th>
-						<th class="tabla__head-nombre" scope="col">Tipo de Permiso</th>
-					</tr>
-				</thead>
-				<tbody class="tabla__body">
-					<tr th:each="permisoPeriodo:${permisoPeriodo}" class="tabla__row-body">
-						<td th:text="${permisoPeriodo.idPermiso}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.persona.nombre}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.persona.apellido}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.fecha}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.cantDias}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.desdeHasta}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.vacacion}" class="tabla__body-dato"></td>
-						<td th:text="${permisoPeriodo.rodado.vehiculo} + ' - ' + ${permisoPeriodo.rodado.dominio}" class="tabla__body-dato"></td>
-						<td th:text="Por_Periodo" class="tabla__body-dato"></td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
-		
-		
-		<!-- LISTA DE PERMISOS -->
-	<!--<h1>Listado de Permisos</h1>
-		<div class="table-contenedor">
-
-			<div class="tabla-header">
-				<div class="tabla-header__herramientas">
-
-
-				</div>
-			</div>
-			<table class="tabla" id="tabla">
-				<thead class="tabla__head">
-					<tr class="tabla__row-head">
-						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
-						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
-						<th class="tabla__head-nombre" scope="col">Apellido</th>
-						<th class="tabla__head-nombre" scope="col">Fecha</th>
-						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
-					</tr>
-				</thead>
-				<tbody class="tabla__body">
-					<tr th:each="permiso:${permisos}" class="tabla__row-body">
-						<td th:text="${permiso.idPermiso}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.persona.nombre}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.persona.apellido}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.fecha}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.desdeHasta}" class="tabla__body-dato"></td>
-					</tr>
-				</tbody>
-
-			</table>
-		</div>-->
-		
-
-		<form th:if="${usuarioLogueado != null}" th:action="@{/logout}" method="post">
-			<div class="button-contenedor">
-				<!--<input class="logout-button" type="submit" value="Salir" /> Habilitar para los traerPermisos que necesitan iniciar sesión-->
-				<input class="logout-button" type="submit" value="Salir" />
-			</div>
-		</form>
 	</main>
 
 	<!--FOOTER-->
@@ -151,6 +88,8 @@
 			<a href="https://github.com/SebastianMMacario/Grupo-08-OO2-2021" target="_BLANK"
 				class="redes-sociales__red"><i class="fab fa-github"></i> </a> </div>
 	</footer>
+
+	<script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>
