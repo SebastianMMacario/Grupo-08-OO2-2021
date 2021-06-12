@@ -7,7 +7,7 @@ spring:
         password: root   
             
     jpa:
-        show-sql: true #[Opcional]Imprime en tu consola las instrucciones hechas en tu base de datos.
+        show-sql: false #[Opcional]Imprime en tu consola las instrucciones hechas en tu base de datos.
         hibernate:
            ddl-auto: none
         properties:
