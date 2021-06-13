@@ -147,7 +147,7 @@ public class PermisoController {
 		model.addAttribute("permisoDiario", permisoDiarioService.traerPermisoDiariosPorQR(idPermiso));
 		model.addAttribute("permisoPeriodo", permisoPeriodoService.traerPermisoPeriodoPorQR(idPermiso));
 //		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
-		return "QRCode/traerPermisoQR";
+		return ViewRouteHelper.PERMISO_QR;
 	}
 	
 
