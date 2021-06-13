@@ -37,7 +37,7 @@
 <br></br><br></br><br></br><br></br><br></br>
 
 
-		<!-- LISTA DE PERMISOS DIARIOS -->
+		<!-- LISTA DE PERMISOS -->
 		<h1>Datos del Permiso</h1>
 		<div class="table-contenedor">
 
@@ -101,41 +101,6 @@
 			</table>
 		</div>
 		
-		
-		<!-- LISTA DE PERMISOS -->
-	<!--<h1>Listado de Permisos</h1>
-		<div class="table-contenedor">
-
-			<div class="tabla-header">
-				<div class="tabla-header__herramientas">
-
-
-				</div>
-			</div>
-			<table class="tabla" id="tabla">
-				<thead class="tabla__head">
-					<tr class="tabla__row-head">
-						<th class="tabla__head-nombre" scope="col">Permiso Nro</th>
-						<th class="tabla__head-nombre" scope="col">Nombre/s</th>
-						<th class="tabla__head-nombre" scope="col">Apellido</th>
-						<th class="tabla__head-nombre" scope="col">Fecha</th>
-						<th class="tabla__head-nombre" scope="col">Desde / Hasta</th>
-					</tr>
-				</thead>
-				<tbody class="tabla__body">
-					<tr th:each="permiso:${permisos}" class="tabla__row-body">
-						<td th:text="${permiso.idPermiso}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.persona.nombre}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.persona.apellido}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.fecha}" class="tabla__body-dato"></td>
-						<td th:text="${permiso.desdeHasta}" class="tabla__body-dato"></td>
-					</tr>
-				</tbody>
-
-			</table>
-		</div>-->
-		
-
 		<form th:if="${usuarioLogueado != null}" th:action="@{/logout}" method="post">
 			<div class="button-contenedor">
 				<!--<input class="logout-button" type="submit" value="Salir" /> Habilitar para los traerPermisos que necesitan iniciar sesión-->

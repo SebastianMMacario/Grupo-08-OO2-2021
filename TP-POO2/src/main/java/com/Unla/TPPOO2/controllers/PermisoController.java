@@ -142,11 +142,9 @@ public class PermisoController {
 
 		System.out.println("permisoElegido con id --> " + idPermiso);
 	
-		//model.addAttribute("usuarioLogueado", userLoguadoService.traerUserLogueado() );
-		
 		model.addAttribute("permisoDiario", permisoDiarioService.traerPermisoDiariosPorQR(idPermiso));
 		model.addAttribute("permisoPeriodo", permisoPeriodoService.traerPermisoPeriodoPorQR(idPermiso));
-//		model.addAttribute("permisos", permisoService.traerPermisosPorPersona(idPersona));
+
 		return ViewRouteHelper.PERMISO_QR;
 	}
 	

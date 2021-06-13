@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.Unla.TPPOO2.interfaceService.IusuarioService;
+import com.Unla.TPPOO2.interfaceService.IUsuarioService;
 import com.Unla.TPPOO2.interfaces.IUsuario;
 import com.Unla.TPPOO2.models.Usuario;
 
 @Service
-public class UsuarioService implements IusuarioService {
+public class UsuarioService implements IUsuarioService {
 
 	@Autowired
 	private IUsuario data;
@@ -30,21 +30,6 @@ public class UsuarioService implements IusuarioService {
 		return data.findById(id);
 	}
 
-	/*
-	@Override
-	public Usuario save(Usuario u) {
-		Usuario usuario = new Usuario();
-		usuario.setNombre(u.getNombre());
-		usuario.setApellido(u.getApellido());
-		usuario.setNroDocumento(u.getNroDocumento());
-		usuario.setTipoDocumento(u.getTipoDocumento());
-		usuario.setEmail(u.getEmail());
-		usuario.setNombreUsuario(u.getNombreUsuario());
-		usuario.setPerfil(u.getPerfil());
-		usuario.setPassword(passwordEncoder.encode(u.getPassword()));
-		return data.save(usuario);
-	}
-	*/
 	
 	@Override
 	public int save(Usuario u) {
