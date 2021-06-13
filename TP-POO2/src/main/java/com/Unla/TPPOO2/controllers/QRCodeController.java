@@ -1,10 +1,5 @@
 package com.Unla.TPPOO2.controllers;
 
-import java.time.LocalDate;
-
-import javax.websocket.server.PathParam;
-
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.ILugarService;
@@ -23,10 +18,7 @@ import com.Unla.TPPOO2.interfaceService.IPermisoService;
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaceService.IRodadoService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
-import com.Unla.TPPOO2.interfaces.IPermisoPeriodo;
 import com.Unla.TPPOO2.models.Permiso;
-import com.Unla.TPPOO2.models.PermisoDiario;
-import com.Unla.TPPOO2.models.PermisoPeriodo;
 import com.Unla.TPPOO2.services.QRCodeGenerator;
 
 @RestController
@@ -53,7 +45,7 @@ public class QRCodeController {
 	@Autowired
 	private IUserLogueadoService userLoguadoService;
 	
-	//private static String ruta = System.getProperty(("user.home"));
+	
 	private static final String QR_CODE_IMAGE_PATH =  "./src/main/resources/QRCode.png";
 	
 	
@@ -92,7 +84,7 @@ public class QRCodeController {
 		mAV.addObject("permisosPeriodo", permisoPeriodoService.listarPermisosPeriodo());
 		mAV.addObject("lugares", lugarService.listar());
 		mAV.addObject("usuarioLogueado", userLoguadoService.traerUserLogueado() );
-   	   	mAV.addObject("Msg", "QR creado con exito!");
+   	   	mAV.addObject("Msg", "QR creado con exito en el escritorio!");
    	   	return mAV;
    	}
    	

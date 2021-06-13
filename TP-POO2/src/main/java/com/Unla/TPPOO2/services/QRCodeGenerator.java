@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.Iterator;
 
 import com.Unla.TPPOO2.models.Lugar;
@@ -19,7 +18,6 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import net.bytebuddy.asm.Advice.Local;
 
 public class QRCodeGenerator {
 
@@ -45,7 +43,7 @@ public class QRCodeGenerator {
 		}
 
 		
-		public static void generarCodigoQR(/*String browserPath ,*/Permiso permiso) throws Exception {
+		public static void generarCodigoQR(Permiso permiso) throws Exception {
 			String QRdata= "https://sebastianmmacario.github.io/Grupo-08-OO2-2021";
 			
 			String desdeHasta="&desdeHasta=[";
@@ -75,10 +73,7 @@ public class QRCodeGenerator {
 			
 			String downloadPath = "C:\\Users\\"+PC_username+"\\Desktop\\QRCode.jpg";
 			System.out.println(QRdata);
-			
-//			 if (QRdata.contains("http://")) {
-//			        QRdata = QRdata.replace("http://", "");
-//			 }
+
 			
 			BitMatrix matrix = new MultiFormatWriter()
 					.encode(QRdata, BarcodeFormat.QR_CODE, 500, 500);

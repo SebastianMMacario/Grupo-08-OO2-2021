@@ -30,21 +30,6 @@ public class UsuarioService implements IusuarioService {
 		return data.findById(id);
 	}
 
-	/*
-	@Override
-	public Usuario save(Usuario u) {
-		Usuario usuario = new Usuario();
-		usuario.setNombre(u.getNombre());
-		usuario.setApellido(u.getApellido());
-		usuario.setNroDocumento(u.getNroDocumento());
-		usuario.setTipoDocumento(u.getTipoDocumento());
-		usuario.setEmail(u.getEmail());
-		usuario.setNombreUsuario(u.getNombreUsuario());
-		usuario.setPerfil(u.getPerfil());
-		usuario.setPassword(passwordEncoder.encode(u.getPassword()));
-		return data.save(usuario);
-	}
-	*/
 	
 	@Override
 	public int save(Usuario u) {

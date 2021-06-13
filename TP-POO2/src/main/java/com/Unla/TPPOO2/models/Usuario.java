@@ -30,10 +30,7 @@ public class Usuario {
 	
 	@Column(name="apellido", nullable=false, length=45)
 	private String apellido;
-	
-//	@Column(name="tipoDocumento", nullable=false)
-//	private int tipoDocumento;
-	
+		
     @Column(name="tipo_documento", nullable = false )
     @Enumerated(value = EnumType.ORDINAL)
     private TipoDocumento tipoDocumento;
@@ -118,14 +115,6 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
-//	public int getTipoDocumento() {
-//		return tipoDocumento;
-//	}
-//
-//	public void setTipoDocumento(int tipoDocumento) {
-//		this.tipoDocumento = tipoDocumento;
-//	}
 	
 	public int getNroDocumento() {
 		return nroDocumento;

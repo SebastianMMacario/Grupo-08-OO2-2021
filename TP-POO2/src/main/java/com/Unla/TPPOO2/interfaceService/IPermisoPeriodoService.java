@@ -2,7 +2,6 @@ package com.Unla.TPPOO2.interfaceService;
 
 import java.util.List;
 
-import com.Unla.TPPOO2.models.PermisoDiario;
 import com.Unla.TPPOO2.models.PermisoPeriodo;
 
 public interface IPermisoPeriodoService {

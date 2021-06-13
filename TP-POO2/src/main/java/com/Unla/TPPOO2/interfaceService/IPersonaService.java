@@ -3,7 +3,6 @@ package com.Unla.TPPOO2.interfaceService;
 import java.util.List;
 import java.util.Optional;
 
-import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.Persona;
 
 public interface IPersonaService  {

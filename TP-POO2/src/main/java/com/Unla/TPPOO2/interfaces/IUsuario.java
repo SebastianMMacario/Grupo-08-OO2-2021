@@ -8,6 +8,4 @@ import com.Unla.TPPOO2.models.Usuario;
 @Repository
 public interface IUsuario extends CrudRepository<Usuario, Integer> {
 
-	//public Usuario findByUsuario(String usuario);
-	
 }

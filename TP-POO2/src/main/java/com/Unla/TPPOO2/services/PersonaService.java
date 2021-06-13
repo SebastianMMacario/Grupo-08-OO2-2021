@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.Unla.TPPOO2.interfaceService.IPersonaService;
 import com.Unla.TPPOO2.interfaces.IPersona;
-import com.Unla.TPPOO2.models.Permiso;
 import com.Unla.TPPOO2.models.Persona;
 import com.Unla.TPPOO2.repositories.IPersonaRepository;
 
