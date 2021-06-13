@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.Unla.TPPOO2.interfaceService.IUsuarioService;
+import com.Unla.TPPOO2.interfaceService.IusuarioService;
 import com.Unla.TPPOO2.interfaces.IUsuario;
 import com.Unla.TPPOO2.models.Usuario;
 
 @Service
-public class UsuarioService implements IUsuarioService {
+public class UsuarioService implements IusuarioService {
 
 	@Autowired
 	private IUsuario data;

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.Unla.TPPOO2.models.Usuario;
 
-public interface IUsuarioService {
+public interface IusuarioService {
 	
 	public List<Usuario>listar();
 	public Optional<Usuario>listarId(int id);

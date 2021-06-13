@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.Unla.TPPOO2.helpers.ViewRouteHelper;
 import com.Unla.TPPOO2.interfaceService.IPerfilService;
 import com.Unla.TPPOO2.interfaceService.IUserLogueadoService;
-import com.Unla.TPPOO2.interfaceService.IUsuarioService;
+import com.Unla.TPPOO2.interfaceService.IusuarioService;
 import com.Unla.TPPOO2.models.Usuario;
 import com.Unla.TPPOO2.models.Usuario.TipoDocumento;
 
@@ -31,7 +31,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class UsuarioController {
 	
 	@Autowired
-	private IUsuarioService service;
+	private IusuarioService service;
 	
 	@Autowired
 	private IPerfilService perfilService;
