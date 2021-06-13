@@ -38,7 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/persona","/persona/*").permitAll()
 				.antMatchers("/rodado","/rodado/*").permitAll()
-				.antMatchers("/permiso","/permiso/*").permitAll()                                                                                                                                      
+				.antMatchers("/permiso","/permiso/*").permitAll()  
+				.antMatchers("/generateQRCode/{idPermiso}").permitAll()  
 				
 				.anyRequest().authenticated() 
 			
